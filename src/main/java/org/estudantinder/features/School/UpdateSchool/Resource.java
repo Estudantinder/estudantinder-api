@@ -24,7 +24,7 @@ public class Resource {
     @PUT
     @Path("{id}")
     @Transactional
-    public Response updateSchool(@PathParam("id") Long id, DTO data) {
+    public Response updateSchool(@PathParam("id") Long id, DTO data) throws Exception {
         return updateSchoolController.handle(id, data);
     }
 

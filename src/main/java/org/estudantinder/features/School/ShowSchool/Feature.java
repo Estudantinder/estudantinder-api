@@ -13,7 +13,7 @@ public class Feature {
     @Inject
     SchoolsRepository schoolsRepository;
 
-    public School execute(Long id) {
+    public School execute(Long id) throws Exception {
         School school = schoolsRepository.findById(id);
         
         if(school == null) {

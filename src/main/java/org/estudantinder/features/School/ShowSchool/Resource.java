@@ -26,13 +26,13 @@ public class Resource {
     Controller showSchoolController;
 
     @GET
-    public List<School> index() {
+    public List<School> index() throws Exception {
         return schoolsRepository.listAll();
     }
 
     @GET
     @Path("{id}")
-    public Response showSchools(@PathParam("id") Long id) {
+    public Response showSchools(@PathParam("id") Long id) throws Exception {
         return showSchoolController.handle(id);
     }
 }

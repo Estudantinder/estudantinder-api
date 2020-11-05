@@ -13,7 +13,7 @@ public  class Controller {
     @Inject
     Feature updateSchool;
 
-    public Response handle(Long id, DTO data)  {
+    public Response handle(Long id, DTO data) throws Exception {
         try {
             updateSchool.execute(id, data);
 
@@ -21,7 +21,6 @@ public  class Controller {
                 .status(Response.Status.OK)
                 .entity(data)
                 .build();
-
         } catch (EntityNotFoundException error) {
             ErrorMessage errorMessage = new ErrorMessage();
             
@@ -30,6 +29,16 @@ public  class Controller {
 
             return Response
                 .status(Response.Status.NOT_FOUND)
+                .entity(errorMessage)
+                .build();
+        } catch(Exception error) {
+            ErrorMessage errorMessage = new ErrorMessage();
+            
+            errorMessage.error = error.getMessage();
+            errorMessage.message = "Couldn't create School";
+
+            return Response
+                .status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(errorMessage)
                 .build();
         }

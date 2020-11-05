@@ -17,7 +17,7 @@ public class Feature {
     @Inject
     CoursesRepository coursesRepository;
 
-    public void execute(Long id, DTO data)  {
+    public void execute(Long id, DTO data) throws Exception {
         School updatedSchool = schoolsRepository.findById(id);
 
         if(updatedSchool == null) {
@@ -25,10 +25,11 @@ public class Feature {
         }
 
 
-        if ( data.name != null ) {
+
+        if(data.name != null ) {
             updatedSchool.setName(data.name);
         }
-        if( data.address != null ) {
+        if(data.address != null ) {
             updatedSchool.setAddress(data.address);
         }
         if(data.courses != null) {
@@ -36,6 +37,7 @@ public class Feature {
 
             updatedSchool.setCourses(data.courses);
         }
+
 
         schoolsRepository.persist(updatedSchool);
     }

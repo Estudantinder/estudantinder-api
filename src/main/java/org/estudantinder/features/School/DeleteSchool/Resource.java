@@ -22,7 +22,7 @@ public class Resource {
     @DELETE
     @Path("{id}")
     @Transactional
-    public Response deleteSchool(@PathParam("id") Long id) {
+    public Response deleteSchool(@PathParam("id") Long id) throws Exception {
         return deleteSchoolController.handle(id);
     }
 
