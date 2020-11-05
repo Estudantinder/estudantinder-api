@@ -1,4 +1,4 @@
-package org.estudantinder.useCases;
+package org.estudantinder.Features;
 
 import io.quarkus.test.junit.QuarkusTest;
 

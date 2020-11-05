@@ -1,4 +1,4 @@
-package org.estudantinder.useCases;
+package org.estudantinder.Features;
 
 import org.estudantinder.entities.Course;
 import org.estudantinder.entities.School;
