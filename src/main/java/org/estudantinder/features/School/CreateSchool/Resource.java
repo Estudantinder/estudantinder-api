@@ -9,6 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 @Path("school")
@@ -22,6 +23,10 @@ public class Resource {
 
     @POST
     @Transactional
+    @APIResponse(responseCode = "201", description = "Created")
+    @APIResponse(responseCode = "400", description = "No Data Sent")
+    @APIResponse(responseCode = "409", description = "School Already Exists")
+    @APIResponse(responseCode = "500", description = "Unexpected Error")
     public Response createSchool(DTO data) throws Exception {
         return createSchoolController.handle(data);
     }
