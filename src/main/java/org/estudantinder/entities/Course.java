@@ -7,8 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Course {
-
-    @Id
+	@Id
     @GeneratedValue
     private Long id;
 
@@ -26,5 +25,6 @@ public class Course {
     public void setName(String name) {
         this.name = name;
     }
+
     
 }

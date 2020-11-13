@@ -11,7 +11,6 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class School {
-
   @Id
   @GeneratedValue
   private Long id;
@@ -52,5 +51,6 @@ public class School {
   public void setName(String name) {
     this.name = name;
 	}
+
 
 }
