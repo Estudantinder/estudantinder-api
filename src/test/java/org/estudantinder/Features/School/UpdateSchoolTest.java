@@ -17,17 +17,24 @@ public class UpdateSchoolTest {
     @Test
     public void testUpdateSchoolEndpoint() {
         
-        Course newCourse = new Course();
-        Course newCourse1 = new Course();
-        newCourse.setName("New Course");
-        newCourse1.setName("New Course1");
+        Course updatedTestCourse1 = new Course();
+        updatedTestCourse1.setName("UPDATED TEST COURSE 1");
+        
+        Course updatedTestCourse2 = new Course();
+        updatedTestCourse2.setName("UPDATED TEST COURSE 2");
 
-        School updatedSchool = new School();
-        updatedSchool.setCourses(Arrays.asList(newCourse, newCourse1));
+        School updatedTestSchool = new School();
+
+        updatedTestSchool.setName("UPDATED TEST SCHOOL");
+        updatedTestSchool.setAddress("UPDATED TEST ADDRESS");
+        updatedTestSchool.setCourses(Arrays.asList(
+            updatedTestCourse1, 
+            updatedTestCourse2)
+        );
 
         given()
-            .body(updatedSchool)
-            .pathParam("id", -3)
+            .body(updatedTestSchool)
+            .pathParam("id", 3)
             .contentType(ContentType.JSON)
             .when().put("/school/{id}")
             .then()
