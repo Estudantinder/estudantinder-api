@@ -20,7 +20,7 @@ public class StudentDTO {
 
     @NotNull(message = "School Year must not be null")
     @Min(message = "You must be in a school year between 1 - 3", value = 1)
-    @Max(message = "You must be in a school year between 1 - 3", value = 1)
+    @Max(message = "You must be in a school year between 1 - 3", value = 3)
     public int schoolYear;
     
     public LocalDate birthday;
