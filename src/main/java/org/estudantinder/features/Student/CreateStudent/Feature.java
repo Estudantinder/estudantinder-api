@@ -94,8 +94,6 @@ public class Feature {
         
         Student newStudent = setNewStudent(data);
         
-        System.out.println(data.birthday);
-        System.out.println(newStudent.getBirthday());
         studentsRepository.persist(newStudent);
     }
 }
