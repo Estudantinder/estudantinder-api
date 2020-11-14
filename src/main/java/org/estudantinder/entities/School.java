@@ -3,6 +3,7 @@ package org.estudantinder.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,13 +11,14 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class School {
-
   @Id
   @GeneratedValue
   private Long id;
 
+  @Column(nullable = false)
   private String name;
 
+  @Column(nullable = false)
   private String address;
 
   @OneToMany(cascade = CascadeType.ALL)
@@ -49,5 +51,6 @@ public class School {
   public void setName(String name) {
     this.name = name;
 	}
+
 
 }

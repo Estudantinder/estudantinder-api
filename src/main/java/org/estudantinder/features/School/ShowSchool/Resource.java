@@ -10,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.estudantinder.entities.School;
 import org.estudantinder.repositories.SchoolsRepository;
@@ -26,13 +27,16 @@ public class Resource {
     Controller showSchoolController;
 
     @GET
-    public List<School> index() {
+    public List<School> index() throws Exception {
         return schoolsRepository.listAll();
     }
 
     @GET
     @Path("{id}")
-    public Response showSchools(@PathParam("id") Long id) {
+    @APIResponse(responseCode = "200", description = "OK")
+    @APIResponse(responseCode = "404", description = "School ID Not Found")
+    @APIResponse(responseCode = "500", description = "Unexpected Error")
+    public Response showSchools(@PathParam("id") Long id) throws Exception {
         return showSchoolController.handle(id);
     }
 }

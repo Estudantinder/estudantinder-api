@@ -13,7 +13,7 @@ public class Controller {
     @Inject
     Feature deleteSchool;
 
-    public Response handle(Long id) {
+    public Response handle(Long id) throws Exception {
         try {
             deleteSchool.execute(id);
 
@@ -30,6 +30,16 @@ public class Controller {
 
             return Response
                 .status(Response.Status.NOT_FOUND)
+                .entity(errorMessage)
+                .build();
+        } catch(Exception error) {
+            ErrorMessage errorMessage = new ErrorMessage();
+            
+            errorMessage.error = error.getMessage();
+            errorMessage.message = "Couldn't create School";
+
+            return Response
+                .status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(errorMessage)
                 .build();
         }

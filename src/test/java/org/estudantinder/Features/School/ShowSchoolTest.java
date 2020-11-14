@@ -1,4 +1,4 @@
-package org.estudantinder.useCases;
+package org.estudantinder.Features.School;
 
 import io.quarkus.test.junit.QuarkusTest;
 
@@ -21,7 +21,7 @@ public class ShowSchoolTest {
     @Test
     public void testShowSchoolEndpoint() {
         given()
-        .pathParam("id", -2)
+        .pathParam("id", 1)
         .when().get("/school/{id}")
         .then()
             .statusCode(200);

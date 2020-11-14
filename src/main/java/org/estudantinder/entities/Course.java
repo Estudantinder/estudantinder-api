@@ -1,16 +1,17 @@
 package org.estudantinder.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Course {
-
-    @Id
+	@Id
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
     public String getName() {
@@ -24,5 +25,6 @@ public class Course {
     public void setName(String name) {
         this.name = name;
     }
+
     
 }
