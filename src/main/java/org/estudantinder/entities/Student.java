@@ -30,6 +30,7 @@ public class Student {
     @Column(nullable = false)
     private int schoolYear;
 
+    @Column(nullable = false)
     private LocalDate birthday;
 
     @Column(nullable = false)
