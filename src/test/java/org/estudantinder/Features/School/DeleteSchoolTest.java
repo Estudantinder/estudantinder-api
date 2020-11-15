@@ -12,7 +12,7 @@ public class DeleteSchoolTest {
     @Test
     public void testDeleteSchoolEndpoint() {
         given()
-            .pathParam("id", 2)
+            .pathParam("id", 1)
             .when().delete("/school/{id}")
             .then()
                 .statusCode(200);
