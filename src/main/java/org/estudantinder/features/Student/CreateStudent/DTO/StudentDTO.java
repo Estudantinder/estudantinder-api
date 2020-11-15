@@ -2,6 +2,7 @@ package org.estudantinder.features.Student.CreateStudent.DTO;
 
 import java.time.LocalDate;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -40,5 +41,6 @@ public class StudentDTO {
     @NotNull(message = "Contacts must not be null")
     public ContactsDTO contacts;
 
+    @Valid
     public PreferencesDTO preferences;
 }
