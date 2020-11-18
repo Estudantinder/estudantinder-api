@@ -10,7 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-
+import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
@@ -29,6 +29,7 @@ public class Resource {
     @APIResponse(responseCode = "200", description = "Successfully Updated")
     @APIResponse(responseCode = "404", description = "School ID Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
+    @Operation(summary = "Update given Id School")
     public Response updateSchool(@PathParam("id") Long id, DTO data) throws Exception {
         return updateSchoolController.handle(id, data);
     }
