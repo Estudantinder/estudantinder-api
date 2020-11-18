@@ -16,7 +16,7 @@ import javax.json.Json;
 public class CreateStudentTest {
 
     @Test
-    public void testCreateSchoolEndpoint() {
+    public void testCreateStudentEndpoint() {
 
         String testStudent = Json.createObjectBuilder()
         .add("name", "TEST STUDENT")
