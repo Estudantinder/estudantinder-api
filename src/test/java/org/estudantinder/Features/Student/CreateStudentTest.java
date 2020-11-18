@@ -20,7 +20,7 @@ public class CreateStudentTest {
 
         String testStudent = Json.createObjectBuilder()
         .add("name", "TEST STUDENT")
-        .add("email", "TEST EMAIL")
+        .add("email", "test@gmail.com")
         .add("password", "TEST PASSWORD")
         .add("schoolYear", 3)
         .add("birthday", "2000-02-01")
@@ -35,7 +35,7 @@ public class CreateStudentTest {
         .add("favoriteSubjects", Json.createArrayBuilder()
             .add("SUBJECT 1")
             .add("SUBJECT 2")
-            .add("subject 3"))
+            .add("SUBJECT 3"))
         .add("courseId", 6)
         .add("contacts", Json.createObjectBuilder()
             .add("whatsapp", 551112345)
