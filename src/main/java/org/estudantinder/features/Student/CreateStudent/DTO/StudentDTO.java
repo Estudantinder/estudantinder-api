@@ -3,6 +3,7 @@ package org.estudantinder.features.Student.CreateStudent.DTO;
 import java.time.LocalDate;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -13,6 +14,7 @@ public class StudentDTO {
     @NotBlank(message = "Name may not be blank")
     public String name;
 
+    @Email
     @NotBlank(message = "Email may not be blank")
     public String email;
 
