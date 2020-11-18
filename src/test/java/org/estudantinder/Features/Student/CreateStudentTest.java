@@ -50,7 +50,6 @@ public class CreateStudentTest {
         
         given()
             .body(testStudent)
-            .log().all()
             .contentType(ContentType.JSON)
             .when().post("/student")
             .then()
