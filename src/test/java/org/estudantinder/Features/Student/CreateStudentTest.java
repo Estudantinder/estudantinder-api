@@ -36,7 +36,7 @@ public class CreateStudentTest {
             .add("SUBJECT 1")
             .add("SUBJECT 2")
             .add("SUBJECT 3"))
-        .add("courseId", 6)
+        .add("courseId", 9)
         .add("contacts", Json.createObjectBuilder()
             .add("whatsapp", 551112345)
             .add("instagram", "@testInstagram")
@@ -45,7 +45,7 @@ public class CreateStudentTest {
         .add("preferences", Json.createObjectBuilder()
             .add("schoolYear", 3)
             .add("schoolShift", "tarde")
-            .add("courseId", 8))
+            .add("courseId", 9))
             .build().toString();
         
         given()
