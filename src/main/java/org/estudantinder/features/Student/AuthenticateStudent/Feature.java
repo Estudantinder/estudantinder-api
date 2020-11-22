@@ -39,7 +39,9 @@ public class Feature {
             throw new UnauthorizedException("Wrong Password");
         }
 
-        String token = Jwt.groups("Student")
+        String token = Jwt.issuer("https://github.com/AdamAugustinsky")
+            .upn("estudantinder@quarkus.io")
+            .groups("Student")
             .claim("id", authenticatedStudent.getId())
             .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
             .sign();
