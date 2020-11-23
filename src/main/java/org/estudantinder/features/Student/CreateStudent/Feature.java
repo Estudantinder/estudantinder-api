@@ -25,10 +25,6 @@ public class Feature {
     CoursesRepository coursesRepository;
 
     public Course returnCourseIfExists(Long courseId) {
-        if(courseId == null) {
-            throw new EntityNotFoundException("CourseId Can't be Null");
-        }
-
         Course course = coursesRepository.findById(courseId);
 
         if(course == null) {
@@ -69,6 +65,8 @@ public class Feature {
         newStudent.setSchoolYear(student.schoolYear);
         newStudent.setBirthday(student.birthday);
         newStudent.setBiography(student.biography);
+        newStudent.setGender(student.gender);
+        newStudent.setSchoolShift(student.schoolShift);
         newStudent.setPhotos(student.photos);
         newStudent.setFavoriteSubjects(student.favoriteSubjects);
         newStudent.setCourse(returnCourseIfExists(student.courseId));

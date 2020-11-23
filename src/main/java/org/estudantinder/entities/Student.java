@@ -38,6 +38,12 @@ public class Student {
     private String biography;
 
     @Column(nullable = false)
+    private String gender;
+
+    @Column(nullable = false)
+    private String schoolShift;
+
+    @Column(nullable = false)
     private String[] photos;
 
     @Column(nullable = false)
@@ -54,6 +60,22 @@ public class Student {
 
     public String[] getFavoriteSubjects() {
         return favoriteSubjects;
+    }
+
+    public String getSchoolShift() {
+        return schoolShift;
+    }
+
+    public void setSchoolShift(String schoolShift) {
+        this.schoolShift = schoolShift;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public Long getId() {
