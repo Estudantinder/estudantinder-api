@@ -43,7 +43,7 @@ public class Feature {
             .upn("estudantinder@quarkus.io")
             .groups("Student")
             .claim("id", authenticatedStudent.getId())
-            .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
+            .expiresAt(Instant.now().plus(15, ChronoUnit.DAYS ))
             .sign();
         
         return token;
