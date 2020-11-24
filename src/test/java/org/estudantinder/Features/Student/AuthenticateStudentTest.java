@@ -16,11 +16,11 @@ import javax.json.Json;
 public class AuthenticateStudentTest {
 
     @Test
-    public void testCreateSchoolEndpoint() {
+    public void testAuthenticateStudentEndpoint() {
 
         String testStudent = Json.createObjectBuilder()
-        .add("email", "teste1@gmail.com")
-        .add("password", "TEST PASSWORD 1")
+        .add("email", "test4@email.com")
+        .add("password", "TEST PASSWORD 4")
         .build().toString();
         
         given()
