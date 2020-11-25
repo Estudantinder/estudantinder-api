@@ -4,7 +4,9 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
 
+import org.estudantinder.entities.Course;
 import org.estudantinder.entities.School;
+import org.estudantinder.features.School.UpdateSchool.DTO.SchoolDTO;
 import org.estudantinder.repositories.CoursesRepository;
 import org.estudantinder.repositories.SchoolsRepository;
 
@@ -17,7 +19,8 @@ public class Feature {
     @Inject
     CoursesRepository coursesRepository;
 
-    public void execute(Long id, DTO data) throws Exception {
+
+    public void execute(Long id, SchoolDTO data) throws Exception {
         School updatedSchool = schoolsRepository.findById(id);
 
         if(updatedSchool == null) {
@@ -33,9 +36,14 @@ public class Feature {
             updatedSchool.setAddress(data.address);
         }
         if(data.courses != null) {
-            coursesRepository.deleteCourses(updatedSchool.getCourses());
+            coursesRepository.delete("school", updatedSchool);
 
-            updatedSchool.setCourses(data.courses);
+            data.courses.forEach(course -> {
+                Course newCourse = new Course();
+                newCourse.setName(course.name);
+                newCourse.setSchool(updatedSchool);
+                coursesRepository.persist(newCourse);
+            });
         }
 
 

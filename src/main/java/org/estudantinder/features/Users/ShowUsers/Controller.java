@@ -1,32 +1,37 @@
-package org.estudantinder.features.School.UpdateSchool;
+package org.estudantinder.features.Users.ShowUsers;
+
+import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
 import javax.ws.rs.core.Response;
 
-import org.estudantinder.features.School.UpdateSchool.DTO.SchoolDTO;
+import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.estudantinder.features.Users.common.User;
 import org.estudantinder.features.commom.ErrorMessage;
 
 @ApplicationScoped
-public  class Controller {
-    
-    @Inject
-    Feature updateSchool;
+public class Controller {
 
-    public Response handle(Long id, SchoolDTO data) throws Exception {
+    @Inject
+    Feature showUsers;
+
+    public Response handle(JsonWebToken jwt) throws Exception {
         try {
-            updateSchool.execute(id, data);
+            List<User> filteredStudents = showUsers.execute(jwt);
 
             return Response
                 .status(Response.Status.OK)
-                .entity(data)
+                .entity(filteredStudents)
                 .build();
+
+                
         } catch (EntityNotFoundException error) {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't update School";
+            errorMessage.message = "Couldn't show Users";
 
             return Response
                 .status(Response.Status.NOT_FOUND)
@@ -36,7 +41,7 @@ public  class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create School";
+            errorMessage.message = "Couldn't show Users";
 
             return Response
                 .status(Response.Status.INTERNAL_SERVER_ERROR)
