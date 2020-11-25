@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
 import javax.ws.rs.core.Response;
 
+import org.estudantinder.features.School.UpdateSchool.DTO.SchoolDTO;
 import org.estudantinder.features.commom.ErrorMessage;
 
 @ApplicationScoped
@@ -13,7 +14,7 @@ public  class Controller {
     @Inject
     Feature updateSchool;
 
-    public Response handle(Long id, DTO data) throws Exception {
+    public Response handle(Long id, SchoolDTO data) throws Exception {
         try {
             updateSchool.execute(id, data);
 

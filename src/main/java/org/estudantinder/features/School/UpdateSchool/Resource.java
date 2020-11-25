@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+import org.estudantinder.features.School.UpdateSchool.DTO.SchoolDTO;
 
 @Path("school")
 @Tag(name = "School")
@@ -30,7 +31,7 @@ public class Resource {
     @APIResponse(responseCode = "404", description = "School ID Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
     @Operation(summary = "Update given Id School")
-    public Response updateSchool(@PathParam("id") Long id, DTO data) throws Exception {
+    public Response updateSchool(@PathParam("id") Long id, SchoolDTO data) throws Exception {
         return updateSchoolController.handle(id, data);
     }
 
