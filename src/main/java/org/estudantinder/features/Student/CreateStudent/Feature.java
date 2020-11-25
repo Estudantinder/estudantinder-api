@@ -40,7 +40,9 @@ public class Feature {
         newStudentPreferences.setGender(preferences.gender);
         newStudentPreferences.setSchoolShift(preferences.schoolShift);
         newStudentPreferences.setSchoolYear(preferences.schoolYear);
-        newStudentPreferences.setCourse(returnCourseIfExists(preferences.courseId));
+        if(preferences.courseId != null) {
+            newStudentPreferences.setCourse(returnCourseIfExists(preferences.courseId));
+        }
 
         return newStudentPreferences;
     }
