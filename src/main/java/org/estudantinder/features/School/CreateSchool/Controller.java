@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
 import javax.ws.rs.core.Response;
 
+import org.estudantinder.features.School.CreateSchool.DTO.SchoolDTO;
 import org.estudantinder.features.commom.ErrorMessage;
 
 @ApplicationScoped
@@ -13,7 +14,7 @@ public class Controller {
     @Inject
     Feature createSchoolUseCase;
 
-    public Response handle(DTO data) throws Exception {
+    public Response handle(SchoolDTO data) throws Exception {
         try {
             createSchoolUseCase.execute(data);
 

@@ -3,17 +3,11 @@ INSERT INTO school (id, name, address) VALUES (nextval('hibernate_sequence'), 'S
 INSERT INTO school (id, name, address) VALUES (nextval('hibernate_sequence'), 'SCHOOL 3', 'ADDRESS 3');
 INSERT INTO school (id, name, address) VALUES (nextval('hibernate_sequence'), 'SCHOOL 4', 'ADDRESS 4');
 
-INSERT INTO course (id, name) VALUES (nextval('hibernate_sequence'), 'COURSE 1');
-INSERT INTO course (id, name) VALUES (nextval('hibernate_sequence'), 'COURSE 2');
-INSERT INTO course (id, name) VALUES (nextval('hibernate_sequence'), 'COURSE 3');
-INSERT INTO course (id, name) VALUES (nextval('hibernate_sequence'), 'COURSE 4');
-INSERT INTO course (id, name) VALUES (nextval('hibernate_sequence'), 'COURSE 5');
-
-INSERT INTO school_course (school_id, courses_id) VALUES (1, 5);
-INSERT INTO school_course (school_id, courses_id) VALUES (2, 6);
-INSERT INTO school_course (school_id, courses_id) VALUES (3, 7);
-INSERT INTO school_course (school_id, courses_id) VALUES (4, 8);
-INSERT INTO school_course (school_id, courses_id) VALUES (4, 9);
+INSERT INTO course (id, name, school_id) VALUES (nextval('hibernate_sequence'), 'COURSE 1', 1);
+INSERT INTO course (id, name, school_id) VALUES (nextval('hibernate_sequence'), 'COURSE 2', 2);
+INSERT INTO course (id, name, school_id) VALUES (nextval('hibernate_sequence'), 'COURSE 3', 3);
+INSERT INTO course (id, name, school_id) VALUES (nextval('hibernate_sequence'), 'COURSE 4', 4);
+INSERT INTO course (id, name, school_id) VALUES (nextval('hibernate_sequence'), 'COURSE 5', 4);
 
 INSERT INTO contacts (id, facebook, instagram, twitter, whatsapp) VALUES (nextval('hibernate_sequence'), 'teste.profile1', '@testeProfile1', '@testeProfile1', 5511123456781);
 INSERT INTO contacts (id, facebook, instagram, twitter, whatsapp) VALUES (nextval('hibernate_sequence'), 'teste.profile2', '@testeProfile2', '@testeProfile2', 5511123456782);
