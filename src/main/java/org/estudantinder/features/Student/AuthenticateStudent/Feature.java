@@ -33,7 +33,7 @@ public class Feature {
         Student authenticatedStudent =  studentsRepository.findByEmail(data.email);
 
         if(authenticatedStudent == null) {
-            throw new NotFoundException("Email Not Valid");
+            throw new NotFoundException("Email Not Found");
         }
         if(!isPasswordCorrect(authenticatedStudent.getPassword(), data.password)) {
             throw new UnauthorizedException("Wrong Password");
