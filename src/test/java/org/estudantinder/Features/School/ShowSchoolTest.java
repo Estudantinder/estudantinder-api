@@ -21,7 +21,7 @@ public class ShowSchoolTest {
     @Test
     public void testShowSchoolEndpoint() {
         given()
-        .pathParam("id", 1)
+        .pathParam("id", 2)
         .when().get("/school/{id}")
         .then()
             .statusCode(200);

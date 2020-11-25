@@ -1,10 +1,16 @@
 package org.estudantinder.features.School.CreateSchool;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
 
+import org.estudantinder.entities.Course;
 import org.estudantinder.entities.School;
+import org.estudantinder.features.School.CreateSchool.DTO.CourseDTO;
+import org.estudantinder.features.School.CreateSchool.DTO.SchoolDTO;
 import org.estudantinder.repositories.SchoolsRepository;
 
 @ApplicationScoped
@@ -13,7 +19,15 @@ public class Feature {
     @Inject
     SchoolsRepository schoolsRepository;
 
-    public void execute(DTO data) throws Exception {
+    Course mapCourseDtoToCourse(CourseDTO course, School courseSchool) {
+        Course newCourse = new Course();
+        newCourse.setName(course.name);
+        newCourse.setSchool(courseSchool);
+
+        return newCourse;
+    } 
+
+    public void execute(SchoolDTO data) throws Exception {
         School userAlreadyExists = schoolsRepository.findByName(data.name);
 
         if (userAlreadyExists != null) {
@@ -24,7 +38,9 @@ public class Feature {
         
         newSchool.setName(data.name);
         newSchool.setAddress(data.address);
-        newSchool.setCourses(data.courses);
+
+        List<Course> courses = data.courses.stream().map(courseDto -> mapCourseDtoToCourse(courseDto, newSchool)).collect(Collectors.toList());
+        newSchool.setCourses(courses);
 
         schoolsRepository.persist(newSchool);
     }

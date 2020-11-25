@@ -2,6 +2,8 @@ package org.estudantinder.features.Student.CreateStudent.DTO;
 
 import java.time.LocalDate;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -12,6 +14,7 @@ public class StudentDTO {
     @NotBlank(message = "Name may not be blank")
     public String name;
 
+    @Email
     @NotBlank(message = "Email may not be blank")
     public String email;
 
@@ -28,6 +31,12 @@ public class StudentDTO {
     @NotBlank(message = "You must have a biography")
     public String biography;
 
+    @NotBlank(message = "You must put a gender")
+    public String gender;
+
+    @NotBlank(message = "You must put your schoolShift")
+    public String schoolShift;
+
     @NotNull(message = "You must have some photo")
     public String[] photos;
     
@@ -40,5 +49,6 @@ public class StudentDTO {
     @NotNull(message = "Contacts must not be null")
     public ContactsDTO contacts;
 
+    @Valid
     public PreferencesDTO preferences;
 }

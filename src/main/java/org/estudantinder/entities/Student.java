@@ -14,6 +14,7 @@ import io.quarkus.elytron.security.common.BcryptUtil;
 
 @Entity
 public class Student {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -30,14 +31,21 @@ public class Student {
     @Column(nullable = false)
     private int schoolYear;
 
+    @Column(nullable = false)
     private LocalDate birthday;
 
     @Column(nullable = false)
     private String biography;
 
     @Column(nullable = false)
+    private String gender;
+
+    @Column(nullable = false)
+    private String schoolShift;
+
+    @Column(nullable = false)
     private String[] photos;
-    
+
     @Column(nullable = false)
     private String[] favoriteSubjects;
 
@@ -52,6 +60,26 @@ public class Student {
 
     public String[] getFavoriteSubjects() {
         return favoriteSubjects;
+    }
+
+    public String getSchoolShift() {
+        return schoolShift;
+    }
+
+    public void setSchoolShift(String schoolShift) {
+        this.schoolShift = schoolShift;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Preferences getPreferences() {
