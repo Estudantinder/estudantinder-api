@@ -31,7 +31,6 @@ public class StudentDTO {
     @NotBlank(message = "You must have a biography")
     public String biography;
 
-    @NotBlank(message = "You must put a gender")
     public String gender;
 
     @NotBlank(message = "You must put your schoolShift")
