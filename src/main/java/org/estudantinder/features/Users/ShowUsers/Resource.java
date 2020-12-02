@@ -34,6 +34,7 @@ public class Resource {
     @RolesAllowed("Student")
     @SecurityRequirement(name = "jwt")
     @APIResponse(responseCode = "200", description = "OK")
+    @APIResponse(responseCode = "404", description = "Student id Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
     @Operation(summary = "Show Users filtered by given student preferences")
     public Response showFilteredUsers(@Context SecurityContext ctx) throws Exception {
