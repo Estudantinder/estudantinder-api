@@ -26,6 +26,7 @@ public class StudentDTO {
     @Max(message = "You must be in a school year between 1 - 3", value = 3)
     public int schoolYear;
     
+    @NotNull
     public LocalDate birthday;
 
     @NotBlank(message = "You must have a biography")
