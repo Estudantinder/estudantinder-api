@@ -7,6 +7,7 @@ import org.estudantinder.entities.School;
 import org.estudantinder.entities.Student;
 
 public class User {
+    public Long id;
     public String name;
     public String biography;
     public LocalDate birthday;
@@ -20,6 +21,7 @@ public class User {
 
     public static User mapStudentToUser(Student student) {
         User user = new User();
+        user.id = student.getId();
         user.name = student.getName();
         user.biography = student.getBiography();
         user.birthday = student.getBirthday();
