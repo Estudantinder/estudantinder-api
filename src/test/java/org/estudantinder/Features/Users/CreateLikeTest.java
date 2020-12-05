@@ -16,7 +16,7 @@ public class CreateLikeTest {
     @Test
     public void testCreateLikeEndpoint() {
         given()
-        .pathParam("id", 20)
+        .pathParam("id", 19)
         .auth().oauth2(generateValidStudentToken())
         .when().post("/users/likes/{id}")
         .then()
