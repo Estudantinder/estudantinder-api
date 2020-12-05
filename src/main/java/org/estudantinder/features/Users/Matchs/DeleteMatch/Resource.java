@@ -38,6 +38,7 @@ public class Resource {
     @RolesAllowed("Student")
     @SecurityRequirement(name = "jwt")
     @APIResponse(responseCode = "200", description = "Match Successfully Deleted")
+    @APIResponse(responseCode = "401", description = "Unauthorized, Match Ins't Yours")
     @APIResponse(responseCode = "404", description = "Match ID Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
     @Operation(summary = "Delete given Id Match")

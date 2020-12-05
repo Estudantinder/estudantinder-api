@@ -38,7 +38,7 @@ public class Feature {
         if( match.getLike().getSender() != authenticatedStudent &&
             match.getMutualLike().getSender() != authenticatedStudent) {
             
-            throw new UnauthorizedException("Can't delete a match that isn't yours");
+            throw new UnauthorizedException("Unauthorized, Match Ins't Yours");
         }
  
         matchsRepository.delete(match);

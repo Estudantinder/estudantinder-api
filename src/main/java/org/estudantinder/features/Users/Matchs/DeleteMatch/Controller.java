@@ -8,6 +8,8 @@ import javax.ws.rs.core.Response;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.features.commom.ErrorMessage;
 
+import io.quarkus.security.UnauthorizedException;
+
 @ApplicationScoped
 public class Controller {
 
@@ -27,17 +29,27 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't delete School";
+            errorMessage.message = "Couldn't delete Match";
 
             return Response
                 .status(Response.Status.NOT_FOUND)
+                .entity(errorMessage)
+                .build();
+        } catch(UnauthorizedException error) {
+            ErrorMessage errorMessage = new ErrorMessage();
+            
+            errorMessage.error = error.getMessage();
+            errorMessage.message = "Couldn't delete Match";
+
+            return Response
+                .status(Response.Status.UNAUTHORIZED)
                 .entity(errorMessage)
                 .build();
         } catch(Exception error) {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create School";
+            errorMessage.message = "Couldn't delete Match";
 
             return Response
                 .status(Response.Status.INTERNAL_SERVER_ERROR)
