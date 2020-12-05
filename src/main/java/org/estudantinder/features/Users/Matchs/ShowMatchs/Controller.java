@@ -30,7 +30,7 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't show Student Likes";
+            errorMessage.message = "Couldn't show Student Matchs";
 
             return Response
                 .status(Response.Status.NOT_FOUND)
@@ -40,7 +40,7 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't show Student Likes";
+            errorMessage.message = "Couldn't show Student Matchs";
 
             return Response
                 .status(Response.Status.INTERNAL_SERVER_ERROR)
