@@ -14,7 +14,7 @@ import java.time.temporal.ChronoUnit;
 public class CreateLikeTest {
 
     @Test
-    public void testmethodname() {
+    public void testCreateLikeEndpoint() {
         given()
         .pathParam("id", 20)
         .auth().oauth2(generateValidStudentToken())

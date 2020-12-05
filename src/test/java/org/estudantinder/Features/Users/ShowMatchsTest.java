@@ -14,7 +14,7 @@ import java.time.temporal.ChronoUnit;
 public class ShowMatchsTest {
 
     @Test
-    public void testShowMatchsEndPoint() {
+    public void testShowMatchsEndpoint() {
         given()
         .auth().oauth2(generateValidStudentToken())
         .when().get("/users/matchs")

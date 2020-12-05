@@ -14,7 +14,7 @@ import java.time.temporal.ChronoUnit;
 public class DeleteMatchTest {
 
     @Test
-    public void testmethodname() {
+    public void testDeleteMatchEndpoint() {
         given()
         .auth().oauth2(generateValidStudentToken())
         .pathParam("id", 28)

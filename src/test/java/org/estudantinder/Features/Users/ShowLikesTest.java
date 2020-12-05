@@ -14,7 +14,7 @@ import java.time.temporal.ChronoUnit;
 public class ShowLikesTest {
 
     @Test
-    public void testmethodname() {
+    public void testShowLikesEndpoint() {
         given()
         .auth().oauth2(generateValidStudentToken())
         .when().get("/users/likes")
