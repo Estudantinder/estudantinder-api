@@ -10,6 +10,8 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.features.Users.common.User;
 import org.estudantinder.features.commom.ErrorMessage;
 
+import io.quarkus.security.UnauthorizedException;
+
 @ApplicationScoped
 public class Controller {
 
@@ -43,6 +45,16 @@ public class Controller {
 
             return Response
                 .status(Response.Status.CONFLICT)
+                .entity(errorMessage)
+                .build();
+        } catch(UnauthorizedException error) {
+            ErrorMessage errorMessage = new ErrorMessage();
+            
+            errorMessage.error = error.getMessage();
+            errorMessage.message = "Couldn't create Like";
+
+            return Response
+                .status(Response.Status.UNAUTHORIZED)
                 .entity(errorMessage)
                 .build();
         } catch(Exception error) {

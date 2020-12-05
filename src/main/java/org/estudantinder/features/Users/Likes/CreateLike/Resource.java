@@ -38,6 +38,7 @@ public class Resource {
     @RolesAllowed("Student")
     @SecurityRequirement(name = "jwt")
     @APIResponse(responseCode = "201", description = "Like Successfully Created")
+    @APIResponse(responseCode = "401", description = "Student Can't Like Himself")
     @APIResponse(responseCode = "404", description = "Student Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
     @Operation(summary = "Create a new like", description="Create new like, where sender is JWT's Student, and receiver is /id Student")

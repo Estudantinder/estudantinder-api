@@ -15,6 +15,7 @@ import org.estudantinder.repositories.MatchsRepository;
 import org.estudantinder.repositories.StudentsRepository;
 
 import io.quarkus.panache.common.Parameters;
+import io.quarkus.security.UnauthorizedException;
 
 @ApplicationScoped
 public class Feature {
@@ -43,6 +44,12 @@ public class Feature {
             throw new NotFoundException("Sender student id not found");
         } if(receiverStudent == null) {
             throw new NotFoundException("Receiver student id not found");
+        }
+    }
+    
+    void throwExceptionIfStudentAreEqual(Long senderId, Long receiverId) {
+        if(senderId.equals(receiverId)) {
+            throw new UnauthorizedException("Student can't like himself");
         }
     }
 
@@ -81,9 +88,12 @@ public class Feature {
 
     public User execute(JsonWebToken jwt, Long receiverId) throws Exception {
         Long senderId = Long.parseLong(jwt.getClaim("id").toString());
+
+        throwExceptionIfStudentAreEqual(senderId, receiverId);
+
         Student senderStudent = studentsRepository.findById(senderId);
         Student receiverStudent = studentsRepository.findById(receiverId);
-
+  
         throwExceptionIfStudentsArentValid(senderStudent, receiverStudent);
         throwExceptionIfLikeAlreadyExists(senderStudent, receiverStudent);
         
