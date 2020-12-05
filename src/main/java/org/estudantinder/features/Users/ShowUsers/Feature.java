@@ -24,6 +24,12 @@ public class Feature {
     @Inject
     LikesRepository likesRepository;
 
+    void throwExceptionIfStudentNotValid(Student authenticatedStudent) {
+        if(authenticatedStudent == null) {
+            throw new NotFoundException("User id not found");
+        }
+    }
+
     Stream<Student> removesAuthenticatedStudentFromStream(Student authenticatedStudent, Stream<Student> allStudents) {
         return allStudents.filter( student -> 
             student.getId() != authenticatedStudent.getId());
@@ -92,9 +98,7 @@ public class Feature {
         long userId = Long.parseLong(jwt.getClaim("id").toString());
         Student authenticatedStudent = studentsRepository.findById(userId);
 
-        if(authenticatedStudent == null) {
-            throw new NotFoundException("User id not found");
-        }
+        throwExceptionIfStudentNotValid(authenticatedStudent);
 
         Stream<Student> allStudents = studentsRepository.streamAll();
         return listFilteredUsers(authenticatedStudent, allStudents);
