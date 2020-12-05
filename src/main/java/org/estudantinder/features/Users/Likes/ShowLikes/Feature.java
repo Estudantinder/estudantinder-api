@@ -11,7 +11,7 @@ import javax.ws.rs.NotFoundException;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Likes;
 import org.estudantinder.entities.Student;
-import org.estudantinder.features.Users.Likes.commom.UserLike;
+import org.estudantinder.features.Users.common.User;
 import org.estudantinder.repositories.LikesRepository;
 import org.estudantinder.repositories.StudentsRepository;
 
@@ -24,11 +24,11 @@ public class Feature {
     @Inject
     StudentsRepository studentsRepository;
 
-    List<UserLike> listUserLikes(Student authenticatedStudent) {
+    List<User> listUserLikes(Student authenticatedStudent) {
         Stream<Likes> studentLikes = likesRepository.stream("sender", authenticatedStudent);
         
-        List<UserLike> userLikes = studentLikes.map(studentLike -> 
-            UserLike.mapStudentLikeToUserLike(studentLike)).collect(Collectors.toList());
+        List<User> userLikes = studentLikes.map(studentLike -> 
+            User.mapStudentToUser(studentLike.getReceiver())).collect(Collectors.toList());
 
         return userLikes;
     }
@@ -39,7 +39,7 @@ public class Feature {
         }
     }
 
-    public List<UserLike> execute(JsonWebToken jwt) throws Exception {
+    public List<User> execute(JsonWebToken jwt) throws Exception {
         Long userId = Long.parseLong(jwt.getClaim("id").toString());
         Student authenticatedStudent = studentsRepository.findById(userId);
 

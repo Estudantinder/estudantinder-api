@@ -8,7 +8,7 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.estudantinder.features.Users.Likes.commom.UserLike;
+import org.estudantinder.features.Users.common.User;
 import org.estudantinder.features.commom.ErrorMessage;
 
 @ApplicationScoped
@@ -19,7 +19,7 @@ public class Controller {
 
     public Response handle(JsonWebToken jwt) throws Exception {
         try {
-            List<UserLike> filteredStudents = showStudentLikes.execute(jwt);
+            List<User> filteredStudents = showStudentLikes.execute(jwt);
 
             return Response
                 .status(Response.Status.OK)

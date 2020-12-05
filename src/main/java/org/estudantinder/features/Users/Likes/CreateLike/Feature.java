@@ -7,8 +7,11 @@ import javax.ws.rs.NotFoundException;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Likes;
+import org.estudantinder.entities.Match;
 import org.estudantinder.entities.Student;
+import org.estudantinder.features.Users.common.User;
 import org.estudantinder.repositories.LikesRepository;
+import org.estudantinder.repositories.MatchsRepository;
 import org.estudantinder.repositories.StudentsRepository;
 
 import io.quarkus.panache.common.Parameters;
@@ -18,13 +21,17 @@ public class Feature {
 
     @Inject
     LikesRepository likesRepository;
+    
+    @Inject
+    MatchsRepository matchsRepository;
 
     @Inject
     StudentsRepository studentsRepository;
+    
 
     void throwExceptionIfLikeAlreadyExists(Student senderStudent, Student receiverStudent) {
         Likes likeAlreadyExists = likesRepository.find("sender = :sender and receiver = :receiver",
-        Parameters.with("sender", senderStudent).and("receiver", receiverStudent)).firstResult();
+            Parameters.with("sender", senderStudent).and("receiver", receiverStudent)).firstResult();
 
         if(likeAlreadyExists != null) {
             throw new EntityExistsException("Like Already Exists");
@@ -39,16 +46,40 @@ public class Feature {
         }
     }
 
-    void createLike(Student senderStudent, Student receiverStudent) {
+    Likes createLike(Student senderStudent, Student receiverStudent) {
         Likes newLike = new Likes();
 
         newLike.setSender(senderStudent);
         newLike.setReceiver(receiverStudent);
 
         likesRepository.persist(newLike);
+
+        return newLike;
     }
 
-    public void execute(JsonWebToken jwt, Long receiverId) throws Exception {
+    Match createMatch(Likes like, Likes mutualLike) {
+        Match newMatch = new Match();
+
+        newMatch.setLike(like);
+        newMatch.setMutualLike(mutualLike);
+
+        matchsRepository.persist(newMatch);
+        
+        return newMatch;
+    }
+
+    Match createMatchIfMutualLikeExists(Likes like) {
+        Likes mutualLike = likesRepository.find("sender = :sender and receiver = :receiver",
+            Parameters.with("sender", like.getReceiver()).and("receiver", like.getSender())).firstResult();
+
+        if(mutualLike != null) {
+            return createMatch(like, mutualLike);
+        }
+
+        return null;
+    }
+
+    public User execute(JsonWebToken jwt, Long receiverId) throws Exception {
         Long senderId = Long.parseLong(jwt.getClaim("id").toString());
         Student senderStudent = studentsRepository.findById(senderId);
         Student receiverStudent = studentsRepository.findById(receiverId);
@@ -56,6 +87,14 @@ public class Feature {
         throwExceptionIfStudentsArentValid(senderStudent, receiverStudent);
         throwExceptionIfLikeAlreadyExists(senderStudent, receiverStudent);
         
-        createLike(senderStudent, receiverStudent);
+        Likes createdLike = createLike(senderStudent, receiverStudent);
+
+        Match createdMatch = createMatchIfMutualLikeExists(createdLike);
+
+        if(createdMatch != null) {
+            return User.mapStudentToUserMatch(createdMatch.getLike().getReceiver(), createdMatch.getId());
+        }
+
+        return null;
     }
 }
