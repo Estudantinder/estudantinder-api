@@ -1,9 +1,11 @@
-package org.estudantinder.features.Users.ShowUsers;
+package org.estudantinder.features.Users.Likes.CreateLike;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
+import javax.transaction.Transactional;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -18,7 +20,7 @@ import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-@Path("users")
+@Path("users/likes")
 @Tag(name = "Users")
 @Produces(MediaType.APPLICATION_JSON)
 @SecurityScheme(securitySchemeName = "jwt", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "jwt")
@@ -28,17 +30,21 @@ public class Resource {
     JsonWebToken jwt;
 
     @Inject
-    Controller showUsersController;
+    Controller createLikeController;
 
-    @GET
+    @POST
+    @Transactional
+    @Path("{id}")
     @RolesAllowed("Student")
     @SecurityRequirement(name = "jwt")
-    @APIResponse(responseCode = "200", description = "OK")
-    @APIResponse(responseCode = "404", description = "Student id Not Found")
+    @APIResponse(responseCode = "201", description = "Like Successfully Created")
+    @APIResponse(responseCode = "401", description = "Student Can't Like Himself")
+    @APIResponse(responseCode = "404", description = "Student Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
-    @Operation(summary = "Show Users filtered by given student preferences")
-    public Response showFilteredUsers(@Context SecurityContext ctx) throws Exception {
-        return showUsersController.handle(jwt);
+    @Operation(summary = "Create a new like", description="Create new like, where sender is JWT's Student, and receiver is /id Student")
+    public Response create(@Context SecurityContext ctx, @PathParam("id") Long receiverId) throws Exception {
+        return createLikeController.handle(jwt, receiverId);
+
     }
 
 }

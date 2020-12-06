@@ -1,4 +1,4 @@
-package org.estudantinder.features.Users.ShowUsers;
+package org.estudantinder.features.Users.Likes.ShowLikes;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -18,7 +18,7 @@ import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-@Path("users")
+@Path("users/likes")
 @Tag(name = "Users")
 @Produces(MediaType.APPLICATION_JSON)
 @SecurityScheme(securitySchemeName = "jwt", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "jwt")
@@ -28,7 +28,7 @@ public class Resource {
     JsonWebToken jwt;
 
     @Inject
-    Controller showUsersController;
+    Controller showStudentLikesController;
 
     @GET
     @RolesAllowed("Student")
@@ -36,9 +36,9 @@ public class Resource {
     @APIResponse(responseCode = "200", description = "OK")
     @APIResponse(responseCode = "404", description = "Student id Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
-    @Operation(summary = "Show Users filtered by given student preferences")
-    public Response showFilteredUsers(@Context SecurityContext ctx) throws Exception {
-        return showUsersController.handle(jwt);
+    @Operation(summary = "Show Student's Likes")
+    public Response showStudentLikes(@Context SecurityContext ctx) throws Exception {
+        return showStudentLikesController.handle(jwt);
     }
 
 }

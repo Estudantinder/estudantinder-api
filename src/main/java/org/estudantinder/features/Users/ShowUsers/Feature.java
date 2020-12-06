@@ -12,6 +12,7 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Preferences;
 import org.estudantinder.entities.Student;
 import org.estudantinder.features.Users.common.User;
+import org.estudantinder.repositories.LikesRepository;
 import org.estudantinder.repositories.StudentsRepository;
 
 @ApplicationScoped
@@ -19,6 +20,15 @@ public class Feature {
 
     @Inject
     StudentsRepository studentsRepository;
+
+    @Inject
+    LikesRepository likesRepository;
+
+    void throwExceptionIfStudentNotValid(Student authenticatedStudent) {
+        if(authenticatedStudent == null) {
+            throw new NotFoundException("User id not found");
+        }
+    }
 
     Stream<Student> removesAuthenticatedStudentFromStream(Student authenticatedStudent, Stream<Student> allStudents) {
         return allStudents.filter( student -> 
@@ -53,20 +63,30 @@ public class Feature {
         return allStudents;
     }
 
-    Stream<Student> filterStudents(Student student) {
-        Stream<Student> filteredStudents = studentsRepository.streamAll();
+    Stream<Student> filterStudentsAlreadyLiked( Student student, Stream<Student> allStudents) {
+        List<Student> studentsAlreadyLiked = likesRepository
+            .stream("sender", student)
+            .map(like -> like.getReceiver())
+            .collect(Collectors.toList());
+        
+        Stream<Student> studentsNotLiked = allStudents.filter(s -> 
+            !studentsAlreadyLiked.contains(s));
 
-        if(student.getPreferences() != null) {
-            filteredStudents = filterStudentsByPreferences(student.getPreferences(), filteredStudents);
-        }
+        return studentsNotLiked;
+    }
+
+    Stream<Student> filterStudents(Student student, Stream<Student> allStudents) {
+        Stream<Student> filteredStudents = filterStudentsByPreferences(student.getPreferences(), allStudents);
 
         filteredStudents = removesAuthenticatedStudentFromStream(student, filteredStudents);
+
+        filteredStudents = filterStudentsAlreadyLiked(student, filteredStudents);
 
         return filteredStudents;
     }
     
-    List<User> listFilteredUsers(Student student) {
-        Stream<Student> filteredStudents = filterStudents(student);
+    List<User> listFilteredUsers(Student student, Stream<Student> allStudents) {
+        Stream<Student> filteredStudents = filterStudents(student, allStudents);
 
         Stream<User> filteredUsers =  filteredStudents.map(t -> User.mapStudentToUser(t));
 
@@ -78,10 +98,9 @@ public class Feature {
         long userId = Long.parseLong(jwt.getClaim("id").toString());
         Student authenticatedStudent = studentsRepository.findById(userId);
 
-        if(authenticatedStudent == null) {
-            throw new NotFoundException("User id not found");
-        }
+        throwExceptionIfStudentNotValid(authenticatedStudent);
 
-        return listFilteredUsers(authenticatedStudent);
+        Stream<Student> allStudents = studentsRepository.streamAll();
+        return listFilteredUsers(authenticatedStudent, allStudents);
     }
 }

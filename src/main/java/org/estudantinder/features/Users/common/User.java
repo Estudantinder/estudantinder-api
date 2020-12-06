@@ -2,11 +2,13 @@ package org.estudantinder.features.Users.common;
 
 import java.time.LocalDate;
 
+import org.estudantinder.entities.Contacts;
 import org.estudantinder.entities.Course;
 import org.estudantinder.entities.School;
 import org.estudantinder.entities.Student;
 
 public class User {
+    public Long id;
     public String name;
     public String biography;
     public LocalDate birthday;
@@ -17,9 +19,12 @@ public class User {
     public String[] favoriteSubjects;
     public Course course;
     public School school;
+    public Contacts contacts;
+    public Long matchId;
 
     public static User mapStudentToUser(Student student) {
         User user = new User();
+        user.id = student.getId();
         user.name = student.getName();
         user.biography = student.getBiography();
         user.birthday = student.getBirthday();
@@ -30,6 +35,24 @@ public class User {
         user.favoriteSubjects = student.getFavoriteSubjects();
         user.course = student.getCourse();
         user.school = student.getCourse().getSchool();
+        return user;
+    }
+
+    public static User mapStudentToUserMatch(Student student, Long matchId) {
+        User user = new User();
+        user.id = student.getId();
+        user.name = student.getName();
+        user.biography = student.getBiography();
+        user.birthday = student.getBirthday();
+        user.gender = student.getGender();
+        user.schoolShift = student.getSchoolShift();
+        user.schoolYear = student.getSchoolYear();
+        user.photos = student.getPhotos();
+        user.favoriteSubjects = student.getFavoriteSubjects();
+        user.course = student.getCourse();
+        user.school = student.getCourse().getSchool();
+        user.contacts = student.getContacts();
+        user.matchId = matchId;
         return user;
     }
 }
