@@ -36,30 +36,34 @@ public class Feature {
     }
 
     Stream<Student> filterStudentsByPreferences(Preferences preferences, Stream<Student> allStudents) {
-        if( preferences.getGender() != null ) {
-            if(preferences.getGender().length() != 0) {
-                allStudents = allStudents.filter( student -> 
-                    student.getGender().equals(preferences.getGender()));
+        if(preferences != null ) {
+            if( preferences.getGender() != null ) {
+                if(preferences.getGender().length() != 0) {
+                    allStudents = allStudents.filter( student -> 
+                        student.getGender().equals(preferences.getGender()));
+                }
             }
-        }
-
-        if(preferences.getSchoolShift() != null) {
-            if(preferences.getSchoolShift().length() != 0) {
-                allStudents = allStudents.filter( student -> 
-                student.getSchoolShift().equals(preferences.getSchoolShift()));
+    
+            if(preferences.getSchoolShift() != null) {
+                if(preferences.getSchoolShift().length() != 0) {
+                    allStudents = allStudents.filter( student -> 
+                    student.getSchoolShift().equals(preferences.getSchoolShift()));
+                }
             }
+    
+            if(preferences.getSchoolYear() != 0 ) {
+                allStudents = allStudents.filter( student -> 
+                    student.getSchoolYear() == preferences.getSchoolYear() );
+            }
+    
+            if(preferences.getCourse() != null ) {
+                allStudents = allStudents.filter( student -> 
+                    student.getCourse() == preferences.getCourse() );
+            }
+    
+            return allStudents;
         }
-
-        if(preferences.getSchoolYear() != 0 ) {
-            allStudents = allStudents.filter( student -> 
-                student.getSchoolYear() == preferences.getSchoolYear() );
-        }
-
-        if(preferences.getCourse() != null ) {
-            allStudents = allStudents.filter( student -> 
-                student.getCourse() == preferences.getCourse() );
-        }
-
+        
         return allStudents;
     }
 
