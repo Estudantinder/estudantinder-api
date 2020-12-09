@@ -36,10 +36,10 @@ public class Feature {
     Stream<User> getUserMatchReceivers(Stream<Match> studentMatchs, Student authenticatedStudent ) {
         Stream<User> userMatchsReceivers = studentMatchs.map(match -> {
             if(match.getLike().getSender() == authenticatedStudent) {
-                return User.mapStudentToUserMatch(match.getLike().getReceiver(), match.getId());
+                return User.mapStudentToUserWithContacts(match.getLike().getReceiver());
             }
             
-            return User.mapStudentToUserMatch(match.getMutualLike().getReceiver(), match.getId());
+            return User.mapStudentToUserWithContacts(match.getMutualLike().getReceiver());
         });
 
         return userMatchsReceivers;

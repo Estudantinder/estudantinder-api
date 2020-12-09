@@ -20,7 +20,6 @@ public class User {
     public Course course;
     public School school;
     public Contacts contacts;
-    public Long matchId;
 
     public static User mapStudentToUser(Student student) {
         User user = new User();
@@ -38,7 +37,7 @@ public class User {
         return user;
     }
 
-    public static User mapStudentToUserMatch(Student student, Long matchId) {
+    public static User mapStudentToUserWithContacts(Student student) {
         User user = new User();
         user.id = student.getId();
         user.name = student.getName();
@@ -52,7 +51,6 @@ public class User {
         user.course = student.getCourse();
         user.school = student.getCourse().getSchool();
         user.contacts = student.getContacts();
-        user.matchId = matchId;
         return user;
     }
 }

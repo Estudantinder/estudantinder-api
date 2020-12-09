@@ -102,7 +102,7 @@ public class Feature {
         Match createdMatch = createMatchIfMutualLikeExists(createdLike);
 
         if(createdMatch != null) {
-            return User.mapStudentToUserMatch(createdMatch.getLike().getReceiver(), createdMatch.getId());
+            return User.mapStudentToUserWithContacts(createdMatch.getLike().getReceiver());
         }
 
         return null;
