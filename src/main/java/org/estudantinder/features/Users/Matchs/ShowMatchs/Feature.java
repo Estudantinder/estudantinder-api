@@ -11,7 +11,7 @@ import javax.ws.rs.NotFoundException;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Match;
 import org.estudantinder.entities.Student;
-import org.estudantinder.features.Users.common.User;
+import org.estudantinder.features.Users.common.MatchReturn;
 import org.estudantinder.repositories.MatchsRepository;
 import org.estudantinder.repositories.StudentsRepository;
 
@@ -33,22 +33,22 @@ public class Feature {
         return studentMatchs;
     }
 
-    Stream<User> getUserMatchReceivers(Stream<Match> studentMatchs, Student authenticatedStudent ) {
-        Stream<User> userMatchsReceivers = studentMatchs.map(match -> {
+    Stream<MatchReturn> getUserMatchReceivers(Stream<Match> studentMatchs, Student authenticatedStudent ) {
+        Stream<MatchReturn> userMatchsReceivers = studentMatchs.map(match -> {
             if(match.getLike().getSender() == authenticatedStudent) {
-                return User.mapStudentToUserMatch(match.getLike().getReceiver(), match.getId());
+                return MatchReturn.mapToMatchReturn(match.getLike().getReceiver(), match.getId());
             }
             
-            return User.mapStudentToUserMatch(match.getMutualLike().getReceiver(), match.getId());
+            return MatchReturn.mapToMatchReturn(match.getMutualLike().getReceiver(), match.getId());
         });
 
         return userMatchsReceivers;
     }
     
-    List<User> listUserMatchReceivers(Stream<Match> allMatchs, Student authenticatedStudent) {
+    List<MatchReturn> listUserMatchReceivers(Stream<Match> allMatchs, Student authenticatedStudent) {
         Stream<Match> studentMatchs = getStudentMatchs(allMatchs, authenticatedStudent);
 
-        Stream<User> userMatchReceivers = getUserMatchReceivers(studentMatchs, authenticatedStudent);
+        Stream<MatchReturn> userMatchReceivers = getUserMatchReceivers(studentMatchs, authenticatedStudent);
 
         return userMatchReceivers.collect(Collectors.toList());
     }
@@ -59,7 +59,7 @@ public class Feature {
         }
     }
 
-    public List<User> execute(JsonWebToken jwt) throws Exception {
+    public List<MatchReturn> execute(JsonWebToken jwt) throws Exception {
         Long userId = Long.parseLong(jwt.getClaim("id").toString());
         Student authenticatedStudent = studentsRepository.findById(userId);
         

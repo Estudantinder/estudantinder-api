@@ -9,7 +9,7 @@ import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Likes;
 import org.estudantinder.entities.Match;
 import org.estudantinder.entities.Student;
-import org.estudantinder.features.Users.common.User;
+import org.estudantinder.features.Users.common.MatchReturn;
 import org.estudantinder.repositories.LikesRepository;
 import org.estudantinder.repositories.MatchsRepository;
 import org.estudantinder.repositories.StudentsRepository;
@@ -86,7 +86,7 @@ public class Feature {
         return null;
     }
 
-    public User execute(JsonWebToken jwt, Long receiverId) throws Exception {
+    public MatchReturn execute(JsonWebToken jwt, Long receiverId) throws Exception {
         Long senderId = Long.parseLong(jwt.getClaim("id").toString());
 
         throwExceptionIfStudentAreEqual(senderId, receiverId);
@@ -102,7 +102,7 @@ public class Feature {
         Match createdMatch = createMatchIfMutualLikeExists(createdLike);
 
         if(createdMatch != null) {
-            return User.mapStudentToUserMatch(createdMatch.getLike().getReceiver(), createdMatch.getId());
+            return MatchReturn.mapToMatchReturn(createdMatch.getLike().getReceiver(), createdMatch.getId());
         }
 
         return null;

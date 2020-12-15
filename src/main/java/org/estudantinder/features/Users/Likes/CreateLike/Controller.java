@@ -7,7 +7,7 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.estudantinder.features.Users.common.User;
+import org.estudantinder.features.Users.common.MatchReturn;
 import org.estudantinder.features.commom.ErrorMessage;
 
 import io.quarkus.security.UnauthorizedException;
@@ -20,7 +20,7 @@ public class Controller {
 
     public Response handle(JsonWebToken jwt, Long receiverId) throws Exception {
         try {
-            User matchedUser = createStudentUseCase.execute(jwt, receiverId);
+            MatchReturn matchedUser = createStudentUseCase.execute(jwt, receiverId);
 
             return Response
                 .status(Response.Status.CREATED)
