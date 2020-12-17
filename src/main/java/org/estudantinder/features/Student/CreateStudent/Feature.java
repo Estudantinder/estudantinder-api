@@ -1,5 +1,8 @@
 package org.estudantinder.features.Student.CreateStudent;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
@@ -25,9 +28,20 @@ public class Feature {
     @Inject
     CoursesRepository coursesRepository;
 
+    public boolean checkIfAgeIsntCorrect(LocalDate birth_date) {
+        LocalDate today = LocalDate.now();
+        int studentAge = Period.between(birth_date, today).getYears();
+
+        if(studentAge < 14 || studentAge > 21) {
+            return true;
+        }
+
+        return false;
+    }
+    
     public boolean checkIfPasswordDoesntContainsNumber(String password) {
         //code reference https://stackoverflow.com/questions/18590901/check-if-a-string-contains-numbers-java#18590949
-        if(password.matches(".*\\d.*")) { 
+        if(password.matches(".*\\d.*")) {
             return false;
         }
 
@@ -105,6 +119,10 @@ public class Feature {
 
         if(checkIfPasswordDoesntContainsNumber(data.password)) {
             throw new BadRequestException("Password must contain at least 1 number");
+        }
+
+        if(checkIfAgeIsntCorrect(data.birth_date)) {
+            throw new BadRequestException("Student age must be between 14-21");
         }
         
         Student newStudent = setNewStudent(data);
