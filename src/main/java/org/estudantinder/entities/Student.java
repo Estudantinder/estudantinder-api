@@ -42,8 +42,8 @@ public class Student {
     @Column(nullable = false)
     private String shift;
 
-    // char não pode ser nulo em java
-    private char classroom = ' ';
+    @Column(nullable = false)
+    private char classroom;
 
     @Column(nullable = false)
     private String[] photos;

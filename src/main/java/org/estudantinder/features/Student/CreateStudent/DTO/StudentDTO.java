@@ -20,7 +20,7 @@ public class StudentDTO {
 
     @NotBlank(message = "Password may not be blank")
     public String password;
-
+  
     @NotNull(message = "School Year must not be null")
     @Min(message = "You must be in a school year between 1 - 3", value = 1)
     @Max(message = "You must be in a school year between 1 - 3", value = 3)
@@ -37,8 +37,8 @@ public class StudentDTO {
     @NotBlank(message = "You must put your schoolShift")
     public String shift;
 
-    // char não pode ser nulo em java
-    public char classroom = ' ';
+    @NotNull
+    public char classroom;
 
     @NotNull(message = "You must have some photo")
     public String[] photos;
