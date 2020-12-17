@@ -3,6 +3,7 @@ package org.estudantinder.features.Student.CreateStudent;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.Response;
 
 import org.estudantinder.features.Student.CreateStudent.DTO.StudentDTO;
@@ -34,6 +35,16 @@ public class Controller {
                 .entity(errorMessage)
                 .build();
             
+        } catch(BadRequestException error) {
+            ErrorMessage errorMessage = new ErrorMessage();
+            
+            errorMessage.error = error.getMessage();
+            errorMessage.message = "Couldn't create Student";
+
+            return Response
+                .status(Response.Status.BAD_REQUEST)
+                .entity(errorMessage)
+                .build();
         } catch(NullPointerException error) {
             ErrorMessage errorMessage = new ErrorMessage();
             

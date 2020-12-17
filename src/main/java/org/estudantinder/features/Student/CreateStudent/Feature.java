@@ -4,6 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import javax.ws.rs.BadRequestException;
 
 import org.estudantinder.entities.Contacts;
 import org.estudantinder.entities.Course;
@@ -23,6 +24,15 @@ public class Feature {
     
     @Inject
     CoursesRepository coursesRepository;
+
+    public boolean checkIfPasswordDoesntContainsNumber(String password) {
+        //code reference https://stackoverflow.com/questions/18590901/check-if-a-string-contains-numbers-java#18590949
+        if(password.matches(".*\\d.*")) { 
+            return false;
+        }
+
+        return true;
+    }
 
     public Course returnCourseIfExists(Long courseId) {
         Course course = coursesRepository.findById(courseId);
@@ -91,6 +101,10 @@ public class Feature {
 
         if(data.contacts == null) {
             throw new EntityNotFoundException("At Least 1 Contact is Required");
+        }
+
+        if(checkIfPasswordDoesntContainsNumber(data.password)) {
+            throw new BadRequestException("Password must contain at least 1 number");
         }
         
         Student newStudent = setNewStudent(data);
