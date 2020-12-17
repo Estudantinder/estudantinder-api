@@ -38,10 +38,10 @@ public class Feature {
         Preferences newStudentPreferences = new Preferences();
         
         newStudentPreferences.setGender(preferences.gender);
-        newStudentPreferences.setSchoolShift(preferences.schoolShift);
-        newStudentPreferences.setSchoolYear(preferences.schoolYear);
-        if(preferences.courseId != null) {
-            newStudentPreferences.setCourse(returnCourseIfExists(preferences.courseId));
+        newStudentPreferences.setShift(preferences.shift);
+        newStudentPreferences.setSchool_year(preferences.school_year);
+        if (preferences.course_id != null) {
+            newStudentPreferences.setCourse(returnCourseIfExists(preferences.course_id));
         }
 
         return newStudentPreferences;
@@ -60,18 +60,18 @@ public class Feature {
 
     public Student setNewStudent(StudentDTO student) {
         Student newStudent = new Student();
-        
+
         newStudent.setName(student.name);
         newStudent.setEmail(student.email);
         newStudent.setPassword(student.password);
-        newStudent.setSchoolYear(student.schoolYear);
-        newStudent.setBirthday(student.birthday);
-        newStudent.setBiography(student.biography);
+        newStudent.setSchool_year(student.school_year);
+        newStudent.setBirth_date(student.birth_date);
+        newStudent.setBio(student.bio);
         newStudent.setGender(student.gender);
-        newStudent.setSchoolShift(student.schoolShift);
+        newStudent.setShift(student.shift);
         newStudent.setPhotos(student.photos);
-        newStudent.setFavoriteSubjects(student.favoriteSubjects);
-        newStudent.setCourse(returnCourseIfExists(student.courseId));
+        newStudent.setSubjects(student.subjects);
+        newStudent.setCourse(returnCourseIfExists(student.course_id));
         newStudent.setContacts(setNewStudenContacts(student.contacts));
         
         if(student.preferences != null) {

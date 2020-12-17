@@ -24,27 +24,27 @@ public class StudentDTO {
     @NotNull(message = "School Year must not be null")
     @Min(message = "You must be in a school year between 1 - 3", value = 1)
     @Max(message = "You must be in a school year between 1 - 3", value = 3)
-    public int schoolYear;
+    public int school_year;
     
     @NotNull
-    public LocalDate birthday;
+    public LocalDate birth_date;
 
     @NotBlank(message = "You must have a biography")
-    public String biography;
+    public String bio;
 
     public String gender;
 
     @NotBlank(message = "You must put your schoolShift")
-    public String schoolShift;
+    public String shift;
 
     @NotNull(message = "You must have some photo")
     public String[] photos;
     
     @NotNull(message = "Favorite Subjects must not be null")
-    public String[] favoriteSubjects;
+    public String[] subjects;
 
     @NotNull(message = "CourseId must not be null")
-    public Long courseId;
+    public Long course_id;
 
     @NotNull(message = "Contacts must not be null")
     public ContactsDTO contacts;

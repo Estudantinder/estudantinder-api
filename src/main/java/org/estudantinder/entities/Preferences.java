@@ -7,19 +7,24 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Preferences {
+
     @Id
     @GeneratedValue
     private Long id;
 
-    private int schoolYear;
-    private String schoolShift;
+    private int school_year;
+    private String shift;
     private String gender;
 
     @ManyToOne
     private Course course;
 
-    public int getSchoolYear() {
-        return schoolYear;
+    public int getSchool_year() {
+        return school_year;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Course getCourse() {
@@ -38,16 +43,17 @@ public class Preferences {
         this.gender = gender;
     }
 
-    public String getSchoolShift() {
-        return schoolShift;
+    public String getShift() {
+        return shift;
     }
 
-    public void setSchoolShift(String schoolShift) {
-        this.schoolShift = schoolShift;
+    public void setShift(String shift) {
+        this.shift = shift;
     }
 
-    public void setSchoolYear(int schoolYear) {
-        this.schoolYear = schoolYear;
+    public void setSchool_year(int school_year) {
+        this.school_year = school_year;
     }
+
 
 }
