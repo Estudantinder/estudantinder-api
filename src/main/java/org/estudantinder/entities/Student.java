@@ -42,6 +42,9 @@ public class Student {
     @Column(nullable = false)
     private String shift;
 
+    // char não pode ser nulo em java
+    private char classroom = ' ';
+
     @Column(nullable = false)
     private String[] photos;
 
@@ -59,6 +62,14 @@ public class Student {
 
     public String getPassword() {
         return password;
+    }
+
+    public char getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(char classroom) {
+        this.classroom = classroom;
     }
 
     public Course getCourse() {

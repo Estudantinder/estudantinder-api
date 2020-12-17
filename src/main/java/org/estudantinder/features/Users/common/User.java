@@ -15,6 +15,7 @@ public class User {
     public String gender;
     public String shift;
     public int school_year;
+    public char classroom;
     public String[] photos;
     public String[] subjects;
     public Course course;
@@ -29,13 +30,14 @@ public class User {
         user.birth_date = student.getBirth_date();
         user.gender = student.getGender();
         user.shift = student.getShift();
+        user.classroom = student.getClassroom();
         user.school_year = student.getSchool_year();
         user.photos = student.getPhotos();
         user.subjects = student.getSubjects();
         user.course = student.getCourse();
         user.school = student.getCourse().getSchool();
         return user;
-    }
+    }  
 
     public static User mapStudentToUserWithContacts(Student student) {
         User user = new User();
@@ -45,6 +47,7 @@ public class User {
         user.birth_date = student.getBirth_date();
         user.gender = student.getGender();
         user.shift = student.getShift();
+        user.classroom = student.getClassroom();
         user.school_year = student.getSchool_year();
         user.photos = student.getPhotos();
         user.subjects = student.getSubjects();

@@ -37,6 +37,9 @@ public class StudentDTO {
     @NotBlank(message = "You must put your schoolShift")
     public String shift;
 
+    // char não pode ser nulo em java
+    public char classroom = ' ';
+
     @NotNull(message = "You must have some photo")
     public String[] photos;
     

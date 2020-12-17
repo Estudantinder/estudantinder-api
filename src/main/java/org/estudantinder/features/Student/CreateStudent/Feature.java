@@ -69,6 +69,7 @@ public class Feature {
         newStudent.setBio(student.bio);
         newStudent.setGender(student.gender);
         newStudent.setShift(student.shift);
+        newStudent.setClassroom(student.classroom);
         newStudent.setPhotos(student.photos);
         newStudent.setSubjects(student.subjects);
         newStudent.setCourse(returnCourseIfExists(student.course_id));
