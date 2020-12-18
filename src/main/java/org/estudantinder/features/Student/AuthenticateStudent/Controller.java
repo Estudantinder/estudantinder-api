@@ -2,11 +2,11 @@ package org.estudantinder.features.Student.AuthenticateStudent;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.json.Json;
-import javax.json.JsonObject;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
+import org.estudantinder.features.Student.AuthenticateStudent.DTO.JwtDTO;
+import org.estudantinder.features.Student.AuthenticateStudent.DTO.LoginDTO;
 import org.estudantinder.features.commom.ErrorMessage;
 
 import io.quarkus.security.UnauthorizedException;
@@ -17,17 +17,13 @@ public class Controller {
     @Inject
     Feature createStudentUseCase;
 
-    public Response handle(DTO data) throws Exception {
+    public Response handle(LoginDTO data) throws Exception {
         try {
-            String token = createStudentUseCase.execute(data);
-
-            JsonObject tokenObject = Json.createObjectBuilder()
-                .add("token", token)
-                .build();
+            JwtDTO returnObject = createStudentUseCase.execute(data);
 
             return Response
                 .status(Response.Status.OK)
-                .entity(tokenObject)
+                .entity(returnObject)
                 .build();
 
         } catch (NotFoundException error) {

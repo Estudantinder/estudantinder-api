@@ -1,9 +1,9 @@
-package org.estudantinder.features.Student.AuthenticateStudent;
+package org.estudantinder.features.Student.AuthenticateStudent.DTO;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-public class DTO {
+public class LoginDTO {
     
     @NotBlank(message = "Email may not be blank")
     @Email

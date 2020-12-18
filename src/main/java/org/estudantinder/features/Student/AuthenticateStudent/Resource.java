@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+import org.estudantinder.features.Student.AuthenticateStudent.DTO.LoginDTO;
 
 @Path("student")
 @Tag(name = "Student")
@@ -30,7 +31,7 @@ public class Resource {
     @APIResponse(responseCode = "404", description = "Student Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
     @Operation(summary = "Authenticate a Student (Login)")
-    public Response createStudent(@Valid DTO data) throws Exception {
+    public Response createStudent(@Valid LoginDTO data) throws Exception {
         return authenticateStudentController.handle(data);
     }
 
