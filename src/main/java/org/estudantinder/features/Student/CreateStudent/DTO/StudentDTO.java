@@ -46,6 +46,7 @@ public class StudentDTO {
     public char classroom;
 
     @NotNull(message = "You must have some photo")
+    @Size(message = "Your number of photos must be between 1 and 6", min = 1, max = 6)
     public String[] photos;
     
     @NotNull(message = "Favorite Subjects must not be null")
