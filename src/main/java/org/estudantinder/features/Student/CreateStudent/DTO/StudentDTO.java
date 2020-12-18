@@ -32,6 +32,7 @@ public class StudentDTO {
     public LocalDate birth_date;
 
     @NotBlank(message = "You must have a biography")
+    @Size(message = "Your bio must have a maximum of 256 caracteres", max = 256)
     public String bio;
 
     public String gender;
