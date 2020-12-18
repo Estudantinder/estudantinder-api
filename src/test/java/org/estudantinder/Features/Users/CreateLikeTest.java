@@ -16,7 +16,7 @@ public class CreateLikeTest {
     @Test
     public void testCreateLikeEndpoint() {
         given()
-        .pathParam("id", 19)
+        .pathParam("id", 24)
         .auth().oauth2(generateValidStudentToken())
         .when().post("/users/likes/{id}")
         .then()
@@ -27,7 +27,7 @@ public class CreateLikeTest {
         return Jwt.issuer("https://github.com/AdamAugustinsky")
             .upn("estudantinder@quarkus.io")
             .groups("Student")
-            .claim("id", 21)
+            .claim("id", 22)
             .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
             .sign();
     }

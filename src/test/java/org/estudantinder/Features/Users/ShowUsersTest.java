@@ -27,7 +27,7 @@ public class ShowUsersTest {
         return Jwt.issuer("https://github.com/AdamAugustinsky")
             .upn("estudantinder@quarkus.io")
             .groups("Student")
-            .claim("id", 21)
+            .claim("id", 22)
             .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
             .sign();
     }

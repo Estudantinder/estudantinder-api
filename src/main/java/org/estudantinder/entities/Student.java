@@ -1,12 +1,14 @@
 package org.estudantinder.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -48,8 +50,8 @@ public class Student {
     @Column(nullable = false)
     private String[] photos;
 
-    @Column(nullable = false)
-    private String[] subjects;
+    @ManyToMany
+    private List<Subject> subjects; 
 
     @ManyToOne
     private Course course;
@@ -60,8 +62,16 @@ public class Student {
     @OneToOne(cascade = CascadeType.ALL)
     private Preferences preferences;
 
-    public String getPassword() {
+    public String getPassword() {  
         return password;
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 
     public int getShift() {
@@ -106,14 +116,6 @@ public class Student {
 
     public Long getId() {
         return id;
-    }
-
-    public String[] getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(String[] subjects) {
-        this.subjects = subjects;
     }
 
     public String[] getPhotos() {

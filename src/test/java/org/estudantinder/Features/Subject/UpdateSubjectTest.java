@@ -1,4 +1,4 @@
-package org.estudantinder.Features.School;
+package org.estudantinder.Features.Subject;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,24 +10,20 @@ import static io.restassured.RestAssured.given;
 import javax.json.Json;
 
 @QuarkusTest
-public class UpdateSchoolTest {
+public class UpdateSubjectTest {
     
     @Test
     public void testUpdateSchoolEndpoint() {
         
         String updatedTestSchool = Json.createObjectBuilder()
-            .add("courses", Json.createArrayBuilder()
-                .add(Json.createObjectBuilder()
-                    .add("name", "UPDATED TEST COURSE 1"))
-                .add(Json.createObjectBuilder()
-                    .add("name", "UPDATED TEST COURSE 2"))
-            ).build().toString();
+            .add("name", "UPDATED TEST SUBJECT")
+            .build().toString();
 
         given()
             .body(updatedTestSchool)
-            .pathParam("id", 1)
+            .pathParam("id", 12)
             .contentType(ContentType.JSON)
-            .when().put("/school/{id}")
+            .when().put("/subject/{id}")
             .then()
                 .statusCode(200);
     }
