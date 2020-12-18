@@ -56,6 +56,14 @@ public class Feature {
         return true;
     }
 
+    public boolean checkIfTwitterStartsWithAt(String socialMedia) {
+        if(!(socialMedia.charAt(0) == '@')) {
+            return true;
+        }
+
+        return false;
+    }
+
     public Course returnCourseIfExists(Long courseId) {
         Course course = coursesRepository.findById(courseId);
 
@@ -137,6 +145,12 @@ public class Feature {
             throw new BadRequestException("Classroom must be alphabetical");
         }
         
+        if(data.contacts.twitter != null) {
+            if(checkIfTwitterStartsWithAt(data.contacts.twitter)) {
+                throw new BadRequestException("Twitter must start with @");
+            }
+        }
+   
         Student newStudent = setNewStudent(data);
         
         studentsRepository.persist(newStudent);
