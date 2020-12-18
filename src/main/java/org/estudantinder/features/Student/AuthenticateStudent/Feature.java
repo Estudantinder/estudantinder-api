@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
 import org.estudantinder.entities.Student;
+import org.estudantinder.features.Student.AuthenticateStudent.DTO.JwtDTO;
+import org.estudantinder.features.Student.AuthenticateStudent.DTO.LoginDTO;
 import org.estudantinder.repositories.StudentsRepository;
 import org.wildfly.security.credential.PasswordCredential;
 import org.wildfly.security.evidence.PasswordGuessEvidence;
@@ -29,8 +31,10 @@ public class Feature {
         return (producedPasswordCredential.verify(correctPasswordEvidence));
     }
 
-    public String execute(DTO data) throws Exception {
+    public JwtDTO execute(LoginDTO data) throws Exception {
         Student authenticatedStudent =  studentsRepository.findByEmail(data.email);
+
+        Instant expireDate = Instant.now().plus(15, ChronoUnit.DAYS);
 
         if(authenticatedStudent == null) {
             throw new NotFoundException("Email Not Found");
@@ -43,9 +47,14 @@ public class Feature {
             .upn("estudantinder@quarkus.io")
             .groups("Student")
             .claim("id", authenticatedStudent.getId())
-            .expiresAt(Instant.now().plus(15, ChronoUnit.DAYS ))
+            .expiresAt(expireDate)
             .sign();
         
-        return token;
+        JwtDTO returnObject = new JwtDTO();
+
+        returnObject.jwt = token;
+        returnObject.expireDate = expireDate;
+
+        return returnObject;
     }
 }
