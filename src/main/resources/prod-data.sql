@@ -44,3 +44,20 @@ INSERT INTO course (id, name, school_id) VALUES (nextval('hibernate_sequence'), 
 INSERT INTO course (id, name, school_id) VALUES (nextval('hibernate_sequence'), 'Finanças', 26);
 INSERT INTO course (id, name, school_id) VALUES (nextval('hibernate_sequence'), 'Hospedagem', 26);
 INSERT INTO course (id, name, school_id) VALUES (nextval('hibernate_sequence'), 'Informática', 26);
+
+
+
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Artes');
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Biologia');
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Educação Fisica');
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Espanhol');
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Filosofia');
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Física');
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Geografia');
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'História');
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Inglês');
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Literatura');
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Matemática');
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Português');
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Quimica');
+INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Sociologia');
