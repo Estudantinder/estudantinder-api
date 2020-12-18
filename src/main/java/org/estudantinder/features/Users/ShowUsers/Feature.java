@@ -44,16 +44,14 @@ public class Feature {
                 }
             }
     
-            if(preferences.getSchoolShift() != null) {
-                if(preferences.getSchoolShift().length() != 0) {
-                    allStudents = allStudents.filter( student -> 
-                    student.getSchoolShift().equals(preferences.getSchoolShift()));
-                }
+            if(preferences.getShift() != 0) {
+                allStudents = allStudents.filter( student -> 
+                student.getShift() == preferences.getShift());
             }
     
-            if(preferences.getSchoolYear() != 0 ) {
+            if(preferences.getSchool_year() != 0 ) {
                 allStudents = allStudents.filter( student -> 
-                    student.getSchoolYear() == preferences.getSchoolYear() );
+                    student.getSchool_year() == preferences.getSchool_year() );
             }
     
             if(preferences.getCourse() != null ) {

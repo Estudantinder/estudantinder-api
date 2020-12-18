@@ -29,25 +29,27 @@ public class Student {
     private String email;
 
     @Column(nullable = false)
-    private int schoolYear;
+    private int school_year;
 
     @Column(nullable = false)
-    private LocalDate birthday;
+    private LocalDate birth_date;
 
     @Column(nullable = false)
-    private String biography;
+    private String bio;
 
-    @Column(nullable = false)
     private String gender;
 
     @Column(nullable = false)
-    private String schoolShift;
+    private int shift;
+
+    @Column(nullable = false)
+    private char classroom;
 
     @Column(nullable = false)
     private String[] photos;
 
     @Column(nullable = false)
-    private String[] favoriteSubjects;
+    private String[] subjects;
 
     @ManyToOne
     private Course course;
@@ -58,28 +60,32 @@ public class Student {
     @OneToOne(cascade = CascadeType.ALL)
     private Preferences preferences;
 
-    public String[] getFavoriteSubjects() {
-        return favoriteSubjects;
+    public String getPassword() {
+        return password;
     }
 
-    public String getSchoolShift() {
-        return schoolShift;
+    public int getShift() {
+        return shift;
     }
 
-    public void setSchoolShift(String schoolShift) {
-        this.schoolShift = schoolShift;
+    public void setShift(int shift) {
+        this.shift = shift;
     }
 
-    public String getGender() {
-        return gender;
+    public char getClassroom() {
+        return classroom;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setClassroom(char classroom) {
+        this.classroom = classroom;
     }
 
-    public Long getId() {
-        return id;
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public Preferences getPreferences() {
@@ -98,60 +104,16 @@ public class Student {
         this.contacts = contacts;
     }
 
-    public Course getCourse() {
-        return course;
+    public Long getId() {
+        return id;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public String[] getSubjects() {
+        return subjects;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = BcryptUtil.bcryptHash(password);
-    }
-
-    public int getSchoolYear() {
-        return schoolYear;
-    }
-
-    public void setSchoolYear(int schoolYear) {
-        this.schoolYear = schoolYear;
-    }
-
-    public LocalDate getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getBiography() {
-        return biography;
-    }
-
-    public void setBiography(String biography) {
-        this.biography = biography;
+    public void setSubjects(String[] subjects) {
+        this.subjects = subjects;
     }
 
     public String[] getPhotos() {
@@ -162,8 +124,56 @@ public class Student {
         this.photos = photos;
     }
 
-    public void setFavoriteSubjects(String[] favoriteSubjects) {
-        this.favoriteSubjects = favoriteSubjects;
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public LocalDate getBirth_date() {
+        return birth_date;
+    }
+
+    public void setBirth_date(LocalDate birth_date) {
+        this.birth_date = birth_date;
+    }
+
+    public int getSchool_year() {
+        return school_year;
+    }
+
+    public void setSchool_year(int school_year) {
+        this.school_year = school_year;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = BcryptUtil.bcryptHash(password);
     }
 
 }

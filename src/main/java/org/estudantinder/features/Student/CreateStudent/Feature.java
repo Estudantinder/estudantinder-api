@@ -1,9 +1,13 @@
 package org.estudantinder.features.Student.CreateStudent;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
+import javax.ws.rs.BadRequestException;
 
 import org.estudantinder.entities.Contacts;
 import org.estudantinder.entities.Course;
@@ -24,6 +28,42 @@ public class Feature {
     @Inject
     CoursesRepository coursesRepository;
 
+    public boolean checkIfAgeIsntCorrect(LocalDate birth_date) {
+        LocalDate today = LocalDate.now();
+        int studentAge = Period.between(birth_date, today).getYears();
+
+        if(studentAge < 14 || studentAge > 21) {
+            return true;
+        }
+
+        return false;
+    }
+    
+    public boolean checkIfPasswordDoesntContainsNumber(String password) {
+        //code reference https://stackoverflow.com/questions/18590901/check-if-a-string-contains-numbers-java#18590949
+        if(password.matches(".*\\d.*")) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean checkIfClassroomIsAlphabetical(char classroom) {
+        if((classroom >= 'a' && classroom <= 'z') || (classroom >= 'A' && classroom <= 'Z')) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean checkIfTwitterStartsWithAt(String socialMedia) {
+        if(!(socialMedia.charAt(0) == '@')) {
+            return true;
+        }
+
+        return false;
+    }
+
     public Course returnCourseIfExists(Long courseId) {
         Course course = coursesRepository.findById(courseId);
 
@@ -38,10 +78,10 @@ public class Feature {
         Preferences newStudentPreferences = new Preferences();
         
         newStudentPreferences.setGender(preferences.gender);
-        newStudentPreferences.setSchoolShift(preferences.schoolShift);
-        newStudentPreferences.setSchoolYear(preferences.schoolYear);
-        if(preferences.courseId != null) {
-            newStudentPreferences.setCourse(returnCourseIfExists(preferences.courseId));
+        newStudentPreferences.setShift(preferences.shift);
+        newStudentPreferences.setSchool_year(preferences.school_year);
+        if (preferences.course_id != null) {
+            newStudentPreferences.setCourse(returnCourseIfExists(preferences.course_id));
         }
 
         return newStudentPreferences;
@@ -60,18 +100,19 @@ public class Feature {
 
     public Student setNewStudent(StudentDTO student) {
         Student newStudent = new Student();
-        
+
         newStudent.setName(student.name);
         newStudent.setEmail(student.email);
-        newStudent.setPassword(student.password);
-        newStudent.setSchoolYear(student.schoolYear);
-        newStudent.setBirthday(student.birthday);
-        newStudent.setBiography(student.biography);
+        newStudent.setPassword(student.password.trim());
+        newStudent.setSchool_year(student.school_year);
+        newStudent.setBirth_date(student.birth_date);
+        newStudent.setBio(student.bio);
         newStudent.setGender(student.gender);
-        newStudent.setSchoolShift(student.schoolShift);
+        newStudent.setShift(student.shift);
+        newStudent.setClassroom(Character.toUpperCase(student.classroom));
         newStudent.setPhotos(student.photos);
-        newStudent.setFavoriteSubjects(student.favoriteSubjects);
-        newStudent.setCourse(returnCourseIfExists(student.courseId));
+        newStudent.setSubjects(student.subjects);
+        newStudent.setCourse(returnCourseIfExists(student.course_id));
         newStudent.setContacts(setNewStudenContacts(student.contacts));
         
         if(student.preferences != null) {
@@ -91,7 +132,25 @@ public class Feature {
         if(data.contacts == null) {
             throw new EntityNotFoundException("At Least 1 Contact is Required");
         }
+
+        if(checkIfPasswordDoesntContainsNumber(data.password)) {
+            throw new BadRequestException("Password must contain at least 1 number");
+        }
+
+        if(checkIfAgeIsntCorrect(data.birth_date)) {
+            throw new BadRequestException("Student age must be between 14-21");
+        }
+
+        if(checkIfClassroomIsAlphabetical(data.classroom)) {
+            throw new BadRequestException("Classroom must be alphabetical");
+        }
         
+        if(data.contacts.twitter != null) {
+            if(checkIfTwitterStartsWithAt(data.contacts.twitter)) {
+                throw new BadRequestException("Twitter must start with @");
+            }
+        }
+   
         Student newStudent = setNewStudent(data);
         
         studentsRepository.persist(newStudent);

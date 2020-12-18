@@ -9,9 +9,12 @@ public class PreferencesDTO {
     @Max(message = "You must be in a school year between 1 - 3", value = 3)
     // int is not nullable
     // 0 is used in that case
-    public int schoolYear;
-    public String schoolShift;
+    public int school_year;
+    
+    @Min(message = "Shift must be between 1(morning) and 2(evening)", value = 0)
+    @Max(message = "Shift must be between 1(morning) and 2(evening)", value = 2)
+    public int shift;
     public String gender;
 
-    public Long courseId;
+    public Long course_id;
 }
