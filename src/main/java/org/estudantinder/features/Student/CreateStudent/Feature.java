@@ -103,7 +103,7 @@ public class Feature {
 
         newStudent.setName(student.name);
         newStudent.setEmail(student.email);
-        newStudent.setPassword(student.password);
+        newStudent.setPassword(student.password.trim());
         newStudent.setSchool_year(student.school_year);
         newStudent.setBirth_date(student.birth_date);
         newStudent.setBio(student.bio);
