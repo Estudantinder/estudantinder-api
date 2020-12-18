@@ -2,6 +2,10 @@ package org.estudantinder.features.Student.CreateStudent;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,11 +17,13 @@ import org.estudantinder.entities.Contacts;
 import org.estudantinder.entities.Course;
 import org.estudantinder.entities.Preferences;
 import org.estudantinder.entities.Student;
+import org.estudantinder.entities.Subject;
 import org.estudantinder.features.Student.CreateStudent.DTO.ContactsDTO;
 import org.estudantinder.features.Student.CreateStudent.DTO.PreferencesDTO;
 import org.estudantinder.features.Student.CreateStudent.DTO.StudentDTO;
 import org.estudantinder.repositories.CoursesRepository;
 import org.estudantinder.repositories.StudentsRepository;
+import org.estudantinder.repositories.SubjectsRepository;
 
 @ApplicationScoped
 public class Feature {
@@ -27,6 +33,9 @@ public class Feature {
     
     @Inject
     CoursesRepository coursesRepository;
+    
+    @Inject
+    SubjectsRepository subjectsRepository;
 
     public boolean checkIfAgeIsntCorrect(LocalDate birth_date) {
         LocalDate today = LocalDate.now();
@@ -72,6 +81,43 @@ public class Feature {
         }
 
         return course;
+    }
+
+    public boolean isListFieldDuplicate(List<Long> subjects_id) {
+        final Set<Long> uniqueIds = new HashSet<>();
+        
+        for (Long subject_id : subjects_id){
+            if (!uniqueIds.add(subject_id)){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    public Subject returnSubjectIfExists(Long subject_id) {
+        Subject subject = subjectsRepository.findById(subject_id);
+
+        if(subject == null) {
+            throw new EntityNotFoundException("Subject id "+subject_id+" Not Found");
+        }
+
+        return subject;
+    }
+
+    public List<Subject> returnListOfSubjects(List<Long> subjects_id) {
+        List<Subject> subjects = new ArrayList<Subject>();
+        
+        if(isListFieldDuplicate(subjects_id)) {
+            throw new BadRequestException("Subject ID's can't be duplicated");
+        }
+
+        subjects_id.forEach(subject_id -> {
+            Subject subject = returnSubjectIfExists(subject_id);
+            subjects.add(subject);
+        });
+
+        return subjects;
     } 
 
     public Preferences setNewStudentPreferences(PreferencesDTO preferences) {
@@ -111,7 +157,7 @@ public class Feature {
         newStudent.setShift(student.shift);
         newStudent.setClassroom(Character.toUpperCase(student.classroom));
         newStudent.setPhotos(student.photos);
-        newStudent.setSubjects(student.subjects);
+        newStudent.setSubjects(returnListOfSubjects(student.subjects_id));
         newStudent.setCourse(returnCourseIfExists(student.course_id));
         newStudent.setContacts(setNewStudenContacts(student.contacts));
         
@@ -128,7 +174,7 @@ public class Feature {
         if(isEmailAlreadyInUse) {
             throw new EntityExistsException("Email Already In Use");
         }
-
+   
         if(data.contacts == null) {
             throw new EntityNotFoundException("At Least 1 Contact is Required");
         }
@@ -152,7 +198,7 @@ public class Feature {
         }
    
         Student newStudent = setNewStudent(data);
-        
+        System.out.println(data.subjects_id);
         studentsRepository.persist(newStudent);
     }
 }

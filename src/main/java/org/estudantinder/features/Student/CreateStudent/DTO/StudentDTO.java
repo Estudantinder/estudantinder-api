@@ -1,6 +1,7 @@
 package org.estudantinder.features.Student.CreateStudent.DTO;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -48,10 +49,10 @@ public class StudentDTO {
     @NotNull(message = "You must have some photo")
     @Size(message = "Your number of photos must be between 1 and 6", min = 1, max = 6)
     public String[] photos;
-    
+
     @NotNull(message = "Favorite Subjects must not be null")
     @Size(message = "Your number of subjects must be between 1 and 3", min = 1, max = 3)
-    public String[] subjects;
+    public List<Long> subjects_id;
 
     @NotNull(message = "CourseId must not be null")
     public Long course_id;

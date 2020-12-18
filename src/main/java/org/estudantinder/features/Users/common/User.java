@@ -1,11 +1,13 @@
 package org.estudantinder.features.Users.common;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.estudantinder.entities.Contacts;
 import org.estudantinder.entities.Course;
 import org.estudantinder.entities.School;
 import org.estudantinder.entities.Student;
+import org.estudantinder.entities.Subject;
 
 public class User {
     public Long id;
@@ -17,7 +19,7 @@ public class User {
     public int school_year;
     public char classroom;
     public String[] photos;
-    public String[] subjects;
+    public List<Subject> subjects;
     public Course course;
     public School school;
     public Contacts contacts;
