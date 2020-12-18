@@ -13,7 +13,7 @@ public class Preferences {
     private Long id;
 
     private int school_year;
-    private String shift;
+    private int shift;
     private String gender;
 
     @ManyToOne
@@ -21,6 +21,14 @@ public class Preferences {
 
     public int getSchool_year() {
         return school_year;
+    }
+
+    public int getShift() {
+        return shift;
+    }
+
+    public void setShift(int shift) {
+        this.shift = shift;
     }
 
     public Long getId() {
@@ -41,14 +49,6 @@ public class Preferences {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public String getShift() {
-        return shift;
-    }
-
-    public void setShift(String shift) {
-        this.shift = shift;
     }
 
     public void setSchool_year(int school_year) {

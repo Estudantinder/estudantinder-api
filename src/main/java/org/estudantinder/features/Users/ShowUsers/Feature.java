@@ -44,11 +44,9 @@ public class Feature {
                 }
             }
     
-            if(preferences.getShift() != null) {
-                if(preferences.getShift().length() != 0) {
-                    allStudents = allStudents.filter( student -> 
-                    student.getShift().equals(preferences.getShift()));
-                }
+            if(preferences.getShift() != 0) {
+                allStudents = allStudents.filter( student -> 
+                student.getShift() == preferences.getShift());
             }
     
             if(preferences.getSchool_year() != 0 ) {

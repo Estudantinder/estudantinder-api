@@ -13,7 +13,7 @@ public class User {
     public String bio;
     public LocalDate birth_date;
     public String gender;
-    public String shift;
+    public int shift;
     public int school_year;
     public char classroom;
     public String[] photos;

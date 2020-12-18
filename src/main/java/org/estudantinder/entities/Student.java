@@ -40,7 +40,7 @@ public class Student {
     private String gender;
 
     @Column(nullable = false)
-    private String shift;
+    private int shift;
 
     @Column(nullable = false)
     private char classroom;
@@ -62,6 +62,14 @@ public class Student {
 
     public String getPassword() {
         return password;
+    }
+
+    public int getShift() {
+        return shift;
+    }
+
+    public void setShift(int shift) {
+        this.shift = shift;
     }
 
     public char getClassroom() {
@@ -114,14 +122,6 @@ public class Student {
 
     public void setPhotos(String[] photos) {
         this.photos = photos;
-    }
-
-    public String getShift() {
-        return shift;
-    }
-
-    public void setShift(String shift) {
-        this.shift = shift;
     }
 
     public String getGender() {

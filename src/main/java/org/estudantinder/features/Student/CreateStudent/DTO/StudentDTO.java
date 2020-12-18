@@ -36,8 +36,10 @@ public class StudentDTO {
 
     public String gender;
 
-    @NotBlank(message = "You must put your schoolShift")
-    public String shift;
+    @NotNull
+    @Min(message = "Shift must be between 1(morning) and 2(evening)", value = 1)
+    @Max(message = "Shift must be between 1(morning) and 2(evening)", value = 2)
+    public int shift;
 
     @NotNull
     public char classroom;
