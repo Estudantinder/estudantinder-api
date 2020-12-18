@@ -25,7 +25,7 @@ public class UpdateSchoolTest {
 
         given()
             .body(updatedTestSchool)
-            .pathParam("id", 2)
+            .pathParam("id", 1)
             .contentType(ContentType.JSON)
             .when().put("/school/{id}")
             .then()

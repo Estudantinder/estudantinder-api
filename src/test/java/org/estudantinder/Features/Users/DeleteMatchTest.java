@@ -17,7 +17,7 @@ public class DeleteMatchTest {
     public void testDeleteMatchEndpoint() {
         given()
         .auth().oauth2(generateValidStudentToken())
-        .pathParam("id", 28)
+        .pathParam("id", 32)
         .when().delete("/users/matchs/{id}")
         .then()
             .statusCode(200);
@@ -27,7 +27,7 @@ public class DeleteMatchTest {
         return Jwt.issuer("https://github.com/AdamAugustinsky")
             .upn("estudantinder@quarkus.io")
             .groups("Student")
-            .claim("id", 21)
+            .claim("id", 24)
             .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
             .sign();
     }
