@@ -50,6 +50,7 @@ public class StudentDTO {
     public String[] photos;
     
     @NotNull(message = "Favorite Subjects must not be null")
+    @Size(message = "Your number of subjects must be between 1 and 3", min = 1, max = 3)
     public String[] subjects;
 
     @NotNull(message = "CourseId must not be null")
