@@ -48,6 +48,14 @@ public class Feature {
         return true;
     }
 
+    public boolean checkIfClassroomIsAlphabetical(char classroom) {
+        if((classroom >= 'a' && classroom <= 'z') || (classroom >= 'A' && classroom <= 'Z')) {
+            return false;
+        }
+
+        return true;
+    }
+
     public Course returnCourseIfExists(Long courseId) {
         Course course = coursesRepository.findById(courseId);
 
@@ -93,7 +101,7 @@ public class Feature {
         newStudent.setBio(student.bio);
         newStudent.setGender(student.gender);
         newStudent.setShift(student.shift);
-        newStudent.setClassroom(student.classroom);
+        newStudent.setClassroom(Character.toUpperCase(student.classroom));
         newStudent.setPhotos(student.photos);
         newStudent.setSubjects(student.subjects);
         newStudent.setCourse(returnCourseIfExists(student.course_id));
@@ -123,6 +131,10 @@ public class Feature {
 
         if(checkIfAgeIsntCorrect(data.birth_date)) {
             throw new BadRequestException("Student age must be between 14-21");
+        }
+
+        if(checkIfClassroomIsAlphabetical(data.classroom)) {
+            throw new BadRequestException("Classroom must be alphabetical");
         }
         
         Student newStudent = setNewStudent(data);
