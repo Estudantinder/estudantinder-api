@@ -1,4 +1,4 @@
-package org.estudantinder.features.Student.CreateStudent.DTO;
+package org.estudantinder.features.Students.CreateStudent.DTO;
 
 import java.time.LocalDate;
 import java.util.List;

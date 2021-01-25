@@ -1,4 +1,4 @@
-package org.estudantinder.features.Student.CreateStudent;
+package org.estudantinder.features.Students.CreateStudent;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -18,9 +18,9 @@ import org.estudantinder.entities.Course;
 import org.estudantinder.entities.Preferences;
 import org.estudantinder.entities.Student;
 import org.estudantinder.entities.Subject;
-import org.estudantinder.features.Student.CreateStudent.DTO.ContactsDTO;
-import org.estudantinder.features.Student.CreateStudent.DTO.PreferencesDTO;
-import org.estudantinder.features.Student.CreateStudent.DTO.StudentDTO;
+import org.estudantinder.features.Students.CreateStudent.DTO.ContactsDTO;
+import org.estudantinder.features.Students.CreateStudent.DTO.PreferencesDTO;
+import org.estudantinder.features.Students.CreateStudent.DTO.StudentDTO;
 import org.estudantinder.repositories.CoursesRepository;
 import org.estudantinder.repositories.StudentsRepository;
 import org.estudantinder.repositories.SubjectsRepository;

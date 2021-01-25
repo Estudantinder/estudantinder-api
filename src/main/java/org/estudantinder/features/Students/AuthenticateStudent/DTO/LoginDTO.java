@@ -1,4 +1,4 @@
-package org.estudantinder.features.Student.AuthenticateStudent.DTO;
+package org.estudantinder.features.Students.AuthenticateStudent.DTO;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

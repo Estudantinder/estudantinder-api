@@ -1,4 +1,4 @@
-package org.estudantinder.features.Student.CreateStudent;
+package org.estudantinder.features.Students.CreateStudent;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -6,7 +6,7 @@ import javax.persistence.EntityExistsException;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.Response;
 
-import org.estudantinder.features.Student.CreateStudent.DTO.StudentDTO;
+import org.estudantinder.features.Students.CreateStudent.DTO.StudentDTO;
 import org.estudantinder.features.commom.ErrorMessage;
 
 @ApplicationScoped

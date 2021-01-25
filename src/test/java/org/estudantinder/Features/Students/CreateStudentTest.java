@@ -1,4 +1,4 @@
-package org.estudantinder.Features.Student;
+package org.estudantinder.Features.Students;
 
 import org.junit.jupiter.api.Test;
 

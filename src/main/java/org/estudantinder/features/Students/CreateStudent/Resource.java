@@ -1,4 +1,4 @@
-package org.estudantinder.features.Student.CreateStudent;
+package org.estudantinder.features.Students.CreateStudent;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.estudantinder.features.Student.CreateStudent.DTO.StudentDTO;
+import org.estudantinder.features.Students.CreateStudent.DTO.StudentDTO;
 
 @Path("student")
 @Tag(name = "Student")

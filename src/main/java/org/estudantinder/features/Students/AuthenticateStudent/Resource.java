@@ -1,4 +1,4 @@
-package org.estudantinder.features.Student.AuthenticateStudent;
+package org.estudantinder.features.Students.AuthenticateStudent;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.estudantinder.features.Student.AuthenticateStudent.DTO.LoginDTO;
+import org.estudantinder.features.Students.AuthenticateStudent.DTO.LoginDTO;
 
 @Path("student")
 @Tag(name = "Student")
