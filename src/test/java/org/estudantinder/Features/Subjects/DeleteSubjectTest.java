@@ -13,7 +13,7 @@ public class DeleteSubjectTest {
     public void testDeleteSubjectEndpoint() {
         given()
             .pathParam("id", 13)
-            .when().delete("/subject/{id}")
+            .when().delete("/subjects/{id}")
             .then()
                 .statusCode(200);
     }

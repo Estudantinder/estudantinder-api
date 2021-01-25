@@ -13,7 +13,7 @@ public class ShowSubjectTest {
     public void testIndexSubjectEndpoint() {
         
         given()
-        .when().get("/subject")
+        .when().get("/subjects")
         .then()
             .statusCode(200);
     }
@@ -22,7 +22,7 @@ public class ShowSubjectTest {
     public void testShowSubjectEndpoint() {
         given()
         .pathParam("id", 11)
-        .when().get("/subject/{id}")
+        .when().get("/subjects/{id}")
         .then()
             .statusCode(200);
         

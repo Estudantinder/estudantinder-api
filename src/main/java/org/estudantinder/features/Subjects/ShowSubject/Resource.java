@@ -16,8 +16,8 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.estudantinder.entities.Subject;
 import org.estudantinder.repositories.SubjectsRepository;
 
-@Path("subject")
-@Tag(name = "Subject")
+@Path("subjects")
+@Tag(name = "Subjects")
 @Produces(MediaType.APPLICATION_JSON)
 public class Resource {
     

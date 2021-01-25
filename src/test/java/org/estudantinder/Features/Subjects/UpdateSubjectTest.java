@@ -23,7 +23,7 @@ public class UpdateSubjectTest {
             .body(updatedTestSchool)
             .pathParam("id", 12)
             .contentType(ContentType.JSON)
-            .when().put("/subject/{id}")
+            .when().put("/subjects/{id}")
             .then()
                 .statusCode(200);
     }

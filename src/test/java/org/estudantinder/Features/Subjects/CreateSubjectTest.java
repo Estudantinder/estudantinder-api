@@ -24,7 +24,7 @@ public class CreateSubjectTest {
         given()
             .body(testSubject)
             .contentType(ContentType.JSON)
-            .when().post("/subject")
+            .when().post("/subjects")
             .then()
                 .statusCode(201)
                 .body("name", containsString("TEST SUBJECT"));
