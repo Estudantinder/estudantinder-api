@@ -54,7 +54,7 @@ public class CreateStudentTest {
     given()
             .body(testStudent)
             .contentType(ContentType.JSON)
-            .when().post("/student")
+            .when().post("/students")
             .then()
                 .statusCode(201)
                 .body("name", containsString("TEST STUDENT"));;

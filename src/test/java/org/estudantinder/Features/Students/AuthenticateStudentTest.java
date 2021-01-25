@@ -26,7 +26,7 @@ public class AuthenticateStudentTest {
         given()
             .body(testStudent)
             .contentType(ContentType.JSON)
-            .when().post("/student/login")
+            .when().post("/students/login")
             .then()
                 .statusCode(200)
                 .body(containsString("eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9"));

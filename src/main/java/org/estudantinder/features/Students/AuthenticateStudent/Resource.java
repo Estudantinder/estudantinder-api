@@ -14,8 +14,8 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.estudantinder.features.Students.AuthenticateStudent.DTO.LoginDTO;
 
-@Path("student")
-@Tag(name = "Student")
+@Path("students")
+@Tag(name = "Students")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class Resource {
