@@ -1,4 +1,4 @@
-package org.estudantinder.features.Subjects.ShowSubject;
+package org.estudantinder.features.Schools.ShowSchool;
 
 import java.util.List;
 
@@ -13,33 +13,33 @@ import javax.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.estudantinder.entities.Subject;
-import org.estudantinder.repositories.SubjectsRepository;
+import org.estudantinder.entities.School;
+import org.estudantinder.repositories.SchoolsRepository;
 
-@Path("subjects")
-@Tag(name = "Subjects")
+@Path("schools")
+@Tag(name = "Schools")
 @Produces(MediaType.APPLICATION_JSON)
 public class Resource {
     
     @Inject
-    SubjectsRepository subjectsRepository;
+    SchoolsRepository schoolsRepository;
 
     @Inject
-    Controller showSubjectController;
+    Controller showSchoolController;
 
     @GET
-    @Operation(summary = "Show all Subjects")
-    public List<Subject> index() throws Exception {
-        return subjectsRepository.listAll();
+    @Operation(summary = "Show all Schools")
+    public List<School> index() throws Exception {
+        return schoolsRepository.listAll();
     }
 
     @GET
     @Path("{id}")
     @APIResponse(responseCode = "200", description = "OK")
-    @APIResponse(responseCode = "404", description = "Subject ID Not Found")
+    @APIResponse(responseCode = "404", description = "School ID Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
-    @Operation(summary = "Show given Id Subject")
-    public Response showSubjects(@PathParam("id") Long id) throws Exception {
-        return showSubjectController.handle(id);
+    @Operation(summary = "Show given Id School")
+    public Response showSchools(@PathParam("id") Long id) throws Exception {
+        return showSchoolController.handle(id);
     }
 }
