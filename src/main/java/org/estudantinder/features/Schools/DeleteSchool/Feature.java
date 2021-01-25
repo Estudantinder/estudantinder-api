@@ -1,4 +1,4 @@
-package org.estudantinder.features.School.ShowSchool;
+package org.estudantinder.features.Schools.DeleteSchool;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,13 +13,13 @@ public class Feature {
     @Inject
     SchoolsRepository schoolsRepository;
 
-    public School execute(Long id) throws Exception {
+    public void execute(Long id) throws Exception {
         School school = schoolsRepository.findById(id);
         
         if(school == null) {
-            throw new EntityNotFoundException("School id doesn't exists");
+            throw new EntityNotFoundException("School not found");
         }
 
-        return school;
+        schoolsRepository.delete(school);
     }
 }

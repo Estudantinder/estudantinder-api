@@ -1,4 +1,4 @@
-package org.estudantinder.features.School.CreateSchool.DTO;
+package org.estudantinder.features.Schools.CreateSchool.DTO;
 
 import java.util.List;
 

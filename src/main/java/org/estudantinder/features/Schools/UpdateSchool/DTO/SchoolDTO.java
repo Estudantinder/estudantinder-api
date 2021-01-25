@@ -1,4 +1,4 @@
-package org.estudantinder.features.School.UpdateSchool.DTO;
+package org.estudantinder.features.Schools.UpdateSchool.DTO;
 
 import java.util.List;
 

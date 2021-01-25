@@ -1,4 +1,4 @@
-package org.estudantinder.Features.School;
+package org.estudantinder.Features.Schools;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ public class DeleteSchoolTest {
     @Test
     public void testDeleteSchoolEndpoint() {
         given()
-            .pathParam("id", 1)
+            .pathParam("id", 3)
             .when().delete("/school/{id}")
             .then()
                 .statusCode(200);

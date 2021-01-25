@@ -1,4 +1,4 @@
-package org.estudantinder.features.School.UpdateSchool.DTO;
+package org.estudantinder.features.Schools.CreateSchool.DTO;
 
 import javax.json.bind.annotation.JsonbTransient;
 

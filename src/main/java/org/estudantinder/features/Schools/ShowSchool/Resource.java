@@ -1,4 +1,4 @@
-package org.estudantinder.features.School.ShowSchool;
+package org.estudantinder.features.Schools.ShowSchool;
 
 import java.util.List;
 

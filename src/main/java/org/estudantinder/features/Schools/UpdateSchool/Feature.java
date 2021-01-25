@@ -1,4 +1,4 @@
-package org.estudantinder.features.School.UpdateSchool;
+package org.estudantinder.features.Schools.UpdateSchool;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -6,7 +6,7 @@ import javax.persistence.EntityNotFoundException;
 
 import org.estudantinder.entities.Course;
 import org.estudantinder.entities.School;
-import org.estudantinder.features.School.UpdateSchool.DTO.SchoolDTO;
+import org.estudantinder.features.Schools.UpdateSchool.DTO.SchoolDTO;
 import org.estudantinder.repositories.CoursesRepository;
 import org.estudantinder.repositories.SchoolsRepository;
 

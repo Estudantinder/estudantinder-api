@@ -1,4 +1,4 @@
-package org.estudantinder.features.School.DeleteSchool;
+package org.estudantinder.features.Schools.DeleteSchool;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

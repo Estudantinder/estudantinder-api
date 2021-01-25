@@ -1,34 +1,32 @@
-package org.estudantinder.features.School.ShowSchool;
+package org.estudantinder.features.Schools.UpdateSchool;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
 import javax.ws.rs.core.Response;
 
-import org.estudantinder.entities.School;
+import org.estudantinder.features.Schools.UpdateSchool.DTO.SchoolDTO;
 import org.estudantinder.features.commom.ErrorMessage;
 
 @ApplicationScoped
-public class Controller {
-
+public  class Controller {
+    
     @Inject
-    Feature showSchool;
+    Feature updateSchool;
 
-    public Response handle(Long id) throws Exception {
+    public Response handle(Long id, SchoolDTO data) throws Exception {
         try {
-            School school = showSchool.execute(id);
+            updateSchool.execute(id, data);
 
             return Response
                 .status(Response.Status.OK)
-                .entity(school)
+                .entity(data)
                 .build();
-
-                
         } catch (EntityNotFoundException error) {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't show School";
+            errorMessage.message = "Couldn't update School";
 
             return Response
                 .status(Response.Status.NOT_FOUND)

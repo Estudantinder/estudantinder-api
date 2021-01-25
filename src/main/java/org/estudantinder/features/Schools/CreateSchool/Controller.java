@@ -1,11 +1,11 @@
-package org.estudantinder.features.School.CreateSchool;
+package org.estudantinder.features.Schools.CreateSchool;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
 import javax.ws.rs.core.Response;
 
-import org.estudantinder.features.School.CreateSchool.DTO.SchoolDTO;
+import org.estudantinder.features.Schools.CreateSchool.DTO.SchoolDTO;
 import org.estudantinder.features.commom.ErrorMessage;
 
 @ApplicationScoped

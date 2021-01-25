@@ -1,4 +1,4 @@
-package org.estudantinder.features.School.CreateSchool;
+package org.estudantinder.features.Schools.CreateSchool;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,8 +9,8 @@ import javax.persistence.EntityExistsException;
 
 import org.estudantinder.entities.Course;
 import org.estudantinder.entities.School;
-import org.estudantinder.features.School.CreateSchool.DTO.CourseDTO;
-import org.estudantinder.features.School.CreateSchool.DTO.SchoolDTO;
+import org.estudantinder.features.Schools.CreateSchool.DTO.CourseDTO;
+import org.estudantinder.features.Schools.CreateSchool.DTO.SchoolDTO;
 import org.estudantinder.repositories.SchoolsRepository;
 
 @ApplicationScoped
