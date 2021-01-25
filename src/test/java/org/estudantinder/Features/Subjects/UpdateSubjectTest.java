@@ -1,4 +1,4 @@
-package org.estudantinder.Features.Subject;
+package org.estudantinder.Features.Subjects;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package org.estudantinder.Features.Subject;
+package org.estudantinder.Features.Subjects;
 
 import io.quarkus.test.junit.QuarkusTest;
 
