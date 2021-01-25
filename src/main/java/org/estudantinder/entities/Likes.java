@@ -15,28 +15,28 @@ public class Likes {
     private Long id;
 
     @ManyToOne
-    private Student sender;
+    private Users sender;
 
     @ManyToOne
-    private Student receiver;
+    private Users receiver;
 
     public Long getId() {
         return id;
     }
 
-    public Student getReceiver() {
+    public Users getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(Student receiver) {
+    public void setReceiver(Users receiver) {
         this.receiver = receiver;
     }
 
-    public Student getSender() {
+    public Users getSender() {
         return sender;
     }
 
-    public void setSender(Student sender) {
+    public void setSender(Users sender) {
         this.sender = sender;
     }
 
