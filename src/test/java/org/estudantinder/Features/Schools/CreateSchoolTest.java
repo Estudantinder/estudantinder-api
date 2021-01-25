@@ -30,7 +30,7 @@ public class CreateSchoolTest {
         given()
             .body(testSchool)
             .contentType(ContentType.JSON)
-            .when().post("/school")
+            .when().post("/schools")
             .then()
                 .statusCode(201)
                 .body("name", containsString("TEST SCHOOL"));

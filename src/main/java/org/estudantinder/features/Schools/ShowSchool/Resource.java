@@ -16,8 +16,8 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.estudantinder.entities.School;
 import org.estudantinder.repositories.SchoolsRepository;
 
-@Path("school")
-@Tag(name = "School")
+@Path("schools")
+@Tag(name = "Schools")
 @Produces(MediaType.APPLICATION_JSON)
 public class Resource {
     

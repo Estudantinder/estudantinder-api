@@ -27,7 +27,7 @@ public class UpdateSchoolTest {
             .body(updatedTestSchool)
             .pathParam("id", 1)
             .contentType(ContentType.JSON)
-            .when().put("/school/{id}")
+            .when().put("/schools/{id}")
             .then()
                 .statusCode(200);
     }

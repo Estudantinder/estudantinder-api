@@ -15,8 +15,8 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.estudantinder.features.Schools.UpdateSchool.DTO.SchoolDTO;
 
-@Path("school")
-@Tag(name = "School")
+@Path("schools")
+@Tag(name = "Schools")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class Resource {

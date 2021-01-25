@@ -13,8 +13,8 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-@Path("school")
-@Tag(name = "School")
+@Path("schools")
+@Tag(name = "Schools")
 @Produces(MediaType.APPLICATION_JSON)
 public class Resource {
     
