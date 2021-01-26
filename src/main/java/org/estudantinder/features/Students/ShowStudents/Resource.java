@@ -1,4 +1,4 @@
-package org.estudantinder.features.Students.ShowUsers;
+package org.estudantinder.features.Students.ShowStudents;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
