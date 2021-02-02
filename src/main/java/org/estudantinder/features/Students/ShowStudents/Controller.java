@@ -1,4 +1,4 @@
-package org.estudantinder.features.Students.ShowUsers;
+package org.estudantinder.features.Students.ShowStudents;
 
 import java.util.List;
 
