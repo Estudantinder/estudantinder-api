@@ -1,10 +1,7 @@
 package org.estudantinder.features.Users.ImageUpload;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,28 +26,11 @@ public class Feature {
             throw new NotFoundException("jwt id not valid");
         } 
     }
-    private String uploadImage(Cloudinary cloudinary, InputStream photoData, String photoName) throws IOException {
-        File createdPhoto = createFile(photoData, photoName);
-
-        cloudinary.uploader().upload(photoName + ".jpg", ObjectUtils.asMap("public_id", photoName));
+    private String uploadImage(Cloudinary cloudinary, File photo, String photoName) throws IOException {
+        cloudinary.uploader().upload(photo, ObjectUtils.asMap("public_id", photoName));
         String url = cloudinary.url().generate(photoName+ ".jpg");
         
-        createdPhoto.delete();
-        
         return url;
-    }
-
-    private File createFile(InputStream photoData, String photoName) throws IOException {
-        File file = new File(photoName+ ".jpg");
-        copyInputStreamToFile(photoData, file);
-
-        return file;
-    }
-
-    private static void copyInputStreamToFile(InputStream input, File file) throws IOException {
-        try (OutputStream output = new FileOutputStream(file, false)) {
-            input.transferTo(output);
-        }
     }
 
     private String[] uploadArrayOfPhotoUrls (Cloudinary cloudinary, DTO data, Users authenticatedUser )

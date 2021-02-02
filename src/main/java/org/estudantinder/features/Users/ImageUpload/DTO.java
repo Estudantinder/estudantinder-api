@@ -1,6 +1,6 @@
 package org.estudantinder.features.Users.ImageUpload;
 
-import java.io.InputStream;
+import java.io.File;
 
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.FormParam;
@@ -13,26 +13,26 @@ public class DTO {
     @NotNull(message = "profile photo must be inserted")
     @FormParam("photo0")
     @PartType(MediaType.APPLICATION_OCTET_STREAM)
-    public InputStream photo0;
+    public File photo0;
 
     @FormParam("photo1")
     @PartType(MediaType.APPLICATION_OCTET_STREAM)
-    public InputStream photo1;
+    public File photo1;
 
     @FormParam("photo2")
     @PartType(MediaType.APPLICATION_OCTET_STREAM)
-    public InputStream photo2;
+    public File photo2;
 
     @FormParam("photo3")
     @PartType(MediaType.APPLICATION_OCTET_STREAM)
-    public InputStream photo3;
+    public File photo3;
     
     @FormParam("photo4")
     @PartType(MediaType.APPLICATION_OCTET_STREAM)
-    public InputStream photo4;
+    public File photo4;
 
     @FormParam("photo5")
     @PartType(MediaType.APPLICATION_OCTET_STREAM)
-    public InputStream photo5;
+    public File photo5;
 
 }
