@@ -157,7 +157,6 @@ public class Feature {
         newUser.setGender(User.gender);
         newUser.setShift(User.shift);
         newUser.setClassroom(Character.toUpperCase(User.classroom));
-        newUser.setPhotos(User.photos);
         newUser.setSubjects(returnListOfSubjects(User.subjects_id));
         newUser.setCourse(returnCourseIfExists(User.course_id));
         newUser.setContacts(setNewStudenContacts(User.contacts));

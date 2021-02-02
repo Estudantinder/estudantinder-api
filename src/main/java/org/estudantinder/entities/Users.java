@@ -48,7 +48,6 @@ public class Users {
     @Column(nullable = false)
     private char classroom;
 
-    @Column(nullable = false)
     private String[] photos;
 
     @ManyToMany

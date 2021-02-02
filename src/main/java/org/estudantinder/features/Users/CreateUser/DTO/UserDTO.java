@@ -46,10 +46,6 @@ public class UserDTO {
     @NotNull
     public char classroom;
 
-    @NotNull(message = "You must have some photo")
-    @Size(message = "Your number of photos must be between 1 and 6", min = 1, max = 6)
-    public String[] photos;
-
     @NotNull(message = "Favorite Subjects must not be null")
     @Size(message = "Your number of subjects must be between 1 and 3", min = 1, max = 3)
     public List<Long> subjects_id;
