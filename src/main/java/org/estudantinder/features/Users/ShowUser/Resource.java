@@ -6,10 +6,8 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.SecurityContext;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -40,7 +38,7 @@ public class Resource {
     @APIResponse(responseCode = "404", description = "Student id Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
     @Operation(summary = "Show given JWT user")
-    public Response showUser(@Context SecurityContext ctx) throws Exception {
+    public Response showUser() throws Exception {
         return showUserController.handle(jwt);
     }
 }

@@ -3,7 +3,6 @@ package org.estudantinder.features.Users.CreateUser.DTO;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -55,7 +54,4 @@ public class UserDTO {
 
     @NotNull(message = "Contacts must not be null")
     public ContactsDTO contacts;
-
-    @Valid
-    public PreferencesDTO preferences;
 }

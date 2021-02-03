@@ -15,10 +15,8 @@ import javax.ws.rs.BadRequestException;
 
 import org.estudantinder.entities.Contacts;
 import org.estudantinder.entities.Course;
-import org.estudantinder.entities.Preferences;
 import org.estudantinder.entities.Users;
 import org.estudantinder.features.Users.CreateUser.DTO.ContactsDTO;
-import org.estudantinder.features.Users.CreateUser.DTO.PreferencesDTO;
 import org.estudantinder.features.Users.CreateUser.DTO.UserDTO;
 import org.estudantinder.entities.Subject;
 
@@ -121,19 +119,6 @@ public class Feature {
         return subjects;
     } 
 
-    public Preferences setNewUserPreferences(PreferencesDTO preferences) {
-        Preferences newUserPreferences = new Preferences();
-        
-        newUserPreferences.setGender(preferences.gender);
-        newUserPreferences.setShift(preferences.shift);
-        newUserPreferences.setSchool_year(preferences.school_year);
-        if (preferences.course_id != null) {
-            newUserPreferences.setCourse(returnCourseIfExists(preferences.course_id));
-        }
-
-        return newUserPreferences;
-    }
-
     public Contacts setNewStudenContacts(ContactsDTO contacts) {
         Contacts newUserContacts = new Contacts();
 
@@ -161,11 +146,7 @@ public class Feature {
         newUser.setCourse(returnCourseIfExists(User.course_id));
         newUser.setContacts(setNewStudenContacts(User.contacts));
         
-        if(User.preferences != null) {
-            newUser.setPreferences(setNewUserPreferences(User.preferences));
-        }
-
-        return newUser;
+         return newUser;
     }
 
     public void execute(UserDTO data) throws Exception {

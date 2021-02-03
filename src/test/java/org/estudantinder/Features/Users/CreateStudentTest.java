@@ -45,10 +45,6 @@ public class CreateStudentTest {
             .add("instagram", "@testInstagram")
             .add("twitter", "@testTwitter")
             .add("facebook", "test.facebook"))
-        .add("preferences", Json.createObjectBuilder()
-            .add("school_year", 3)
-            .add("shift", 1)
-            .add("course_id", 5))
             .build().toString();
         
     given()
