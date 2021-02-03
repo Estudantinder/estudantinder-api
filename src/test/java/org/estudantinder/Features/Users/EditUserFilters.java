@@ -20,10 +20,13 @@ public class EditUserFilters {
     public void testEditUserFiltersEndpoint() {
 
         String testFilters = Json.createObjectBuilder()
-        .add("preferences", Json.createObjectBuilder()
             .add("school_year", 3)
             .add("shift", 1)
-            .add("course_id", 5))
+            .add("course_id", 5)
+            .add("subjects_ids", Json.createArrayBuilder()
+                .add(10)
+                .add(11)
+                .add(12))
             .build().toString();
 
         given()
