@@ -62,3 +62,5 @@ INSERT INTO match (id, like_id, mutuallike_id) VALUES (nextval('hibernate_sequen
 INSERT INTO preferences_subject (preferences_id, subjects_id) VALUES (18, 10);
 INSERT INTO preferences_subject (preferences_id, subjects_id) VALUES (19, 11);
 INSERT INTO preferences_subject (preferences_id, subjects_id) VALUES (20, 12);
+
+INSERT INTO dislikes (id, receiver_id, sender_id) VALUES (nextval('hibernate_sequence'), 22, 23);
