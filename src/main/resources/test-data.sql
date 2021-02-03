@@ -48,7 +48,7 @@ INSERT INTO users (id, bio, birth_date, classroom, email, gender, name, password
 INSERT INTO users_subject (users_id, subjects_id) VALUES (22, 10);
 INSERT INTO users_subject (users_id, subjects_id) VALUES (23, 11);
 INSERT INTO users_subject (users_id, subjects_id) VALUES (24, 12);
-INSERT INTO users_subject (users_id, subjects_id) VALUES (25, 12);
+
 
 INSERT INTO likes (id, receiver_id, sender_id) VALUES (nextval('hibernate_sequence'), 22, 23);
 INSERT INTO likes (id, receiver_id, sender_id) VALUES (nextval('hibernate_sequence'), 23, 22);
@@ -57,3 +57,8 @@ INSERT INTO likes (id, receiver_id, sender_id) VALUES (nextval('hibernate_sequen
 INSERT INTO likes (id, receiver_id, sender_id) VALUES (nextval('hibernate_sequence'), 25, 24);
 INSERT INTO match (id, like_id, mutuallike_id) VALUES (nextval('hibernate_sequence'), 26, 27);
 INSERT INTO match (id, like_id, mutuallike_id) VALUES (nextval('hibernate_sequence'), 29, 28);
+
+
+INSERT INTO preferences_subject (preferences_id, subjects_id) VALUES (18, 10);
+INSERT INTO preferences_subject (preferences_id, subjects_id) VALUES (19, 11);
+INSERT INTO preferences_subject (preferences_id, subjects_id) VALUES (20, 12);
