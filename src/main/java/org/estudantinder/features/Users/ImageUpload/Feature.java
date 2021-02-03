@@ -26,11 +26,10 @@ public class Feature {
             throw new NotFoundException("jwt id not valid");
         } 
     }
-    private String uploadImage(Cloudinary cloudinary, File photo, String photoName) throws IOException {
-        cloudinary.uploader().upload(photo, ObjectUtils.asMap("public_id", photoName));
-        String url = cloudinary.url().generate(photoName+ ".jpg");
+    private String uploadImage(Cloudinary cloudinary, File photo) throws IOException {
+        Object secure_url = cloudinary.uploader().upload(photo, ObjectUtils.emptyMap()).get("secure_url");
         
-        return url;
+        return (String) secure_url;
     }
 
     private String[] uploadArrayOfPhotoUrls (Cloudinary cloudinary, DTO data, Users authenticatedUser )
@@ -38,22 +37,22 @@ public class Feature {
         List<String> listOfPhotoUrls = new ArrayList<>(); 
         
         if(data.photo0 != null) {
-            String url = uploadImage(cloudinary, data.photo0, authenticatedUser.getName() + "0");
+            String url = uploadImage(cloudinary, data.photo0);
             listOfPhotoUrls.add(url);
         } if(data.photo1 != null) {
-            String url = uploadImage(cloudinary, data.photo1, authenticatedUser.getName() + "1");
+            String url = uploadImage(cloudinary, data.photo1);
             listOfPhotoUrls.add(url);
         } if(data.photo2 != null) {
-            String url = uploadImage(cloudinary, data.photo2, authenticatedUser.getName() + "2");
+            String url = uploadImage(cloudinary, data.photo2);
             listOfPhotoUrls.add(url);
         } if(data.photo3 != null) {
-            String url = uploadImage(cloudinary, data.photo3, authenticatedUser.getName() + "3");
+            String url = uploadImage(cloudinary, data.photo3);
             listOfPhotoUrls.add(url);
         } if(data.photo4 != null) {
-            String url = uploadImage(cloudinary, data.photo4, authenticatedUser.getName() + "4");
+            String url = uploadImage(cloudinary, data.photo4);
             listOfPhotoUrls.add(url);
         } if(data.photo5 != null) {
-            String url = uploadImage(cloudinary, data.photo5, authenticatedUser.getName() + "5");
+            String url = uploadImage(cloudinary, data.photo5);
             listOfPhotoUrls.add(url);
         }
 
