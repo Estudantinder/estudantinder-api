@@ -3,6 +3,7 @@ package org.estudantinder.features.Users.ImageUpload;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -49,7 +50,7 @@ public class Resource {
     @APIResponse(responseCode = "404", description = "Jwt id not found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
     @Operation(summary = "Upload user's photos")
-    public Response sendFile(@Context SecurityContext ctx, @MultipartForm DTO data) throws Exception {
+    public Response sendFile(@Context SecurityContext ctx, @NotNull @MultipartForm DTO data) throws Exception {
         return imageUploadController.handle(jwt, data);
     }
   
