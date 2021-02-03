@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 
 import com.cloudinary.Cloudinary;
@@ -26,6 +27,12 @@ public class Feature {
             throw new NotFoundException("jwt id not valid");
         } 
     }
+
+    private void treatNoProfilePhoto(File photo0) {
+        if(photo0 == null) {
+            throw new BadRequestException("profile photo(photo0) can't be null");
+        } 
+    }
     private String uploadImage(Cloudinary cloudinary, File photo) throws IOException {
         Object secure_url = cloudinary.uploader().upload(photo, ObjectUtils.emptyMap()).get("secure_url");
         
@@ -37,9 +44,9 @@ public class Feature {
         List<String> listOfPhotoUrls = new ArrayList<>(); 
         
         if(data.photo0 != null) {
-            String url = uploadImage(cloudinary, data.photo0);
-            listOfPhotoUrls.add(url);
-        } if(data.photo1 != null) {
+             String url = uploadImage(cloudinary, data.photo0);
+            listOfPhotoUrls.add(url);        
+        }if(data.photo1 != null) {
             String url = uploadImage(cloudinary, data.photo1);
             listOfPhotoUrls.add(url);
         } if(data.photo2 != null) {
@@ -66,6 +73,7 @@ public class Feature {
         Users authenticatedUser = usersRepository.findById(userId);
 
         treatInvalidId(authenticatedUser); 
+        treatNoProfilePhoto(data.photo0);
 
         //can't remove credentials because of heroku deploy
         Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
