@@ -1,9 +1,9 @@
-package org.estudantinder.features.Users.CreateUser.DTO;
+package org.estudantinder.features.Users.EditUserFilters;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-public class PreferencesDTO {
+public class DTO {
     
     @Min(message = "You must be in a school year between 1 - 3", value = 0)
     @Max(message = "You must be in a school year between 1 - 3", value = 3)
@@ -17,4 +17,5 @@ public class PreferencesDTO {
     public String gender;
 
     public Long course_id;
+
 }
