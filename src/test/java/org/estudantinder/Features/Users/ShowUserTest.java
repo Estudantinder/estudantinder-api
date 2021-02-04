@@ -20,6 +20,7 @@ public class ShowUserTest {
             .auth().oauth2(generateValidStudentToken())
             .when().get("/users")
             .then()
+                .log().all()
                 .statusCode(200);
     }
 
