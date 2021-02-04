@@ -96,8 +96,10 @@ public class Feature {
         if (preferences.course_id != null) {
             userPreferences.setCourse(returnCourseIfExists(preferences.course_id));
         }
-        userPreferences.setSubjects(returnListOfSubjects(preferences.subjects_ids));
-
+        if( preferences.subjects_ids != null && 
+            preferences.subjects_ids.size() > 0) {
+            userPreferences.setSubjects(returnListOfSubjects(preferences.subjects_ids));
+        }
         return userPreferences;
     }
 
