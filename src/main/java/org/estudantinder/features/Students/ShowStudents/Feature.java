@@ -62,14 +62,16 @@ public class Feature {
             }
 
             if(preferences.getSubjects() != null ) {
-                allUsers = allUsers.filter( user -> {
-                    for(Subject subject : user.getSubjects()) {
-                        if(preferences.getSubjects().contains(subject)) {
-                            return true;
+                if(preferences.getSubjects().size() > 0) {
+                    allUsers = allUsers.filter( user -> {
+                        for(Subject subject : user.getSubjects()) {
+                            if(preferences.getSubjects().contains(subject)) {
+                                return true;
+                            }
                         }
-                    }
-                    return false;
-                });
+                        return false;
+                    });
+                }
             }
     
             return allUsers;
