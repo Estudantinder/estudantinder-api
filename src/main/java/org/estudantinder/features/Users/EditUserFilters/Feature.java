@@ -17,6 +17,7 @@ import org.estudantinder.entities.Preferences;
 import org.estudantinder.entities.Subject;
 import org.estudantinder.entities.Users;
 import org.estudantinder.repositories.CoursesRepository;
+import org.estudantinder.repositories.PreferencesRepository;
 import org.estudantinder.repositories.SubjectsRepository;
 import org.estudantinder.repositories.UsersRepository;
 
@@ -31,6 +32,9 @@ public class Feature {
 
     @Inject
     SubjectsRepository subjectsRepository;
+
+    @Inject
+    PreferencesRepository preferencesRepository;
 
     private Course returnCourseIfExists(Long courseId) {
         Course course = coursesRepository.findById(courseId);
@@ -87,12 +91,16 @@ public class Feature {
         return subjects;
     } 
 
-    private Preferences mapToPreferences(DTO preferences) {
-        Preferences userPreferences = new Preferences();
-        
-        userPreferences.setGender(preferences.gender);
-        userPreferences.setShift(preferences.shift);
-        userPreferences.setSchool_year(preferences.school_year);
+    private Preferences mapToPreferences(Preferences userPreferences, DTO preferences) {
+        if(preferences.gender != null ) {
+            userPreferences.setGender(preferences.gender);
+        }
+        if(preferences.shift != 0) {
+            userPreferences.setShift(preferences.shift);
+        }
+        if(preferences.school_year != 0) {
+            userPreferences.setSchool_year(preferences.school_year);
+        }
         if (preferences.course_id != null) {
             userPreferences.setCourse(returnCourseIfExists(preferences.course_id));
         }
@@ -109,7 +117,21 @@ public class Feature {
 
         treatStudentInvalidID(authenticatedUser);
 
-        authenticatedUser.setPreferences(mapToPreferences(data));
+        if(authenticatedUser.getPreferences() == null) {
+            Preferences userPreferences = new Preferences();
+            
+            Preferences updatedUserPreferences = mapToPreferences(userPreferences, data);
+
+            authenticatedUser.setPreferences(updatedUserPreferences);
+
+            usersRepository.persist(authenticatedUser);
+            return authenticatedUser.getPreferences();
+        }
+
+        Preferences userPreferences = authenticatedUser.getPreferences();
+        Preferences updatedUserPreferences = mapToPreferences( userPreferences, data);
+
+        preferencesRepository.persist(updatedUserPreferences);
 
         return authenticatedUser.getPreferences();
     }

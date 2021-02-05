@@ -6,28 +6,29 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.estudantinder.entities.Preferences;
 import org.estudantinder.features.commom.ErrorMessage;
 
 @ApplicationScoped
 public class Controller {
 
     @Inject
-    Feature createUserUseCase;
+    Feature updateUserPreferencesController;
 
     public Response handle(JsonWebToken jwt, DTO data) throws Exception {
         try {
-            createUserUseCase.execute(jwt, data);
+            Preferences userPreferences = updateUserPreferencesController.execute(jwt, data);
 
             return Response
                 .status(Response.Status.OK)
-                .entity(data)
+                .entity(userPreferences)
                 .build();
 
         } catch (NotFoundException error) {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create User";
+            errorMessage.message = "Couldn't update user's filters";
 
             return Response
                 .status(Response.Status.NOT_FOUND)
@@ -38,7 +39,7 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = "No Data";
-            errorMessage.message = "Couldn't create User";
+            errorMessage.message = "Couldn't update user's filters";
 
             return Response
                 .status(Response.Status.BAD_REQUEST)
@@ -48,7 +49,7 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create User";
+            errorMessage.message = "Couldn't update user's filters";
 
             return Response
                 .status(Response.Status.INTERNAL_SERVER_ERROR)

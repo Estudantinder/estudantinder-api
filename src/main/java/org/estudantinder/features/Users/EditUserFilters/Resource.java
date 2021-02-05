@@ -30,19 +30,19 @@ public class Resource {
     JsonWebToken jwt;
 
     @Inject
-    Controller createUserController;
+    Controller updateUserPreferences;
 
     @PUT
     @Transactional
     @Path("filters")
     @RolesAllowed("User")
     @SecurityRequirement(name = "jwt")
-    @APIResponse(responseCode = "200", description = "Filters Succefuly Edited")
+    @APIResponse(responseCode = "200", description = "Filters Succefuly Updated")
     @APIResponse(responseCode = "400", description = "No Data Sent")
-    @APIResponse(responseCode = "404", description = "Student id Not Found")
+    @APIResponse(responseCode = "404", description = "Student ID Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
     @Operation(summary = "Edit given JWT student filters")
     public Response createUser(@Valid DTO data) throws Exception {
-        return createUserController.handle(jwt, data);
+        return updateUserPreferences.handle(jwt, data);
     }
 }
