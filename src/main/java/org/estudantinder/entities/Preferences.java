@@ -22,11 +22,22 @@ public class Preferences {
     @ManyToOne
     private Course course;
 
+    @ManyToOne
+    private School school;
+
     @ManyToMany
     private List<Subject> subjects;
 
     public int getSchool_year() {
         return school_year;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
     }
 
     public List<Subject> getSubjects() {
