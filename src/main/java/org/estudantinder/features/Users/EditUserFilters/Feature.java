@@ -14,10 +14,12 @@ import javax.ws.rs.NotFoundException;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Course;
 import org.estudantinder.entities.Preferences;
+import org.estudantinder.entities.School;
 import org.estudantinder.entities.Subject;
 import org.estudantinder.entities.Users;
 import org.estudantinder.repositories.CoursesRepository;
 import org.estudantinder.repositories.PreferencesRepository;
+import org.estudantinder.repositories.SchoolsRepository;
 import org.estudantinder.repositories.SubjectsRepository;
 import org.estudantinder.repositories.UsersRepository;
 
@@ -29,6 +31,9 @@ public class Feature {
 
     @Inject
     CoursesRepository coursesRepository;
+
+    @Inject
+    SchoolsRepository schoolsRepository;
 
     @Inject
     SubjectsRepository subjectsRepository;
@@ -44,6 +49,16 @@ public class Feature {
         }
 
         return course;
+    }
+
+    private School returnSchoolIfExists(Long schoolId) {
+        School school = schoolsRepository.findById(schoolId);
+
+        if(school == null) {
+            throw new EntityNotFoundException("Course Not Found");
+        }
+
+        return school;
     }
     
     private void treatStudentInvalidID(Users user) {
@@ -103,6 +118,9 @@ public class Feature {
         }
         if (preferences.course_id != null) {
             userPreferences.setCourse(returnCourseIfExists(preferences.course_id));
+        }
+        if (preferences.school_id != null) {
+            userPreferences.setSchool(returnSchoolIfExists(preferences.school_id));
         }
         if( preferences.subjects_ids != null && 
             preferences.subjects_ids.size() > 0) {

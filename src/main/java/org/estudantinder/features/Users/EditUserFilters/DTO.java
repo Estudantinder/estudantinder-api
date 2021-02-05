@@ -19,6 +19,7 @@ public class DTO {
     public String gender;
 
     public Long course_id;
+    public Long school_id;
 
     @Size(message = "Your number of subjects must be between 1 and 3", max = 3)
     public List<Long> subjects_ids;
