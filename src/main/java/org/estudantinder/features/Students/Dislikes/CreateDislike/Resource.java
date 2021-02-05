@@ -1,12 +1,11 @@
-package org.estudantinder.features.Users.EditUserFilters;
+package org.estudantinder.features.Students.Dislikes.CreateDislike;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.validation.Valid;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,9 +18,8 @@ import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-@Path("users")
-@Tag(name = "Users")
-@Consumes(MediaType.APPLICATION_JSON)
+@Path("students/dislikes")
+@Tag(name = "Students")
 @Produces(MediaType.APPLICATION_JSON)
 @SecurityScheme(securitySchemeName = "jwt", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "jwt")
 public class Resource {
@@ -30,19 +28,21 @@ public class Resource {
     JsonWebToken jwt;
 
     @Inject
-    Controller updateUserPreferences;
+    Controller createDislikeController;
 
-    @PUT
+    @POST
     @Transactional
-    @Path("filters")
+    @Path("{id}")
     @RolesAllowed("User")
     @SecurityRequirement(name = "jwt")
-    @APIResponse(responseCode = "200", description = "Filters Succefuly Updated")
-    @APIResponse(responseCode = "400", description = "No Data Sent")
-    @APIResponse(responseCode = "404", description = "Student ID Not Found")
+    @APIResponse(responseCode = "201", description = "Dislike Successfully Created")
+    @APIResponse(responseCode = "401", description = "Student Can't Like Himself")
+    @APIResponse(responseCode = "404", description = "Student Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
-    @Operation(summary = "Edit given JWT student filters")
-    public Response createUser(@Valid DTO data) throws Exception {
-        return updateUserPreferences.handle(jwt, data);
+    @Operation(summary = "Create a new dislike", description="Create new dislike, where sender is JWT's Student, and receiver is /id Student")
+    public Response create(@PathParam("id") Long receiverId) throws Exception {
+        return createDislikeController.handle(jwt, receiverId);
+
     }
+
 }

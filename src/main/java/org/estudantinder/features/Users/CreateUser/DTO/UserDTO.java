@@ -47,7 +47,7 @@ public class UserDTO {
 
     @NotNull(message = "Favorite Subjects must not be null")
     @Size(message = "Your number of subjects must be between 1 and 3", min = 1, max = 3)
-    public List<Long> subjects_id;
+    public List<Long> subjects_ids;
 
     @NotNull(message = "CourseId must not be null")
     public Long course_id;

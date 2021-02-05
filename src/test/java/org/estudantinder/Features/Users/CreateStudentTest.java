@@ -35,7 +35,7 @@ public class CreateStudentTest {
             .add("http://testPhoto4.com")
             .add("http://testPhoto5.com")
             .add("http://testPhoto6.com"))
-        .add("subjects_id", Json.createArrayBuilder()
+        .add("subjects_ids", Json.createArrayBuilder()
             .add(10)
             .add(11)
             .add(12))

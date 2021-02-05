@@ -1,8 +1,11 @@
 package org.estudantinder.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -19,11 +22,33 @@ public class Preferences {
     @ManyToOne
     private Course course;
 
+    @ManyToOne
+    private School school;
+
+    @ManyToMany
+    private List<Subject> subjects;
+
     public int getSchool_year() {
         return school_year;
     }
 
-    public int getShift() {
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+    public List<Subject> getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(List<Subject> subjects) {
+		this.subjects = subjects;
+	}
+
+	public int getShift() {
         return shift;
     }
 

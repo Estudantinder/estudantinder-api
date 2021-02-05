@@ -10,6 +10,7 @@ import javax.ws.rs.NotFoundException;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Preferences;
+import org.estudantinder.entities.Subject;
 import org.estudantinder.entities.Users;
 import org.estudantinder.features.Students.common.Student;
 import org.estudantinder.repositories.LikesRepository;
@@ -55,9 +56,27 @@ public class Feature {
                     user.getSchool_year() == preferences.getSchool_year() );
             }
     
+            if(preferences.getSchool() != null ) {
+                allUsers = allUsers.filter( user -> 
+                    user.getCourse().getSchool() == preferences.getSchool() );
+            }
+            
             if(preferences.getCourse() != null ) {
                 allUsers = allUsers.filter( user -> 
                     user.getCourse() == preferences.getCourse() );
+            }
+
+            if(preferences.getSubjects() != null ) {
+                if(preferences.getSubjects().size() > 0) {
+                    allUsers = allUsers.filter( user -> {
+                        for(Subject subject : user.getSubjects()) {
+                            if(preferences.getSubjects().contains(subject)) {
+                                return true;
+                            }
+                        }
+                        return false;
+                    });
+                }
             }
     
             return allUsers;

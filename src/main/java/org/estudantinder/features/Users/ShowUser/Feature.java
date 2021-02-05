@@ -21,12 +21,12 @@ public class Feature {
         }
     } 
 
-    public Users execute(JsonWebToken jwt) throws Exception {
+    public DTO execute(JsonWebToken jwt) throws Exception {
         Long userId = Long.parseLong(jwt.getClaim("id").toString());
         Users authenticatedUser = usersRepository.findById(userId);
         
         treatInvalidID(authenticatedUser);
 
-        return authenticatedUser;
+        return DTO.mapUserToDTO(authenticatedUser);
     }
 }

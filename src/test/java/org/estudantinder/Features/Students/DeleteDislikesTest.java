@@ -1,4 +1,4 @@
-package org.estudantinder.Features.Users;
+package org.estudantinder.Features.Students;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.smallrye.jwt.build.Jwt;
@@ -10,18 +10,16 @@ import static io.restassured.RestAssured.given;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
-
 @QuarkusTest
-public class ShowUserTest {
+public class DeleteDislikesTest {
 
     @Test
-    public void testShowUserEndpoint() {
+    public void testDeleteDislikesEndpoint() {
         given()
-            .auth().oauth2(generateValidStudentToken())
-            .when().get("/users")
-            .then()
-                .log().all()
-                .statusCode(200);
+        .auth().oauth2(generateValidStudentToken())
+        .when().delete("/students/dislikes")
+        .then()
+            .statusCode(200);
     }
 
     static String generateValidStudentToken() {
@@ -30,6 +28,6 @@ public class ShowUserTest {
             .groups("User")
             .claim("id", 22)
             .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
-            .sign(); 
+            .sign();
     }
 }
