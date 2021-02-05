@@ -13,6 +13,7 @@ import org.estudantinder.entities.Preferences;
 import org.estudantinder.entities.Subject;
 import org.estudantinder.entities.Users;
 import org.estudantinder.features.Students.common.Student;
+import org.estudantinder.repositories.DislikesRepository;
 import org.estudantinder.repositories.LikesRepository;
 import org.estudantinder.repositories.UsersRepository;
 
@@ -24,6 +25,9 @@ public class Feature {
 
     @Inject
     LikesRepository likesRepository;
+
+    @Inject
+    DislikesRepository dislikesRepository;
 
     void throwExceptionIfUserNotValid(Users authenticatedUser) {
         if(authenticatedUser == null) {
@@ -96,6 +100,18 @@ public class Feature {
 
         return usersNotLiked;
     }
+    
+    Stream<Users> filterUsersAlreadyDisliked( Users User, Stream<Users> allUsers) {
+        List<Users> usersAlreadyDisliked = dislikesRepository 
+            .stream("sender", User)
+            .map(dislike -> dislike.getReceiver())
+            .collect(Collectors.toList());
+        
+        Stream<Users> usersNotDisliked = allUsers.filter(s -> 
+            !usersAlreadyDisliked.contains(s));
+
+        return usersNotDisliked;
+    }
 
     Stream<Users> filteredUsers(Users user, Stream<Users> allUsers) {
         Stream<Users> filteredUsers = filterUsersByPreferences(user.getPreferences(), allUsers);
@@ -103,6 +119,7 @@ public class Feature {
         filteredUsers = removesAuthenticatedUserFromStream(user, filteredUsers);
 
         filteredUsers = filterUsersAlreadyLiked(user, filteredUsers);
+        filteredUsers = filterUsersAlreadyDisliked(user, filteredUsers);
 
         return filteredUsers;
     }
