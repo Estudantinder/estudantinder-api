@@ -56,6 +56,11 @@ public class Feature {
                     user.getSchool_year() == preferences.getSchool_year() );
             }
     
+            if(preferences.getSchool() != null ) {
+                allUsers = allUsers.filter( user -> 
+                    user.getCourse().getSchool() == preferences.getSchool() );
+            }
+            
             if(preferences.getCourse() != null ) {
                 allUsers = allUsers.filter( user -> 
                     user.getCourse() == preferences.getCourse() );
