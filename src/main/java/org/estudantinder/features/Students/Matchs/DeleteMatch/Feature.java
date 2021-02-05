@@ -5,8 +5,10 @@ import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.estudantinder.entities.Likes;
 import org.estudantinder.entities.Match;
 import org.estudantinder.entities.Users;
+import org.estudantinder.repositories.LikesRepository;
 import org.estudantinder.repositories.MatchsRepository;
 import org.estudantinder.repositories.UsersRepository;
 
@@ -17,6 +19,9 @@ public class Feature {
     
     @Inject
     MatchsRepository matchsRepository;
+
+    @Inject
+    LikesRepository likesRepository; 
 
     @Inject
     UsersRepository usersRepository;
@@ -51,7 +56,16 @@ public class Feature {
 
         throwExceptionIfMatchNotValid(match);
         throwExceptionIfUserUnautorized(match, authenticatedUser);
- 
+
         matchsRepository.delete(match);
+
+        if(match.getLike().getSender() == authenticatedUser) {
+            Likes like = likesRepository.findById(match.getLike().getId());
+            likesRepository.delete(like);
+        } else {
+            Likes like = likesRepository.findById(match.getMutualLike().getId());
+            likesRepository.delete(like);
+        }
+
     }
 }
