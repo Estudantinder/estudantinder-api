@@ -1,12 +1,13 @@
 package org.estudantinder.features.Schools.CreateSchool.DTO;
 
-import javax.json.bind.annotation.JsonbTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.estudantinder.entities.School;
 
 public class CourseDTO {
     public String name;
 
-    @JsonbTransient
+    @JsonIgnore
     public School school;
 }

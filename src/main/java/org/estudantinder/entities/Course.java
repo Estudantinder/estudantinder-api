@@ -1,11 +1,12 @@
 package org.estudantinder.entities;
 
-import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Course {
@@ -17,7 +18,7 @@ public class Course {
     private String name;
 
     @ManyToOne
-    @JsonbTransient
+    @JsonIgnore
     private School school;
 
     public String getName() {
