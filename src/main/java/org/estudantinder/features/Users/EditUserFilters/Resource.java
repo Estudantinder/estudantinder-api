@@ -41,7 +41,7 @@ public class Resource {
     @APIResponse(responseCode = "400", description = "No Data Sent")
     @APIResponse(responseCode = "404", description = "Student ID Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
-    @Operation(summary = "Edit given JWT student filters")
+    @Operation(summary = "Edit given JWT student filters", description = "When a field receives the value -1(or '-1' for String)")
     public Response createUser(@Valid DTO data) throws Exception {
         return updateUserPreferences.handle(jwt, data);
     }
