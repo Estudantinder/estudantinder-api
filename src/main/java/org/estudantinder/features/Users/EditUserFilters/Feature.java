@@ -107,20 +107,41 @@ public class Feature {
     } 
 
     private Preferences mapToPreferences(Preferences userPreferences, DTO preferences) {
+        // Anula o filtro quando recebe o valor -1( ou "-1" pra string)
         if(preferences.gender != null ) {
-            userPreferences.setGender(preferences.gender);
+            if(preferences.gender == "-1") {
+                userPreferences.setGender(null);
+            } else {
+                userPreferences.setGender(preferences.gender);
+            }
         }
         if(preferences.shift != 0) {
-            userPreferences.setShift(preferences.shift);
+            if(preferences.shift == -1) {
+                userPreferences.setShift(0);
+            } else {
+                userPreferences.setShift(preferences.shift);
+            }
         }
         if(preferences.school_year != 0) {
-            userPreferences.setSchool_year(preferences.school_year);
+            if(preferences.school_year == -1) {
+                userPreferences.setSchool_year(0);
+            } else {
+                userPreferences.setSchool_year(preferences.school_year);
+            }
         }
         if (preferences.course_id != null) {
-            userPreferences.setCourse(returnCourseIfExists(preferences.course_id));
-        }
+            if(preferences.course_id == -1) {
+                userPreferences.setCourse(null);
+            } else {
+                userPreferences.setCourse(returnCourseIfExists(preferences.course_id));
+            }
+        }   
         if (preferences.school_id != null) {
-            userPreferences.setSchool(returnSchoolIfExists(preferences.school_id));
+            if(preferences.school_id == -1) {
+                userPreferences.setSchool(null);
+            } else {
+                userPreferences.setSchool(returnSchoolIfExists(preferences.school_id));
+            }
         }
         if( preferences.subjects_ids != null && 
             preferences.subjects_ids.size() > 0) {
