@@ -2,7 +2,7 @@ package org.estudantinder.features.Users.ImageUpload;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -33,37 +33,22 @@ public class Feature {
             throw new BadRequestException("profile photo(photo0) can't be null");
         } 
     }
+
     private String uploadImage(Cloudinary cloudinary, File photo) throws IOException {
         Object secure_url = cloudinary.uploader().upload(photo, ObjectUtils.emptyMap()).get("secure_url");
         
         return (String) secure_url;
     }
 
-    private String[] uploadArrayOfPhotoUrls (Cloudinary cloudinary, DTO data, Users authenticatedUser )
+    private String[] uploadArrayOfPhotoUrls (Cloudinary cloudinary, Users authenticatedUser, List<File> photos)
             throws IOException {
-        List<String> listOfPhotoUrls = new ArrayList<>(); 
-        
-        if(data.photo0 != null) {
-             String url = uploadImage(cloudinary, data.photo0);
-            listOfPhotoUrls.add(url);        
-        }if(data.photo1 != null) {
-            String url = uploadImage(cloudinary, data.photo1);
-            listOfPhotoUrls.add(url);
-        } if(data.photo2 != null) {
-            String url = uploadImage(cloudinary, data.photo2);
-            listOfPhotoUrls.add(url);
-        } if(data.photo3 != null) {
-            String url = uploadImage(cloudinary, data.photo3);
-            listOfPhotoUrls.add(url);
-        } if(data.photo4 != null) {
-            String url = uploadImage(cloudinary, data.photo4);
-            listOfPhotoUrls.add(url);
-        } if(data.photo5 != null) {
-            String url = uploadImage(cloudinary, data.photo5);
-            listOfPhotoUrls.add(url);
-        }
+        String[] photoUrls = new String[6];
 
-        String[] photoUrls = listOfPhotoUrls.toArray(new String[listOfPhotoUrls.size()]);
+        for(int i = 0; i < photos.size(); i++) {
+            if(photos.get(i) != null) {
+                photoUrls[i] = uploadImage(cloudinary, photos.get(i));
+            }
+        }
 
         return photoUrls;
     }
@@ -81,7 +66,19 @@ public class Feature {
             "api_key", "634655436325958",
             "api_secret", "Qn-FmfRjuUjd5wyAsK_7wFpLZBM"));
 
-        String[] photoUrls = uploadArrayOfPhotoUrls(cloudinary, data, authenticatedUser);
+
+        String[] photoUrls = uploadArrayOfPhotoUrls(
+            cloudinary, 
+            authenticatedUser,
+            Arrays.asList(
+                data.photo0,
+                data.photo1,
+                data.photo2,
+                data.photo3,
+                data.photo4,
+                data.photo5
+            ));
+        
         authenticatedUser.setPhotos(photoUrls);
 
         usersRepository.persist(authenticatedUser);
