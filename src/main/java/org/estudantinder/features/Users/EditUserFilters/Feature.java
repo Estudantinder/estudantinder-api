@@ -143,9 +143,12 @@ public class Feature {
                 userPreferences.setSchool(returnSchoolIfExists(preferences.school_id));
             }
         }
-        if( preferences.subjects_ids != null && 
-            preferences.subjects_ids.size() > 0) {
-            userPreferences.setSubjects(returnListOfSubjects(preferences.subjects_ids));
+        if( preferences.subjects_ids != null ) {
+            if(preferences.subjects_ids.size() > 0) {
+                userPreferences.setSubjects(returnListOfSubjects(preferences.subjects_ids));
+            } else {
+                userPreferences.setSubjects(List.of());
+            }
         }
         return userPreferences;
     }
