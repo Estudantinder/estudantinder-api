@@ -109,7 +109,7 @@ public class Feature {
     private Preferences mapToPreferences(Preferences userPreferences, DTO preferences) {
         // Anula o filtro quando recebe o valor -1( ou "-1" pra string)
         if(preferences.gender != null ) {
-            if(preferences.gender == "-1") {
+            if(preferences.gender.equals("-1")) {
                 userPreferences.setGender(null);
             } else {
                 userPreferences.setGender(preferences.gender);
