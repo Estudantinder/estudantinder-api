@@ -1,4 +1,4 @@
-package org.estudantinder.features.Users.EditUserFilters;
+package org.estudantinder.features.Users.Filters.EditUserFilters;
 
 import java.util.ArrayList;
 import java.util.HashSet;
