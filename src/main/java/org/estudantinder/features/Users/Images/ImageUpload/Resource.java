@@ -1,4 +1,4 @@
-package org.estudantinder.features.Users.ImageUpload;
+package org.estudantinder.features.Users.Images.ImageUpload;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
