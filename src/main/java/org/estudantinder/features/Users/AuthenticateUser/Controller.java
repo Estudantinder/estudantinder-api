@@ -15,11 +15,11 @@ import io.quarkus.security.UnauthorizedException;
 public class Controller {
 
     @Inject
-    Feature createUserUseCase;
+    Feature authenticateUser;
 
     public Response handle(LoginDTO data) throws Exception {
         try {
-            JwtDTO returnObject = createUserUseCase.execute(data);
+            JwtDTO returnObject = authenticateUser.execute(data);
 
             return Response
                 .status(Response.Status.OK)
@@ -30,7 +30,7 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create User";
+            errorMessage.message = "Couldn't authenticate User";
 
             return Response
                 .status(Response.Status.NOT_FOUND)
@@ -41,7 +41,7 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create User";
+            errorMessage.message = "Couldn't authenticate User";
 
             return Response
                 .status(Response.Status.UNAUTHORIZED)
@@ -52,7 +52,7 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = "No Data";
-            errorMessage.message = "Couldn't create User";
+            errorMessage.message = "Couldn't authenticate User";
 
             return Response
                 .status(Response.Status.BAD_REQUEST)
@@ -62,7 +62,7 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create User";
+            errorMessage.message = "Couldn't authenticate User";
 
             return Response
                 .status(Response.Status.INTERNAL_SERVER_ERROR)

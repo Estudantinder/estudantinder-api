@@ -12,11 +12,11 @@ import org.estudantinder.features.commom.ErrorMessage;
 public class Controller {
 
     @Inject
-    Feature showUserUseCase;
+    Feature showUser;
 
     public Response handle(JsonWebToken jwt) throws Exception {
         try {
-            DTO dto = showUserUseCase.execute(jwt);
+            DTO dto = showUser.execute(jwt);
 
             return Response
                 .status(Response.Status.OK)
@@ -27,7 +27,7 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create User";
+            errorMessage.message = "Couldn't show User";
 
             return Response
                 .status(Response.Status.NOT_FOUND)
@@ -38,7 +38,7 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create User";
+            errorMessage.message = "Couldn't show User";
 
             return Response
                 .status(Response.Status.INTERNAL_SERVER_ERROR)
