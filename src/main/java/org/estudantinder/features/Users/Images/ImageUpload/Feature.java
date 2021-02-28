@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 
 import com.cloudinary.Cloudinary;
@@ -25,12 +24,6 @@ public class Feature {
     private void treatInvalidId(Users authenticatedUser ) throws Exception {
         if(authenticatedUser == null) {
             throw new NotFoundException("jwt id not valid");
-        } 
-    }
-
-    private void treatNoProfilePhoto(File photo0) {
-        if(photo0 == null) {
-            throw new BadRequestException("profile photo(photo0) can't be null");
         } 
     }
 
@@ -58,7 +51,6 @@ public class Feature {
         Users authenticatedUser = usersRepository.findById(userId);
 
         treatInvalidId(authenticatedUser); 
-        treatNoProfilePhoto(data.photo0);
 
         //can't remove credentials because of heroku deploy
         Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
