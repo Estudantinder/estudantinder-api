@@ -1,4 +1,4 @@
-package org.estudantinder.features.Users.ImageUpload;
+package org.estudantinder.features.Users.Images.DeleteImage;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,22 +13,21 @@ import org.estudantinder.features.commom.ErrorMessage;
 public class Controller {
 
     @Inject
-    Feature imageUpload;
+    Feature deleteImage;
 
-    public Response handle(JsonWebToken jwt, DTO data) throws Exception {
+    public Response handle(JsonWebToken jwt, Integer imageIndex) throws Exception {
         try {
-            String[] modifiedUser = imageUpload.execute(jwt, data);
+            deleteImage.execute(jwt, imageIndex);
 
             return Response
                 .status(Response.Status.OK)
-                .entity(modifiedUser)
                 .build();
 
         } catch (NotFoundException error) {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't Upload Photos";
+            errorMessage.message = "Couldn't Delete Photo";
 
             return Response
                 .status(Response.Status.NOT_FOUND)
@@ -39,7 +38,7 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't Upload Photos";
+            errorMessage.message = "Couldn't Delete Photo";
 
             return Response
                 .status(Response.Status.BAD_REQUEST)
@@ -49,7 +48,7 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = "No Data";
-            errorMessage.message = "Couldn't Upload Photos";
+            errorMessage.message = "Couldn't Delete Photo";
 
             return Response
                 .status(Response.Status.BAD_REQUEST)
@@ -59,7 +58,7 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't Upload Photos";
+            errorMessage.message = "Couldn't Delete Photo";
 
             return Response
                 .status(Response.Status.INTERNAL_SERVER_ERROR)

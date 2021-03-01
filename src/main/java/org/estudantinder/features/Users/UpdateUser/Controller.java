@@ -1,4 +1,4 @@
-package org.estudantinder.features.Users.ShowUser;
+package org.estudantinder.features.Users.UpdateUser;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -6,39 +6,49 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.estudantinder.features.Users.UpdateUser.DTO.UserDTO;
 import org.estudantinder.features.commom.ErrorMessage;
 
 @ApplicationScoped
 public class Controller {
 
     @Inject
-    Feature showUser;
+    Feature updateUser;
 
-    public Response handle(JsonWebToken jwt) throws Exception {
+    public Response handle(JsonWebToken jwt, UserDTO data) throws Exception {
         try {
-            DTO dto = showUser.execute(jwt);
+            updateUser.execute(jwt, data);
 
             return Response
                 .status(Response.Status.OK)
-                .entity(dto)
                 .build();
 
-        } catch (NotFoundException error) {
+        }catch (NotFoundException error) {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't show User";
+            errorMessage.message = "Couldn't update User";
 
             return Response
                 .status(Response.Status.NOT_FOUND)
                 .entity(errorMessage)
                 .build();
             
+        } catch(NullPointerException error) {
+            ErrorMessage errorMessage = new ErrorMessage();
+            
+            errorMessage.error = "No Data";
+            errorMessage.message = "Couldn't update User";
+
+            return Response
+                .status(Response.Status.BAD_REQUEST)
+                .entity(errorMessage)
+                .build();
         } catch(Exception error) {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't show User";
+            errorMessage.message = "Couldn't update User";
 
             return Response
                 .status(Response.Status.INTERNAL_SERVER_ERROR)

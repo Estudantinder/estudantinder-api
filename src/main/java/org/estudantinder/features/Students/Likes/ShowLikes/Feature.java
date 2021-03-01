@@ -20,21 +20,21 @@ public class Feature {
 
     @Inject
     LikesRepository likesRepository;
-    
+
     @Inject
     UsersRepository usersRepository;
-    
-    void throwExceptionIfUserNotValid(Users User) {
-        if(User == null) {
+
+    void throwExceptionIfUserNotValid(Users user) {
+        if (user == null) {
             throw new NotFoundException("User id not found");
         }
     }
 
     List<Student> listStudentLikes(Users authenticatedUser) {
         Stream<Likes> userLikes = likesRepository.stream("sender", authenticatedUser);
-        
-        List<Student> studentLikes = userLikes.map(studentLike -> 
-            Student.mapUserToStudent(studentLike.getReceiver())).collect(Collectors.toList());
+
+        List<Student> studentLikes = userLikes.map(studentLike -> Student.mapUserToStudent(studentLike.getReceiver()))
+                .collect(Collectors.toList());
 
         return studentLikes;
     }
@@ -47,5 +47,5 @@ public class Feature {
 
         return listStudentLikes(authenticatedUser);
     }
-    
+
 }

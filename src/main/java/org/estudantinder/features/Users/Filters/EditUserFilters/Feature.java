@@ -1,4 +1,4 @@
-package org.estudantinder.features.Users.EditUserFilters;
+package org.estudantinder.features.Users.Filters.EditUserFilters;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -109,7 +109,7 @@ public class Feature {
     private Preferences mapToPreferences(Preferences userPreferences, DTO preferences) {
         // Anula o filtro quando recebe o valor -1( ou "-1" pra string)
         if(preferences.gender != null ) {
-            if(preferences.gender == "-1") {
+            if(preferences.gender.equals("-1")) {
                 userPreferences.setGender(null);
             } else {
                 userPreferences.setGender(preferences.gender);
@@ -143,9 +143,12 @@ public class Feature {
                 userPreferences.setSchool(returnSchoolIfExists(preferences.school_id));
             }
         }
-        if( preferences.subjects_ids != null && 
-            preferences.subjects_ids.size() > 0) {
-            userPreferences.setSubjects(returnListOfSubjects(preferences.subjects_ids));
+        if( preferences.subjects_ids != null ) {
+            if(preferences.subjects_ids.size() > 0) {
+                userPreferences.setSubjects(returnListOfSubjects(preferences.subjects_ids));
+            } else {
+                userPreferences.setSubjects(List.of());
+            }
         }
         return userPreferences;
     }

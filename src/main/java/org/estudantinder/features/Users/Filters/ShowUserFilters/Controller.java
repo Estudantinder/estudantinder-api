@@ -1,4 +1,4 @@
-package org.estudantinder.features.Users.EditUserFilters;
+package org.estudantinder.features.Users.Filters.ShowUserFilters;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,11 +13,11 @@ import org.estudantinder.features.commom.ErrorMessage;
 public class Controller {
 
     @Inject
-    Feature updateUserPreferencesController;
+    Feature showUserFilters;
 
-    public Response handle(JsonWebToken jwt, DTO data) throws Exception {
+    public Response handle(JsonWebToken jwt) throws Exception {
         try {
-            Preferences userPreferences = updateUserPreferencesController.execute(jwt, data);
+            Preferences userPreferences = showUserFilters.execute(jwt);
 
             return Response
                 .status(Response.Status.OK)
@@ -28,28 +28,18 @@ public class Controller {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't update user's filters";
+            errorMessage.message = "Couldn't show User Filters";
 
             return Response
                 .status(Response.Status.NOT_FOUND)
                 .entity(errorMessage)
                 .build();
             
-        } catch(NullPointerException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = "No Data";
-            errorMessage.message = "Couldn't update user's filters";
-
-            return Response
-                .status(Response.Status.BAD_REQUEST)
-                .entity(errorMessage)
-                .build();
         } catch(Exception error) {
             ErrorMessage errorMessage = new ErrorMessage();
             
             errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't update user's filters";
+            errorMessage.message = "Couldn't show User Filters";
 
             return Response
                 .status(Response.Status.INTERNAL_SERVER_ERROR)
