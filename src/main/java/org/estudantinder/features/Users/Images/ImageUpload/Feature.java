@@ -35,7 +35,13 @@ public class Feature {
 
     private String[] uploadArrayOfPhotoUrls (Cloudinary cloudinary, Users authenticatedUser, List<File> photos)
             throws IOException {
-        String[] photoUrls = new String[6];
+        String[] photoUrls;
+
+        if(authenticatedUser.getPhotos() != null) {
+            photoUrls = authenticatedUser.getPhotos();
+        } else {
+            photoUrls = new String[6];
+        }
 
         for(int i = 0; i < photos.size(); i++) {
             if(photos.get(i) != null) {
@@ -75,6 +81,6 @@ public class Feature {
 
         usersRepository.persist(authenticatedUser);
 
-        return photoUrls;
+        return authenticatedUser.getPhotos();
     }
 }
