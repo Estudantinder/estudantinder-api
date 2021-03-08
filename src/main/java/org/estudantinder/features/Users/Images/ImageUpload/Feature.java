@@ -75,6 +75,6 @@ public class Feature {
 
         usersRepository.persist(authenticatedUser);
 
-        return photoUrls;
+        return authenticatedUser.getPhotos();
     }
 }
