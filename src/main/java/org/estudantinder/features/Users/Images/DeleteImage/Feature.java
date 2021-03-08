@@ -1,6 +1,8 @@
 package org.estudantinder.features.Users.Images.DeleteImage;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -51,10 +53,10 @@ public class Feature {
     } 
 
     private String[] removeNullIndexes(String[] userPhotos) {
-        Stream<String> updatedUserPhotos = Arrays.stream(userPhotos).
-            filter(photo -> photo != null);
-
-        return updatedUserPhotos.toArray(String[]::new);
+        List<String> updatedUserPhotos = Arrays.stream(userPhotos).
+            filter(photo -> photo != null).collect(Collectors.toList());
+        
+        return updatedUserPhotos.toArray(new String[6]);
     } 
 
     public void execute(JsonWebToken jwt, Integer imageIndex) throws Exception {
