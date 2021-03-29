@@ -1,49 +1,282 @@
-# estudantinder-api project
+![ESTUDANTINDER](https://raw.githubusercontent.com/Estudantinder/estudantinder-mobile/main/.github/README.png)
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+# Estudantinder API
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+[![Quarkus](https://img.shields.io/badge/Code-Quarkus-informational?style=flat&logo=quarkus&logoColor=white&color=4630eb)](http://estudantinder-api.herokuapp.com)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6b36bb6107777d0c951d/maintainability)](https://codeclimate.com/github/Estudantinder/estudantinder-api/maintainability)
 
-## Running the application in dev mode
+O Estudantinder lida com a procura e encontro de outros alunos, de forma a desenvolver cada vez mais sua autonomia nos estudos. Veja o [site oficial do Estudantinder](https://estudantinder.vercel.app) para mais informações
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
+# Rotas Principais 
+
+## POST /users
+Cria um Usuario
+
+### Request
+``` application/json
+{
+"bio": "Biografia Teste",
+"birth_date": "2002-12-08",
+"classroom": "F",
+"contacts": {
+"facebook": "teste.teste.teste",
+"instagram": "teste",
+"twitter": "teste",
+"whatsapp": 11900000000
+},
+"course_id": 5,
+"email": "teste@email.com",
+"gender": "Helicoptero de Ataque Boeing AH-64 Apache",
+"name": "Nome Teste",
+"password": "Testando1",
+"school_year": 3,
+"shift": 1,
+"subjects_ids": [
+10, 11, 12
+]
+}
 ```
 
-## Packaging and running the application
-
-The application can be packaged using:
-```shell script
-./mvnw package
+### Response
+``` application/json
+{
+  "name": "Nome Teste",
+  "email": "teste@email.com",
+  "password": "Testando1",
+  "school_year": 3,
+  "birth_date": [
+    2002,
+    12,
+    8
+  ],
+  "bio": "Biografia Teste",
+  "gender": "Helicoptero de Ataque Boeing AH-64 Apache",
+  "shift": 1,
+  "classroom": "F",
+  "subjects_ids": [
+    10,
+    11,
+    12
+  ],
+  "course_id": 5,
+  "contacts": {
+    "whatsapp": 11900000000,
+    "twitter": "teste",
+    "facebook": "teste.teste.teste",
+    "instagram": "teste"
+  }
+}
 ```
-It produces the `estudantinder-api-0.0.1-runner.jar` file in the `/target` directory.
-Be aware that it?s not an _?ber-jar_ as the dependencies are copied into the `target/lib` directory.
-If you want to build an _?ber-jar_, just add the `--uber-jar` option to the command line:
-```shell script
-./mvnw package -PuberJar
+
+## POST /users/login
+Cria um Token JWT
+
+### Request
+``` application/json
+{
+"email": "teste@email.com",
+"password": "Testando1"
+}
 ```
 
-The application is now runnable using `java -jar target/estudantinder-api-0.0.1-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
+### Response
+``` application/json
+{
+  "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRiaWQiOjM1LCJleHAiOjE2MTgzNTIwNDIsImlhdCI6MTYxNzA1NjA0MiwianRpIjoiMTY5MzgwNTItMzliZS00NWFjLTk2YmMtM2ZkY2M5MjVjYTNhIn0.-zaufzfs8K0gNgQJmTHQ",
+  "expireDate": 1618352042.174948000
+}
 ```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
+## GET /students
+Mostra todos os usuarios que se encaixam em suas preferencias
+
+### AUTH
+```
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2dpdGh1Yi5jb20vQWRhbUF1Z3VzdGluc2t5IiwidXBuIjoiZXN0dWRhbnRpbmRlckBxdWFya3VzLmlvIiwiZ3JvdXBzIjpbIlVzZXIiXSwiaWQiOjM1LCJleHAiOjE2MTgzNTIwNDIsImlhdCI6MTYxNzA1NjA0MiwianRpIjoiMTY5MzgwNTItMzliZS00NWFjLTk2YmMtM2ZkY2M5MjVjYTNhIn0.NM2viz9vD6hfrC5n9QtMg
 ```
 
-You can then execute your native executable with: `./target/estudantinder-api-0.0.1-runner`
+### Response
+``` application/json
+[
+    {
+        id: string,
+        name: string,
+        bio: string,
+        birth_date: Date,
+        gender: string,
+        shift: integer,
+        school_year: integer,
+        classroom: character,
+        photos: string[],
+        subjects: [
+            {
+                id: string,
+                name: string,
+            }
+        ],
+        course: {
+            id: string,
+            name: string,
+        },
+        school: {
+            id: string,
+            name: string,
+            address: string,
+            courses: Course[],
+        },
+    }
+]
+```
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.html.
+## POST /students/likes/{user_id}
+Da like no usuário cujo id foi passado na rota
 
-# RESTEasy JAX-RS
+### AUTH
+```
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2dpdGh1Yi5jb20vQWRhbUF1Z3VzdGluc2t5IiwidXBuIjoiZXN0dWRhbnRpbmRlckBxdWFya3VzLmlvIiwiZ3JvdXBzIjpbIlVzZXIiXSwiaWQiOjM1LCJleHAiOjE2MTgzNTIwNDIsImlhdCI6MTYxNzA1NjA0MiwianRpIjoiMTY5MzgwNTItMzliZS00NWFjLTk2YmMtM2ZkY2M5MjVjYTNhIn0.NM2viz9vD6hfrC5n9QtMg
+```
 
-Guide: https://quarkus.io/guides/rest-json
+### Response
+```
+201 - Created
+```
 
+## GET /students/matchs
+Mostra os matchs dó usuario cujo JWT foi passado
 
+### AUTH
+```
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2dpdGh1Yi5jb20vQWRhbUF1Z3VzdGluc2t5IiwidXBuIjoiZXN0dWRhbnRpbmRlckBxdWFya3VzLmlvIiwiZ3JvdXBzIjpbIlVzZXIiXSwiaWQiOjM1LCJleHAiOjE2MTgzNTIwNDIsImlhdCI6MTYxNzA1NjA0MiwianRpIjoiMTY5MzgwNTItMzliZS00NWFjLTk2YmMtM2ZkY2M5MjVjYTNhIn0.NM2viz9vD6hfrC5n9QtMg
+```
+
+### Response
+``` application/json
+[
+    {
+        id: string,
+        name: string,
+        bio: string,
+        birth_date: Date,
+        gender: string,
+        shift: integer,
+        school_year: integer,
+        classroom: character,
+        photos: string[],
+        subjects: [
+            {
+                id: string,
+                name: string,
+            }
+        ],
+        course: {
+            id: string,
+            name: string,
+        },
+        school: {
+            id: string,
+            name: string,
+            address: string,
+            courses: Course[],
+        },
+        contacts: {
+            whatsapp: integer,
+            instagram: string,
+            twitter: string,
+            facebook: string
+        }
+    }
+]
+```
+
+# Formas de usar
+
+### Heroku
+
+A forma mais fácil de usar o aplicativo é utilizando o deploy feito no heroku [Deploy no Heroku](https://estudantinder-api.herokuapp.com/)
+
+### Uso Local
+
+Para utilizar o aplicativo localmente, tanto em modo de desenvolvimento, quanto realizando o build do projeto siga para [Instalação](#-instalação)
+
+# Instalação
+
+Você vai precisar de algumas ferramentas para rodar o projeto localmente. Caso queira só utilizar a api, veja o tópico [Formas de Usar](#formas-de-usar)
+
+## Dependencias
+
+### GIT
+
+- Instale o git em sua máquina: [https://git-scm.com/downloads](https://git-scm.com/downloads)
+- Com o git instalado na sua máquina, clone o repositório usando o botão **Code** em https://github.com/Estudantinder/estudantinder-api
+- Caso seja necessario, utilize um tutorial basico, como esse https://www.hostinger.com.br/tutoriais/tutorial-do-git-basics-introducao
+
+### JDK 11
+
+- Baixe e instale a JDK 11 de sua preferencia, por exemplo a da Oracle <https://www.oracle.com/java/technologies/javase-jdk11-downloads.html>
+- Para testar se a JDK foi instalada com sucesso, rode o seguinte comando `java --version` no terminal. Deverá aparecer a versão da JDK instalada
+
+### Maven
+
+- Baixe a versão mais nova do maven em <https://maven.apache.org/download.cgi>
+- Caso seja necessario utilize esse tutorial <https://dicasdejava.com.br/como-instalar-o-maven-no-windows/>
+- Para testar se o Maven está instalado na sua maquina, execute o comando `mvn -v`. Deverá aparecer a versão do Maven instalada
+
+### PostgreSQL
+
+- Para o postgres é recomendado a utilização em docker, primeiro instale o [Docker Desktop](https://www.docker.com/products/docker-desktop), depois siga esse simples tutorial <http://www.mariolb.com.br/blog/2020/09/19/postgresql_no_docker.html>
+- Após a instalação, crie o banco de dados do Estudantinder com o comando
+```SQL
+    CREATE DATABASE estudantinder
+```
+
+---
+
+**Pronto!** Você já pode começar a usar a API, vá para a aba [Scripts](#scripts) para ver quais scripts estão disponíveis para uso
+
+## Scripts
+
+Todos esses scripts pode ser rodados na sua máquina usando o Maven
+
+Os parâmetros dos scripts serão representados com um prefixo `$`
+
+### quarkus:dev
+
+Para rodar a api em modo de desenvolvimento, utilize o comando
+
+```shell script
+./mvnw quarkus:dev
+```
+ou
+```shell script
+mvn quarkus:dev
+```
+
+### quarkus:build
+
+Para realizar o build do app, utilize o comando
+
+```shell script
+./mvnw quarkus:build
+```
+ou
+```shell script
+./mvnw quarkus:build
+```
+
+No final você tera um .jar executavel na pasta /target
+
+### test
+
+Parar executar os testes do codigo, utilize o comando
+
+```shell script
+./mvnw test
+```
+ou
+```shell script
+./mvnw test
+```
+
+## UI (Frontend)
+
+Você pode ver o backend da aplicação no seguinte repositório: https://github.com/Estudantinder/estudantinder-mobile
