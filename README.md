@@ -235,7 +235,7 @@ Você vai precisar de algumas ferramentas para rodar o projeto localmente. Caso 
 
 **Pronto!** Você já pode começar a usar a API, vá para a aba [Scripts](#scripts) para ver quais scripts estão disponíveis para uso
 
-## Scripts
+## Comandos Disponiveis
 
 Todos esses scripts pode ser rodados na sua máquina usando o Maven
 
