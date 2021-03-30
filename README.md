@@ -188,6 +188,8 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL
 ]
 ```
 
+### Para ver todas as rotas, acesse a rota ``` /q/swagger-ui ``` </br> ou utilize arquivo [openapi](https://swagger.io/specification/), acessando a rota  ``` /q/openapi ```
+
 # Formas de usar
 
 ### Heroku
