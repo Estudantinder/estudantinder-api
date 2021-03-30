@@ -279,6 +279,8 @@ ou
 ./mvnw test
 ```
 
+### Para saber mais sobre os comandos disponiveis, acesse <https://quarkus.io/guides/maven-tooling>
+
 ## UI (Frontend)
 
 Você pode ver o backend da aplicação no seguinte repositório: https://github.com/Estudantinder/estudantinder-mobile
