@@ -262,7 +262,7 @@ Para realizar o build do app, utilize o comando
 ```
 ou
 ```shell script
-./mvnw quarkus:build
+mvn quarkus:build
 ```
 
 No final você tera um .jar executavel na pasta /target
@@ -276,7 +276,7 @@ Parar executar os testes do codigo, utilize o comando
 ```
 ou
 ```shell script
-./mvnw test
+mvn test
 ```
 
 ### Para saber mais sobre os comandos disponiveis, acesse <https://quarkus.io/guides/maven-tooling>
