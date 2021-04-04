@@ -10,7 +10,7 @@ O Estudantinder lida com a procura e encontro de outros alunos, de forma a desen
 # Rotas Principais 
 
 ## POST /users
-Cria um Usuario
+Cria um Usuário
 
 ### Request
 ``` application/json
@@ -88,7 +88,7 @@ Cria um Token JWT
 ```
 
 ## GET /students
-Mostra todos os usuarios que se encaixam em suas preferencias
+Mostra todos os usuários que se encaixam em suas preferências
 
 ### AUTH
 ```
@@ -142,7 +142,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL
 ```
 
 ## GET /students/matchs
-Mostra os matchs dó usuario cujo JWT foi passado
+Mostra os matches dó usuário cujo JWT foi passado
 
 ### AUTH
 ```
@@ -204,7 +204,7 @@ Para utilizar o aplicativo localmente, tanto em modo de desenvolvimento, quanto 
 
 Você vai precisar de algumas ferramentas para rodar o projeto localmente. Caso queira só utilizar a api, veja o tópico [Formas de Usar](#formas-de-usar)
 
-## Dependencias
+## Dependências
 
 ### GIT
 
@@ -221,7 +221,7 @@ Você vai precisar de algumas ferramentas para rodar o projeto localmente. Caso 
 
 - Baixe a versão mais nova do maven em <https://maven.apache.org/download.cgi>
 - Caso seja necessario utilize esse tutorial <https://dicasdejava.com.br/como-instalar-o-maven-no-windows/>
-- Para testar se o Maven está instalado na sua maquina, execute o comando `mvn -v`. Deverá aparecer a versão do Maven instalada
+- Para testar se o Maven está instalado na sua máquina, execute o comando `mvn -v`. Deverá aparecer a versão do Maven instalada
 
 ### PostgreSQL
 
@@ -235,7 +235,7 @@ Você vai precisar de algumas ferramentas para rodar o projeto localmente. Caso 
 
 **Pronto!** Você já pode começar a usar a API, vá para a aba [Scripts](#scripts) para ver quais scripts estão disponíveis para uso
 
-## Comandos Disponiveis
+## Comandos Disponíveis
 
 Todos esses scripts pode ser rodados na sua máquina usando o Maven
 
@@ -265,11 +265,11 @@ ou
 mvn quarkus:build
 ```
 
-No final você tera um .jar executavel na pasta /target
+No final você terá um .jar executável na pasta /target
 
 ### test
 
-Parar executar os testes do codigo, utilize o comando
+Para executar os testes do código, utilize o comando
 
 ```shell script
 ./mvnw test
@@ -281,6 +281,6 @@ mvn test
 
 ### Para saber mais sobre os comandos disponiveis, acesse <https://quarkus.io/guides/maven-tooling>
 
-## UI (Frontend)
+## UI (Front End)
 
 Você pode ver o backend da aplicação no seguinte repositório: https://github.com/Estudantinder/estudantinder-mobile
