@@ -3,7 +3,7 @@
 # Estudantinder API
 
 [![Quarkus](https://img.shields.io/badge/Code-Quarkus-informational?style=flat&logo=quarkus&logoColor=white&color=4630eb)](http://estudantinder-api.herokuapp.com)
-[![Maintainability](https://api.codeclimate.com/v1/badges/6b36bb6107777d0c951d/maintainability)](https://codeclimate.com/github/Estudantinder/estudantinder-api/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/503d9149b187b902f383/maintainability)](https://codeclimate.com/github/Estudantinder/estudantinder-api/maintainability)
 
 O Estudantinder lida com a procura e encontro de outros alunos, de forma a desenvolver cada vez mais sua autonomia nos estudos. Veja o [site oficial do Estudantinder](https://estudantinder.vercel.app) para mais informações
 
