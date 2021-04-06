@@ -6,8 +6,6 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 import io.smallrye.jwt.build.Jwt;
 
-import static org.hamcrest.Matchers.containsString;
-
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
