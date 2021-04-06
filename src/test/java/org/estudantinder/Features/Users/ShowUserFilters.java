@@ -12,7 +12,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 @QuarkusTest
-public class showUserFilters {
+public class ShowUserFilters {
 
     @Test
     public void testEditUserFiltersEndpoint() {
