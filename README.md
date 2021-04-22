@@ -1,5 +1,11 @@
 ![ESTUDANTINDER](https://raw.githubusercontent.com/Estudantinder/estudantinder-mobile/main/.github/README.png)
 
+</br>
+
+## [ENGLISH README](ENGLISH-README.md)
+
+</br>
+
 # Estudantinder API
 
 [![Quarkus](https://img.shields.io/badge/Code-Quarkus-informational?style=flat&logo=quarkus&logoColor=white&color=4630eb)](http://estudantinder-api.herokuapp.com)
