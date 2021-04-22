@@ -1,25 +1,23 @@
 ![ESTUDANTINDER](https://raw.githubusercontent.com/Estudantinder/estudantinder-mobile/main/.github/README.png)
 
-</br>
-
-## [ENGLISH README](ENGLISH-README.md)
-
-</br>
+Readme Languages: [![EN](/.github/EN.png)**EN**](/README.md) | [![BR](/.github/BR.png)**BR**](/README.pt-br.md)
 
 # Estudantinder API
 
 [![Quarkus](https://img.shields.io/badge/Code-Quarkus-informational?style=flat&logo=quarkus&logoColor=white&color=4630eb)](http://estudantinder-api.herokuapp.com)
-[![Maintainability](https://api.codeclimate.com/v1/badges/6b36bb6107777d0c951d/maintainability)](https://codeclimate.com/github/Estudantinder/estudantinder-api/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/503d9149b187b902f383/maintainability)](https://codeclimate.com/github/Estudantinder/estudantinder-api/maintainability)
 
-O Estudantinder lida com a procura e encontro de outros alunos, de forma a desenvolver cada vez mais sua autonomia nos estudos. Veja o [site oficial do Estudantinder](https://estudantinder.vercel.app) para mais informações
+Estudantinder deals with the search and encounter of other students, in order to increasingly develop their autonomy in their studies. See [Estudantinder's official website](https://estudantinder.vercel.app/) for more information
 
-# Rotas Principais 
+# Main Routes
 
 ## POST /users
-Cria um Usuário
+
+Creation of an user
 
 ### Request
-``` application/json
+
+```json
 {
 "bio": "Biografia Teste",
 "birth_date": "2002-12-08",
@@ -44,7 +42,8 @@ Cria um Usuário
 ```
 
 ### Response
-``` application/json
+
+```json
 {
   "name": "Nome Teste",
   "email": "teste@email.com",
@@ -75,10 +74,12 @@ Cria um Usuário
 ```
 
 ## POST /users/login
-Cria um Token JWT
+
+Creation of a JWT Token
 
 ### Request
-``` application/json
+
+```json
 {
 "email": "teste@email.com",
 "password": "Testando1"
@@ -86,7 +87,8 @@ Cria um Token JWT
 ```
 
 ### Response
-``` application/json
+
+```json
 {
   "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRiaWQiOjM1LCJleHAiOjE2MTgzNTIwNDIsImlhdCI6MTYxNzA1NjA0MiwianRpIjoiMTY5MzgwNTItMzliZS00NWFjLTk2YmMtM2ZkY2M5MjVjYTNhIn0.-zaufzfs8K0gNgQJmTHQ",
   "expireDate": 1618352042.174948000
@@ -94,15 +96,18 @@ Cria um Token JWT
 ```
 
 ## GET /students
-Mostra todos os usuários que se encaixam em suas preferências
+
+Shows all users that fit your preferences
 
 ### AUTH
-```
+
+```json
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2dpdGh1Yi5jb20vQWRhbUF1Z3VzdGluc2t5IiwidXBuIjoiZXN0dWRhbnRpbmRlckBxdWFya3VzLmlvIiwiZ3JvdXBzIjpbIlVzZXIiXSwiaWQiOjM1LCJleHAiOjE2MTgzNTIwNDIsImlhdCI6MTYxNzA1NjA0MiwianRpIjoiMTY5MzgwNTItMzliZS00NWFjLTk2YmMtM2ZkY2M5MjVjYTNhIn0.NM2viz9vD6hfrC5n9QtMg
 ```
 
 ### Response
-``` application/json
+
+```
 [
     {
         id: string,
@@ -135,28 +140,34 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL
 ```
 
 ## POST /students/likes/{user_id}
-Da like no usuário cujo id foi passado na rota
+
+Gives a like on the user whose ID was passed on the route
 
 ### AUTH
-```
+
+```json
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2dpdGh1Yi5jb20vQWRhbUF1Z3VzdGluc2t5IiwidXBuIjoiZXN0dWRhbnRpbmRlckBxdWFya3VzLmlvIiwiZ3JvdXBzIjpbIlVzZXIiXSwiaWQiOjM1LCJleHAiOjE2MTgzNTIwNDIsImlhdCI6MTYxNzA1NjA0MiwianRpIjoiMTY5MzgwNTItMzliZS00NWFjLTk2YmMtM2ZkY2M5MjVjYTNhIn0.NM2viz9vD6hfrC5n9QtMg
 ```
 
 ### Response
-```
+
+```json
 201 - Created
 ```
 
-## GET /students/matchs
-Mostra os matches dó usuário cujo JWT foi passado
+## GET /students/matches
+
+Shows the matches of the user whose JWT was passed
 
 ### AUTH
-```
+
+```json
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2dpdGh1Yi5jb20vQWRhbUF1Z3VzdGluc2t5IiwidXBuIjoiZXN0dWRhbnRpbmRlckBxdWFya3VzLmlvIiwiZ3JvdXBzIjpbIlVzZXIiXSwiaWQiOjM1LCJleHAiOjE2MTgzNTIwNDIsImlhdCI6MTYxNzA1NjA0MiwianRpIjoiMTY5MzgwNTItMzliZS00NWFjLTk2YmMtM2ZkY2M5MjVjYTNhIn0.NM2viz9vD6hfrC5n9QtMg
 ```
 
 ### Response
-``` application/json
+
+```json
 [
     {
         id: string,
@@ -194,99 +205,117 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL
 ]
 ```
 
-### Para ver todas as rotas, acesse a rota ``` /q/swagger-ui ``` </br> ou utilize arquivo [openapi](https://swagger.io/specification/), acessando a rota  ``` /q/openapi ```
+### To see all routes, go to /q/swagger-ui
+or use [openapi](https://swagger.io/specification/) file, accessing the /q/openapi route
 
-# Formas de usar
+## Ways to use
+
+
 
 ### Heroku
 
-A forma mais fácil de usar o aplicativo é utilizando o deploy feito no heroku [Deploy no Heroku](https://estudantinder-api.herokuapp.com/)
+The easiest way to use the app is using the deploy done on heroku.
 
-### Uso Local
+[Deploy at Heroku](https://estudantinder-api.herokuapp.com/)
 
-Para utilizar o aplicativo localmente, tanto em modo de desenvolvimento, quanto realizando o build do projeto siga para [Instalação](#-instalação)
+## Local use
 
-# Instalação
+To use the application locally, both in development mode and when building the project, proceed to Installation
 
-Você vai precisar de algumas ferramentas para rodar o projeto localmente. Caso queira só utilizar a api, veja o tópico [Formas de Usar](#formas-de-usar)
+## Installation
 
-## Dependências
+
+
+You will need some tools to run the project locally. If you only want to use the api, see the topic Ways to Use
+
+## Dependencies
+
+
 
 ### GIT
 
-- Instale o git em sua máquina: [https://git-scm.com/downloads](https://git-scm.com/downloads)
-- Com o git instalado na sua máquina, clone o repositório usando o botão **Code** em https://github.com/Estudantinder/estudantinder-api
-- Caso seja necessario, utilize um tutorial basico, como esse https://www.hostinger.com.br/tutoriais/tutorial-do-git-basics-introducao
+- Install git on your machine: [https://git-scm.com/downloads](https://git-scm.com/downloads)
+- With git installed on your machine, clone the repository using the **Code** button at [https://github.com/Estudantinder/estudantinder-api](https://github.com/Estudantinder/estudantinder-api)
+- If necessary, use a basic tutorial, like this one: [https://www.hostinger.com.br/tutoriais/tutorial-do-git-basics-introducao](https://www.hostinger.com.br/tutoriais/tutorial-do-git-basics-introducao)
 
 ### JDK 11
 
-- Baixe e instale a JDK 11 de sua preferencia, por exemplo a da Oracle <https://www.oracle.com/java/technologies/javase-jdk11-downloads.html>
-- Para testar se a JDK foi instalada com sucesso, rode o seguinte comando `java --version` no terminal. Deverá aparecer a versão da JDK instalada
+- Download and install the JDK 11 of your choice, for example the Oracle one: [https://www.oracle.com/java/technologies/javase-jdk11-downloads.html](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+- To test whether the JDK was installed successfully, run the following command `java --version` in the terminal. The installed JDK version should appear.
 
 ### Maven
 
-- Baixe a versão mais nova do maven em <https://maven.apache.org/download.cgi>
-- Caso seja necessario utilize esse tutorial <https://dicasdejava.com.br/como-instalar-o-maven-no-windows/>
-- Para testar se o Maven está instalado na sua máquina, execute o comando `mvn -v`. Deverá aparecer a versão do Maven instalada
+- Download the newest version of maven at [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)
+- If necessary use this tutorial [https://dicasdejava.com.br/como-instalar-o-maven-no-windows/](https://dicasdejava.com.br/como-instalar-o-maven-no-windows/)
+- To test whether Maven is installed on your machine, run the `mvn -v` command. The installed version of Maven should appear.
 
 ### PostgreSQL
 
-- Para o postgres é recomendado a utilização em docker, primeiro instale o [Docker Desktop](https://www.docker.com/products/docker-desktop), depois siga esse simples tutorial <http://www.mariolb.com.br/blog/2020/09/19/postgresql_no_docker.html>
-- Após a instalação, crie o banco de dados do Estudantinder com o comando
-```SQL
-    CREATE DATABASE estudantinder
+- For postgres it is recommended to use a docker, first install [Docker Desktop](https://www.docker.com/products/docker-desktop), then follow this simple tutorial [http://www.mariolb.com.br/blog/2020/09/19/postgresql_no_docker.html](http://www.mariolb.com.br/blog/2020/09/19/postgresql_no_docker.html)
+- After installation, create the Estudantinder database with the command:
+
+```json
+CREATE DATABASE estudantinder
 ```
 
 ---
 
-**Pronto!** Você já pode começar a usar a API, vá para a aba [Scripts](#scripts) para ver quais scripts estão disponíveis para uso
+Well done! You can now start using the API, go to the [Scripts](https://github.com/Estudantinder/estudantinder-api#scripts) tab to see which scripts are available for use
 
-## Comandos Disponíveis
+## Available Commands
 
-Todos esses scripts pode ser rodados na sua máquina usando o Maven
 
-Os parâmetros dos scripts serão representados com um prefixo `$`
+
+All of these scripts can be run on your machine using Maven
+
+The script parameters will be represented with a `$` prefix
 
 ### quarkus:dev
 
-Para rodar a api em modo de desenvolvimento, utilize o comando
+To run the api in development mode, use the command
 
-```shell script
+```json
 ./mvnw quarkus:dev
 ```
-ou
-```shell script
+
+or
+
+```json
 mvn quarkus:dev
 ```
 
 ### quarkus:build
 
-Para realizar o build do app, utilize o comando
+To build the app, use the command
 
-```shell script
+```json
 ./mvnw quarkus:build
 ```
-ou
-```shell script
+
+or
+
+```json
 mvn quarkus:build
 ```
 
-No final você terá um .jar executável na pasta /target
+At the end you will have an executable .jar in the /target folder
 
 ### test
 
-Para executar os testes do código, utilize o comando
+To run the code tests, use the command
 
-```shell script
+```json
 ./mvnw test
 ```
-ou
-```shell script
+
+or
+
+```json
 mvn test
 ```
 
-### Para saber mais sobre os comandos disponiveis, acesse <https://quarkus.io/guides/maven-tooling>
+### To learn more about the commands available, visit [https://quarkus.io/guides/maven-tooling](https://quarkus.io/guides/maven-tooling)
 
 ## UI (Front End)
 
-Você pode ver o backend da aplicação no seguinte repositório: https://github.com/Estudantinder/estudantinder-mobile
+You can see the application backend in the following repository: [https://github.com/Estudantinder/estudantinder-mobile](https://github.com/Estudantinder/estudantinder-mobile)
