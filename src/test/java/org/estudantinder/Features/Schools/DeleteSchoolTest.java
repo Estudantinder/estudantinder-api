@@ -17,4 +17,13 @@ public class DeleteSchoolTest {
             .then()
                 .statusCode(200);
     }
+
+    @Test
+    public void testNotFoundDeleteSchoolEndpoint() {
+        given()
+            .pathParam("id", 3)
+            .when().delete("/schools/{id}")
+            .then()
+                .statusCode(404);
+    }
 }
