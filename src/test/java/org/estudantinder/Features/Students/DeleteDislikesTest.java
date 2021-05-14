@@ -14,7 +14,7 @@ import java.time.temporal.ChronoUnit;
 public class DeleteDislikesTest {
 
     @Test
-    public void testDeleteDislikesEndpoint() {
+    public void testDeleteAllDislikesEndpoint() {
         given()
         .auth().oauth2(generateValidStudentToken())
         .when().delete("/students/dislikes")
@@ -22,11 +22,29 @@ public class DeleteDislikesTest {
             .statusCode(200);
     }
 
+    @Test
+    public void testNotFoundDeleteAllDislikesEndpoint() {
+        given()
+        .auth().oauth2(generateTokenWithNonExistentStudent())
+        .when().delete("/students/dislikes")
+        .then()
+            .statusCode(404);
+    }
+
     static String generateValidStudentToken() {
         return Jwt.issuer("https://github.com/AdamAugustinsky")
             .upn("estudantinder@quarkus.io")
             .groups("User")
             .claim("id", 22)
+            .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
+            .sign();
+    }
+
+    static String generateTokenWithNonExistentStudent() {
+        return Jwt.issuer("https://github.com/AdamAugustinsky")
+            .upn("estudantinder@quarkus.io")
+            .groups("User")
+            .claim("id", -22)
             .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
             .sign();
     }
