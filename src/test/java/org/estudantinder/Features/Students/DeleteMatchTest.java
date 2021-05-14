@@ -23,6 +23,27 @@ public class DeleteMatchTest {
             .statusCode(200);
     }
 
+    @Test
+    public void testNotFoundDeleteMatchEndpoint() {
+        given()
+        .auth().oauth2(generateValidStudentToken())
+        .pathParam("id", -32)
+        .when().delete("/students/matchs/{id}")
+        .then()
+            .statusCode(404);
+    }
+
+    @Test
+    public void testUnauthorizedDeleteMatchEndpoint() {
+        // can't delete a match that isn't yours
+        given()
+        .auth().oauth2(generateValidStudentToken())
+        .pathParam("id", 31)
+        .when().delete("/students/matchs/{id}")
+        .then()
+            .statusCode(401);
+    }
+
     static String generateValidStudentToken() {
         return Jwt.issuer("https://github.com/AdamAugustinsky")
             .upn("estudantinder@quarkus.io")
