@@ -15,7 +15,6 @@ public class ShowStudentsTest {
 
     @Test
     public void testShowStudentsEndpoint() {
-
         given()
             .auth().oauth2(generateValidStudentToken())
             .when().get("/students")
@@ -23,11 +22,29 @@ public class ShowStudentsTest {
                 .statusCode(200);
     }
 
+    @Test
+    public void testNotFoundShowStudentsEndpoint() {
+        given()
+            .auth().oauth2(generateNonExistentStudentToken())
+            .when().get("/students")
+            .then()
+                .statusCode(404);
+    }
+
     static String generateValidStudentToken() {
         return Jwt.issuer("https://github.com/AdamAugustinsky")
             .upn("estudantinder@quarkus.io")
             .groups("User")
             .claim("id", 22)
+            .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
+            .sign();
+    }
+
+    static String generateNonExistentStudentToken() {
+        return Jwt.issuer("https://github.com/AdamAugustinsky")
+            .upn("estudantinder@quarkus.io")
+            .groups("User")
+            .claim("id", -22)
             .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
             .sign();
     }
