@@ -27,4 +27,20 @@ public class UpdateSubjectTest {
             .then()
                 .statusCode(200);
     }
+
+    @Test
+    public void testNotFoundUpdateSchoolEndpoint() {
+        
+        String updatedTestSchool = Json.createObjectBuilder()
+            .add("name", "UPDATED TEST SUBJECT")
+            .build().toString();
+
+        given()
+            .body(updatedTestSchool)
+            .pathParam("id", -12)
+            .contentType(ContentType.JSON)
+            .when().put("/subjects/{id}")
+            .then()
+                .statusCode(404);
+    }
 }
