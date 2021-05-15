@@ -23,18 +23,38 @@ public class ImageUploadTest {
         given()
             .multiPart("photo0", photo)
             .accept(ContentType.JSON)
-            .auth().oauth2(generateValidStudentToken())
+            .auth().oauth2(generateValidUserToken())
             .when().post("/users/imageUpload")
             .then()
-                .log().all()
                 .statusCode(200);
     }
 
-    static String generateValidStudentToken() {
+    @Test
+    public void testNotFoundImageUploadEndpoint() throws FileNotFoundException {
+        File photo = new File("src/test/resources/placeholderImage1.jpeg");
+        given()
+            .multiPart("photo0", photo)
+            .accept(ContentType.JSON)
+            .auth().oauth2(generateNonExistentUserToken())
+            .when().post("/users/imageUpload")
+            .then()
+                .statusCode(404);
+    }
+
+    static String generateValidUserToken() {
         return Jwt.issuer("https://github.com/AdamAugustinsky")
             .upn("estudantinder@quarkus.io")
             .groups("User")
             .claim("id", 22)
+            .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
+            .sign(); 
+    }
+
+    static String generateNonExistentUserToken() {
+        return Jwt.issuer("https://github.com/AdamAugustinsky")
+            .upn("estudantinder@quarkus.io")
+            .groups("User")
+            .claim("id", -22)
             .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
             .sign(); 
     }
