@@ -25,7 +25,7 @@ public class DeleteDislikesTest {
     @Test
     public void testNotFoundDeleteAllDislikesEndpoint() {
         given()
-        .auth().oauth2(generateTokenWithNonExistentStudent())
+        .auth().oauth2(generateNonExistentStudentToken())
         .when().delete("/students/dislikes")
         .then()
             .statusCode(404);
@@ -40,7 +40,7 @@ public class DeleteDislikesTest {
             .sign();
     }
 
-    static String generateTokenWithNonExistentStudent() {
+    static String generateNonExistentStudentToken() {
         return Jwt.issuer("https://github.com/AdamAugustinsky")
             .upn("estudantinder@quarkus.io")
             .groups("User")
