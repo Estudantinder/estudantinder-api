@@ -18,9 +18,9 @@ import javax.json.Json;
 public class UpdateUserTest {
     
     @Test
-    public void testUpdateStudentEndpoint() {
+    public void testUpdateUserEndpoint() {
         
-        String testStudentUpdated = Json.createObjectBuilder()
+        String testUserUpdated = Json.createObjectBuilder()
             .add("name", "TEST STUDENT UPDATED")
             .add("shift", 2)
             .add("photos", Json.createArrayBuilder()
@@ -32,19 +32,51 @@ public class UpdateUserTest {
             .build().toString();
         
         given()
-            .auth().oauth2(generateValidStudentToken())
-            .body(testStudentUpdated)
+            .auth().oauth2(generateValidUserToken())
+            .body(testUserUpdated)
             .contentType(ContentType.JSON)
             .when().put("/users")
             .then()
-            .statusCode(200);
+                .statusCode(200);
+    }
+
+    @Test
+    public void testNotFoundUpdateUserEndpoint() {
+        
+        String testUserUpdated = Json.createObjectBuilder()
+            .add("name", "TEST STUDENT UPDATED")
+            .add("shift", 2)
+            .add("photos", Json.createArrayBuilder()
+                .add("http://testPhoto6.com"))
+            .add("subjects_ids", Json.createArrayBuilder()
+                .add(10))
+            .add("contacts", Json.createObjectBuilder()
+            .add("whatsapp", 551112345))
+            .build().toString();
+        
+        given()
+            .auth().oauth2(generateNonExistentUserToken())
+            .body(testUserUpdated)
+            .contentType(ContentType.JSON)
+            .when().put("/users")
+            .then()
+                .statusCode(404);
     }
     
-    static String generateValidStudentToken() {
+    static String generateValidUserToken() {
         return Jwt.issuer("https://github.com/AdamAugustinsky")
             .upn("estudantinder@quarkus.io")
             .groups("User")
             .claim("id", 22)
+            .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
+            .sign(); 
+    }
+    
+    static String generateNonExistentUserToken() {
+        return Jwt.issuer("https://github.com/AdamAugustinsky")
+            .upn("estudantinder@quarkus.io")
+            .groups("User")
+            .claim("id", -22)
             .expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES ))
             .sign(); 
     }
