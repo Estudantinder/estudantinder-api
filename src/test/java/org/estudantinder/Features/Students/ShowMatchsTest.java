@@ -27,7 +27,7 @@ public class ShowMatchsTest {
         .auth().oauth2(generateNonExistentStudentToken())
         .when().get("/students/matchs")
         .then()
-            .statusCode(200);
+            .statusCode(404);
     }
 
     static String generateValidStudentToken() {
