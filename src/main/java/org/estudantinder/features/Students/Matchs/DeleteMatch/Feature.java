@@ -2,7 +2,7 @@ package org.estudantinder.features.Students.Matchs.DeleteMatch;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityNotFoundException;
+import javax.ws.rs.NotFoundException;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Likes;
@@ -28,7 +28,7 @@ public class Feature {
 
     void throwExceptionIfMatchNotValid(Match match) {
         if(match == null) {
-            throw new EntityNotFoundException("Match id not found");
+            throw new NotFoundException("Match id not found");
         }
     }
 
@@ -42,7 +42,7 @@ public class Feature {
 
     void throwExceptionIfUserNotValid(Users user) {
         if(user == null) {
-            throw new EntityNotFoundException("User id Not Found");
+            throw new NotFoundException("User id Not Found");
         }
     }
 

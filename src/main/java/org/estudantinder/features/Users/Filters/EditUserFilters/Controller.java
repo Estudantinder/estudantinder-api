@@ -7,54 +7,29 @@ import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Preferences;
-import org.estudantinder.features.commom.ErrorMessage;
+import org.estudantinder.features.commom.ErrorResponse;
 
 @ApplicationScoped
 public class Controller {
 
     @Inject
-    Feature updateUserPreferencesController;
+    Feature updateUserPreferences;
 
     public Response handle(JsonWebToken jwt, DTO data) throws Exception {
         try {
-            Preferences userPreferences = updateUserPreferencesController.execute(jwt, data);
+            Preferences userPreferences = updateUserPreferences.execute(jwt, data);
 
-            return Response
-                .status(Response.Status.OK)
-                .entity(userPreferences)
-                .build();
+            return Response.status(Response.Status.OK).entity(userPreferences).build();
 
         } catch (NotFoundException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't update user's filters";
+            return ErrorResponse.handle(404, "Couldn't update user preferences", error);
 
-            return Response
-                .status(Response.Status.NOT_FOUND)
-                .entity(errorMessage)
-                .build();
-            
-        } catch(NullPointerException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = "No Data";
-            errorMessage.message = "Couldn't update user's filters";
+        } catch (NullPointerException error) {
+            return ErrorResponse.handle(400, "Couldn't update user preferences", error);
 
-            return Response
-                .status(Response.Status.BAD_REQUEST)
-                .entity(errorMessage)
-                .build();
-        } catch(Exception error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't update user's filters";
+        } catch (Exception error) {
+            return ErrorResponse.handle(500, "Couldn't update user preferences", error);
 
-            return Response
-                .status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(errorMessage)
-                .build();
         }
     }
 }
