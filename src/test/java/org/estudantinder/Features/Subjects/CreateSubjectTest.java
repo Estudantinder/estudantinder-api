@@ -29,4 +29,28 @@ public class CreateSubjectTest {
                 .statusCode(201)
                 .body("name", containsString("TEST SUBJECT"));
     }
+
+    @Test
+    public void testConflictCreateSubjectEndpoint() {
+
+        String testSubject = Json.createObjectBuilder()
+            .add("name", "TEST SUBJECT")
+            .build().toString();
+
+        given()
+            .body(testSubject)
+            .contentType(ContentType.JSON)
+            .when().post("/subjects")
+            .then()
+                .statusCode(409);
+    }
+
+    @Test
+    public void testNotFoundCreateSubjectEndpoint() {
+        given()
+            .contentType(ContentType.JSON)
+            .when().post("/subjects")
+            .then()
+                .statusCode(400);
+    }
 }

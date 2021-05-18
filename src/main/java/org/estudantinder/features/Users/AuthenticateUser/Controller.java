@@ -7,7 +7,7 @@ import javax.ws.rs.core.Response;
 
 import org.estudantinder.features.Users.AuthenticateUser.DTO.JwtDTO;
 import org.estudantinder.features.Users.AuthenticateUser.DTO.LoginDTO;
-import org.estudantinder.features.commom.ErrorMessage;
+import org.estudantinder.features.commom.ErrorResponse;
 
 import io.quarkus.security.UnauthorizedException;
 
@@ -21,53 +21,19 @@ public class Controller {
         try {
             JwtDTO returnObject = authenticateUser.execute(data);
 
-            return Response
-                .status(Response.Status.OK)
-                .entity(returnObject)
-                .build();
+            return Response.status(Response.Status.OK).entity(returnObject).build();
 
         } catch (NotFoundException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't authenticate User";
+            return ErrorResponse.handle(404, "Couldn't authenticate User", error);
 
-            return Response
-                .status(Response.Status.NOT_FOUND)
-                .entity(errorMessage)
-                .build();
-            
         } catch (UnauthorizedException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't authenticate User";
+            return ErrorResponse.handle(401, "Couldn't authenticate User", error);
 
-            return Response
-                .status(Response.Status.UNAUTHORIZED)
-                .entity(errorMessage)
-                .build();
-            
-        } catch(NullPointerException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = "No Data";
-            errorMessage.message = "Couldn't authenticate User";
+        } catch (NullPointerException error) {
+            return ErrorResponse.handle(400, "Couldn't authenticate User", error);
 
-            return Response
-                .status(Response.Status.BAD_REQUEST)
-                .entity(errorMessage)
-                .build();
-        } catch(Exception error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't authenticate User";
-
-            return Response
-                .status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(errorMessage)
-                .build();
+        } catch (Exception error) {
+            return ErrorResponse.handle(500, "Couldn't authenticate User", error);
         }
     }
 }

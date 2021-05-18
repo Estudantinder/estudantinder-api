@@ -27,4 +27,14 @@ public class ShowSubjectTest {
             .statusCode(200);
         
     }
+
+    @Test
+    public void testNotFoundShowSubjectEndpoint() {
+        given()
+        .pathParam("id", -11)
+        .when().get("/subjects/{id}")
+        .then()
+            .statusCode(404);
+        
+    }
 }

@@ -2,7 +2,7 @@ package org.estudantinder.features.Subjects.UpdateSubject;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityNotFoundException;
+import javax.ws.rs.NotFoundException;
 
 import org.estudantinder.entities.Subject;
 import org.estudantinder.repositories.SubjectsRepository;
@@ -15,7 +15,7 @@ public class Feature {
 
     void throwExceptionIfSubjectNotFound(Subject subject) {
         if(subject == null) {
-            throw new EntityNotFoundException("Subject id not found");
+            throw new NotFoundException("Subject id not found");
         }
     }
 

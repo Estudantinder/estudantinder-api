@@ -3,6 +3,7 @@ package org.estudantinder.features.Students.Likes.CreateLike;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
@@ -15,7 +16,6 @@ import org.estudantinder.repositories.MatchsRepository;
 import org.estudantinder.repositories.UsersRepository;
 
 import io.quarkus.panache.common.Parameters;
-import io.quarkus.security.UnauthorizedException;
 
 @ApplicationScoped
 public class Feature {
@@ -49,7 +49,7 @@ public class Feature {
     
     void throwExceptionIfUsersAreEqual(Long senderId, Long receiverId) {
         if(senderId.equals(receiverId)) {
-            throw new UnauthorizedException("User can't like himself");
+            throw new BadRequestException("User can't like himself");
         }
     }
 

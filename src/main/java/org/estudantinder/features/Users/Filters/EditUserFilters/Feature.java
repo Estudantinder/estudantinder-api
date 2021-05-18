@@ -7,7 +7,7 @@ import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityNotFoundException;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 
@@ -45,7 +45,7 @@ public class Feature {
         Course course = coursesRepository.findById(courseId);
 
         if(course == null) {
-            throw new EntityNotFoundException("Course Not Found");
+            throw new NotFoundException("Course Not Found");
         }
 
         return course;
@@ -55,7 +55,7 @@ public class Feature {
         School school = schoolsRepository.findById(schoolId);
 
         if(school == null) {
-            throw new EntityNotFoundException("Course Not Found");
+            throw new NotFoundException("Course Not Found");
         }
 
         return school;
@@ -88,7 +88,7 @@ public class Feature {
         Subject subject = subjectsRepository.findById(subject_id);
 
         if(subject == null) {
-            throw new EntityNotFoundException("Subject id "+subject_id+" Not Found");
+            throw new NotFoundException("Subject id "+subject_id+" Not Found");
         }
 
         return subject;

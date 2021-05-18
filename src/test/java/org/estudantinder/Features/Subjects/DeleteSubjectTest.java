@@ -17,4 +17,13 @@ public class DeleteSubjectTest {
             .then()
                 .statusCode(200);
     }
+
+    @Test
+    public void testNotFoundDeleteSubjectEndpoint() {
+        given()
+            .pathParam("id", -13)
+            .when().delete("/subjects/{id}")
+            .then()
+                .statusCode(404);
+    }
 }
