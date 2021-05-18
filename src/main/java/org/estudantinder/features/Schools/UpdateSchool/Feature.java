@@ -2,7 +2,7 @@ package org.estudantinder.features.Schools.UpdateSchool;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityNotFoundException;
+import javax.ws.rs.NotFoundException;
 
 import org.estudantinder.entities.Course;
 import org.estudantinder.entities.School;
@@ -24,7 +24,7 @@ public class Feature {
         School updatedSchool = schoolsRepository.findById(id);
 
         if(updatedSchool == null) {
-            throw new EntityNotFoundException("Couldn't find School");
+            throw new NotFoundException("Couldn't find School");
         }
 
 

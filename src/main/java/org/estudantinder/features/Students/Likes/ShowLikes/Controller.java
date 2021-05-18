@@ -9,43 +9,26 @@ import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.features.Students.common.Student;
-import org.estudantinder.features.commom.ErrorMessage;
+import org.estudantinder.features.commom.ErrorResponse;
 
 @ApplicationScoped
 public class Controller {
 
     @Inject
-    Feature showStudentLikes;
+    Feature showLikes;
 
     public Response handle(JsonWebToken jwt) throws Exception {
         try {
-            List<Student> filteredStudent = showStudentLikes.execute(jwt);
+            List<Student> filteredStudent = showLikes.execute(jwt);
 
-            return Response
-                .status(Response.Status.OK)
-                .entity(filteredStudent)
-                .build();
-                
+            return Response.status(Response.Status.OK).entity(filteredStudent).build();
+
         } catch (NotFoundException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't show Student Likes";
+            return ErrorResponse.handle(404, "Couldn't show Likes", error);
 
-            return Response
-                .status(Response.Status.NOT_FOUND)
-                .entity(errorMessage)
-                .build();
-        } catch(Exception error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't show Student Likes";
+        } catch (Exception error) {
+            return ErrorResponse.handle(500, "Couldn't show Likes", error);
 
-            return Response
-                .status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(errorMessage)
-                .build();
         }
     }
 }

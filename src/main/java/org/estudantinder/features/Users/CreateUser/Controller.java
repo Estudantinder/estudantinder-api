@@ -7,64 +7,32 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.Response;
 
 import org.estudantinder.features.Users.CreateUser.DTO.UserDTO;
-import org.estudantinder.features.commom.ErrorMessage;
+import org.estudantinder.features.commom.ErrorResponse;
 
 @ApplicationScoped
 public class Controller {
 
     @Inject
-    Feature createUserUseCase;
+    Feature createUser;
 
     public Response handle(UserDTO data) throws Exception {
         try {
-            createUserUseCase.execute(data);
+            createUser.execute(data);
 
-            return Response
-                .status(Response.Status.CREATED)
-                .entity(data)
-                .build();
+            return Response.status(Response.Status.CREATED).entity(data).build();
 
         } catch (EntityExistsException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create User";
+            return ErrorResponse.handle(409, "Couldn't create User", error);
 
-            return Response
-                .status(Response.Status.CONFLICT)
-                .entity(errorMessage)
-                .build();
-            
-        } catch(BadRequestException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create User";
+        } catch (BadRequestException error) {
+            return ErrorResponse.handle(400, "Couldn't create User", error);
 
-            return Response
-                .status(Response.Status.BAD_REQUEST)
-                .entity(errorMessage)
-                .build();
-        } catch(NullPointerException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = "No Data";
-            errorMessage.message = "Couldn't create User";
+        } catch (NullPointerException error) {
+            return ErrorResponse.handle(400, "Couldn't create User", error);
 
-            return Response
-                .status(Response.Status.BAD_REQUEST)
-                .entity(errorMessage)
-                .build();
-        } catch(Exception error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create User";
+        } catch (Exception error) {
+            return ErrorResponse.handle(500, "Couldn't create User", error);
 
-            return Response
-                .status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(errorMessage)
-                .build();
         }
     }
 }

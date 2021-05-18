@@ -7,7 +7,7 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.estudantinder.features.commom.ErrorMessage;
+import org.estudantinder.features.commom.ErrorResponse;
 
 import io.quarkus.security.UnauthorizedException;
 
@@ -15,56 +15,25 @@ import io.quarkus.security.UnauthorizedException;
 public class Controller {
 
     @Inject
-    Feature createDislikeUseCase;
+    Feature createAllDislikes;
 
     public Response handle(JsonWebToken jwt) throws Exception {
         try {
-            createDislikeUseCase.execute(jwt);
+            createAllDislikes.execute(jwt);
 
-            return Response
-                .status(Response.Status.OK)
-                .build();
+            return Response.status(Response.Status.OK).build();
+        } catch (NotFoundException error) {
+            return ErrorResponse.handle(404, "Couldn't delete Dislikes", error);
 
-        } catch(NotFoundException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create Dislike";
+        } catch (EntityExistsException error) {
+            return ErrorResponse.handle(409, "Couldn't delete Dislikes", error);
 
-            return Response
-                .status(Response.Status.NOT_FOUND)
-                .entity(errorMessage)
-                .build();
-        } catch(EntityExistsException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create Dislike";
+        } catch (UnauthorizedException error) {
+            return ErrorResponse.handle(401, "Couldn't delete Dislikes", error);
 
-            return Response
-                .status(Response.Status.CONFLICT)
-                .entity(errorMessage)
-                .build();
-        } catch(UnauthorizedException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create Dislike";
+        } catch (Exception error) {
+            return ErrorResponse.handle(500, "Couldn't delete Dislikes", error);
 
-            return Response
-                .status(Response.Status.UNAUTHORIZED)
-                .entity(errorMessage)
-                .build();
-        } catch(Exception error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create Dislike";
-
-            return Response
-                .status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(errorMessage)
-                .build();
         }
     }
 }

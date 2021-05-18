@@ -10,7 +10,7 @@ import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityExistsException;
-import javax.persistence.EntityNotFoundException;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.BadRequestException;
 
 import org.estudantinder.entities.Contacts;
@@ -68,7 +68,7 @@ public class Feature {
         Course course = coursesRepository.findById(courseId);
 
         if(course == null) {
-            throw new EntityNotFoundException("Course Not Found");
+            throw new NotFoundException("Course Not Found");
         }
 
         return course;
@@ -90,7 +90,7 @@ public class Feature {
         Subject subject = subjectsRepository.findById(subject_id);
 
         if(subject == null) {
-            throw new EntityNotFoundException("Subject id "+subject_id+" Not Found");
+            throw new NotFoundException("Subject id "+subject_id+" Not Found");
         }
 
         return subject;
@@ -149,7 +149,7 @@ public class Feature {
         }
    
         if(data.contacts == null) {
-            throw new EntityNotFoundException("At Least 1 Contact is Required");
+            throw new NotFoundException("At Least 1 Contact is Required");
         }
 
         if(checkIfPasswordDoesntContainsNumber(data.password)) {

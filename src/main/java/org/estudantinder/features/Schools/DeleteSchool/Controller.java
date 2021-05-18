@@ -2,10 +2,10 @@ package org.estudantinder.features.Schools.DeleteSchool;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityNotFoundException;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
-import org.estudantinder.features.commom.ErrorMessage;
+import org.estudantinder.features.commom.ErrorResponse;
 
 @ApplicationScoped
 public class Controller {
@@ -17,31 +17,13 @@ public class Controller {
         try {
             deleteSchool.execute(id);
 
-            return Response
-                .status(Response.Status.OK)
-                .build();
+            return Response.status(Response.Status.OK).build();
 
+        } catch (NotFoundException error) {
+            return ErrorResponse.handle(404, "Couldn't delete School", error);
 
-        } catch (EntityNotFoundException error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't delete School";
-
-            return Response
-                .status(Response.Status.NOT_FOUND)
-                .entity(errorMessage)
-                .build();
-        } catch(Exception error) {
-            ErrorMessage errorMessage = new ErrorMessage();
-            
-            errorMessage.error = error.getMessage();
-            errorMessage.message = "Couldn't create School";
-
-            return Response
-                .status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(errorMessage)
-                .build();
+        } catch (Exception error) {
+            return ErrorResponse.handle(500, "Couldn't delete School", error);
         }
     }
 }
