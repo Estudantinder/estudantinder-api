@@ -12,39 +12,44 @@ import javax.ws.rs.NotFoundException;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
+import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Users;
+import org.estudantinder.features.Users.Images.ImageUpload.commom.CloudinaryCredentials;
 import org.estudantinder.repositories.UsersRepository;
+
+import io.smallrye.config.SmallRyeConfig;
 
 @ApplicationScoped
 public class Feature {
-    
+
     @Inject
     UsersRepository usersRepository;
-    private void treatInvalidId(Users authenticatedUser ) throws Exception {
-        if(authenticatedUser == null) {
+
+    private void treatInvalidId(Users authenticatedUser) throws Exception {
+        if (authenticatedUser == null) {
             throw new NotFoundException("jwt id not valid");
-        } 
+        }
     }
 
     private String uploadImage(Cloudinary cloudinary, File photo) throws IOException {
         Object secure_url = cloudinary.uploader().upload(photo, ObjectUtils.emptyMap()).get("secure_url");
-        
+
         return (String) secure_url;
     }
 
-    private String[] uploadArrayOfPhotoUrls (Cloudinary cloudinary, Users authenticatedUser, List<File> photos)
+    private String[] uploadArrayOfPhotoUrls(Cloudinary cloudinary, Users authenticatedUser, List<File> photos)
             throws IOException {
         String[] photoUrls;
 
-        if(authenticatedUser.getPhotos() != null) {
+        if (authenticatedUser.getPhotos() != null) {
             photoUrls = authenticatedUser.getPhotos();
         } else {
             photoUrls = new String[6];
         }
 
-        for(int i = 0; i < photos.size(); i++) {
-            if(photos.get(i) != null) {
+        for (int i = 0; i < photos.size(); i++) {
+            if (photos.get(i) != null) {
                 photoUrls[i] = uploadImage(cloudinary, photos.get(i));
             }
         }
@@ -56,27 +61,17 @@ public class Feature {
         Long userId = Long.parseLong(jwt.getClaim("id").toString());
         Users authenticatedUser = usersRepository.findById(userId);
 
-        treatInvalidId(authenticatedUser); 
+        treatInvalidId(authenticatedUser);
 
-        //can't remove credentials because of heroku deploy
-        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-            "cloud_name", "adamaugustinsky",
-            "api_key", "634655436325958",
-            "api_secret", "Qn-FmfRjuUjd5wyAsK_7wFpLZBM"));
+        SmallRyeConfig config = ConfigProvider.getConfig().unwrap(SmallRyeConfig.class);
+        CloudinaryCredentials cloudinaryCredentials = config.getConfigMapping(CloudinaryCredentials.class);
 
+        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", cloudinaryCredentials.cloudName(),
+                "api_key", cloudinaryCredentials.apiKey(), "api_secret", cloudinaryCredentials.apiSecret()));
 
-        String[] photoUrls = uploadArrayOfPhotoUrls(
-            cloudinary, 
-            authenticatedUser,
-            Arrays.asList(
-                data.photo0,
-                data.photo1,
-                data.photo2,
-                data.photo3,
-                data.photo4,
-                data.photo5
-            ));
-        
+        String[] photoUrls = uploadArrayOfPhotoUrls(cloudinary, authenticatedUser,
+                Arrays.asList(data.photo0, data.photo1, data.photo2, data.photo3, data.photo4, data.photo5));
+
         authenticatedUser.setPhotos(photoUrls);
 
         usersRepository.persist(authenticatedUser);
