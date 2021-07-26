@@ -1,4 +1,4 @@
-package org.estudantinder.features.Statistics.ShowNumberOfUsers;
+package org.estudantinder.features.Statistics.NumberOfUsers;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
