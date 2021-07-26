@@ -14,7 +14,7 @@ public class Feature {
     public NumberOfUsersDTO execute() {
         NumberOfUsersDTO result = new NumberOfUsersDTO();
 
-        result.numberOfUsers = usersRepository.count();
+        result.number_of_users = usersRepository.count();
 
         return  result;
     }
