@@ -24,8 +24,8 @@ public class Feature {
     @Inject
     SubjectsRepository subjectsRepository;
 
-    public List<SubjectStatistics> addToSubjectStatistics(List<SubjectStatistics> listOfSubjectsStatistics, Subject subject) {
-        SubjectStatistics subjectStatistics = new SubjectStatistics(); 
+    public List<SubjectStatisticsDTO> addToSubjectStatistics(List<SubjectStatisticsDTO> listOfSubjectsStatistics, Subject subject) {
+        SubjectStatisticsDTO subjectStatistics = new SubjectStatisticsDTO(); 
         subjectStatistics.subject_name = subject.getName();
         subjectStatistics.users_preffered= usersRepository.findBySubject(subject).count();
         subjectStatistics.users_searching= preferencesRepository.findBySubject(subject).count();
@@ -36,9 +36,9 @@ public class Feature {
     }
 
 
-    public List<SubjectStatistics> execute() {
+    public List<SubjectStatisticsDTO> execute() {
 
-        List<SubjectStatistics> result = new ArrayList<SubjectStatistics>();
+        List<SubjectStatisticsDTO> result = new ArrayList<SubjectStatisticsDTO>();
 
         subjectsRepository.listAll().forEach(subject -> addToSubjectStatistics(result, subject));
 

@@ -17,7 +17,7 @@ public class Controller {
 
     public Response handle() throws Exception {
         try {
-            List<SubjectStatistics> StudentMatchs = showNumberOfUsersInSubject.execute();
+            List<SubjectStatisticsDTO> StudentMatchs = showNumberOfUsersInSubject.execute();
 
             return Response.status(Response.Status.OK).entity(StudentMatchs).build();
 

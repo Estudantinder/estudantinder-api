@@ -21,7 +21,7 @@ public class Resource {
     @GET
     @Path("subjects")
     @Operation(summary = "Get number of users in each subject(Both searching and using)")
-    public Response get() throws Exception {
+    public Response getSubjectStatistics() throws Exception {
         return showNumberOfUsersInSubjectController.handle();
     }
 

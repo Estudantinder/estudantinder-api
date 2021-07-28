@@ -1,6 +1,6 @@
 package org.estudantinder.features.Statistics.SubjectsStatistics;
 
-public class SubjectStatistics {
+public class SubjectStatisticsDTO {
 
     public String subject_name;
 
