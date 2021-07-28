@@ -21,7 +21,7 @@ public class Resource {
     Controller likesPropController;
 
     @GET
-    @Path("/likesProportion/${id}")
+    @Path("/likesProportion/{id}")
     @APIResponse(responseCode = "200")
     @Operation(summary = "Return a user's likes proportion")
     public Response getUserLikesProportion(@PathParam("id") Long id) throws Exception {
