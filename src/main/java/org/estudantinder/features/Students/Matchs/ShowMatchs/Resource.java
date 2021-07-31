@@ -36,7 +36,7 @@ public class Resource {
     @APIResponse(responseCode = "200", description = "OK")
     @APIResponse(responseCode = "404", description = "Student id Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
-    @Operation(summary = "Show Student's Likes")
+    @Operation(summary = "Show Student's matchs")
     public Response showStudentMatchs(@Context SecurityContext ctx) throws Exception {
         return showStudentMatchsController.handle(jwt);
     }
