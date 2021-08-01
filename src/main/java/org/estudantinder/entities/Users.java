@@ -50,6 +50,8 @@ public class Users {
 
     private String[] photos;
 
+    private Boolean isAdmin = false;
+
     @ManyToMany
     private List<Subject> subjects; 
 
@@ -64,6 +66,14 @@ public class Users {
 
     public String getPassword() {  
         return password;
+    }
+
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     public List<Subject> getSubjects() {
