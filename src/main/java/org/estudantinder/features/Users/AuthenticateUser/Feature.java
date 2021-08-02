@@ -3,6 +3,7 @@ package org.estudantinder.features.Users.AuthenticateUser;
 import java.security.spec.InvalidKeySpecException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -44,7 +45,7 @@ public class Feature {
     public String generateJwt(Users authenticatedUser, Instant expireDate) {
 
         if (authenticatedUser.getIsAdmin()) {
-            return Jwt.issuer("https://github.com/AdamAugustinsky").upn("estudantinder@quarkus.io").groups("Admin")
+            return Jwt.issuer("https://github.com/AdamAugustinsky").upn("estudantinder@quarkus.io").groups(Set.of("Admin", "User"))
                     .claim("id", authenticatedUser.getId()).expiresAt(expireDate).sign();
         }
 
