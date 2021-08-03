@@ -1,6 +1,7 @@
 package org.estudantinder.features.Students.common;
 
 import org.estudantinder.entities.Users;
+import org.estudantinder.features.commom.Student;
 
 public class MatchReturn {
     public Student matchedStudent;

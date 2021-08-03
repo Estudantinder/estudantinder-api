@@ -1,4 +1,4 @@
-package org.estudantinder.features.Students.common;
+package org.estudantinder.features.commom;
 
 import java.time.LocalDate;
 import java.util.List;

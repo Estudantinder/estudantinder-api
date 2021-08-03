@@ -8,8 +8,8 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.estudantinder.features.Students.common.Student;
 import org.estudantinder.features.commom.ErrorResponse;
+import org.estudantinder.features.commom.Student;
 
 @ApplicationScoped
 public class Controller {

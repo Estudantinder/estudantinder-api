@@ -11,7 +11,7 @@ import javax.ws.rs.NotFoundException;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Preferences;
 import org.estudantinder.entities.Users;
-import org.estudantinder.features.Students.common.Student;
+import org.estudantinder.features.commom.Student;
 import org.estudantinder.repositories.DislikesRepository;
 import org.estudantinder.repositories.LikesRepository;
 import org.estudantinder.repositories.UsersRepository;
