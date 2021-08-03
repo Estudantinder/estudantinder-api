@@ -44,9 +44,11 @@ public class Feature {
 
     public String generateJwt(Users authenticatedUser, Instant expireDate) {
 
-        if (authenticatedUser.getIsAdmin()) {
-            return Jwt.issuer("https://github.com/AdamAugustinsky").upn("estudantinder@quarkus.io").groups(Set.of("Admin", "User"))
-                    .claim("id", authenticatedUser.getId()).expiresAt(expireDate).sign();
+        if (authenticatedUser.getIsAdmin() != null) {
+            if (authenticatedUser.getIsAdmin() == true)
+                return Jwt.issuer("https://github.com/AdamAugustinsky").upn("estudantinder@quarkus.io")
+                        .groups(Set.of("Admin", "User")).claim("id", authenticatedUser.getId()).expiresAt(expireDate)
+                        .sign();
         }
 
         return Jwt.issuer("https://github.com/AdamAugustinsky").upn("estudantinder@quarkus.io").groups("User")
@@ -54,7 +56,7 @@ public class Feature {
     }
 
     public JwtDTO execute(LoginDTO data) throws Exception {
-        Users authenticatedUser =  usersRepository.findByEmail(data.email);
+        Users authenticatedUser = usersRepository.findByEmail(data.email);
 
         treatEmailNotFound(authenticatedUser);
         treatDifferentPassword(authenticatedUser, data.password);
@@ -62,7 +64,7 @@ public class Feature {
         Instant expireDate = Instant.now().plus(15, ChronoUnit.DAYS);
 
         String token = generateJwt(authenticatedUser, expireDate);
-        
+
         JwtDTO returnObject = new JwtDTO();
 
         returnObject.jwt = token;
