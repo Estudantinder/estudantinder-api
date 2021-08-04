@@ -10,7 +10,7 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 import org.estudantinder.repositories.UsersRepository;
 
 @ApplicationScoped
@@ -18,7 +18,7 @@ public class Feature {
     
     @Inject
     UsersRepository usersRepository;
-    private void treatInvalidId(Users authenticatedUser ) throws Exception {
+    private void treatInvalidId(User authenticatedUser ) throws Exception {
         if(authenticatedUser == null) {
             throw new NotFoundException("jwt id not valid");
         } 
@@ -60,7 +60,7 @@ public class Feature {
 
     public void execute(JsonWebToken jwt, Integer imageIndex) throws Exception {
         Long userId = Long.parseLong(jwt.getClaim("id").toString());
-        Users authenticatedUser = usersRepository.findById(userId);
+        User authenticatedUser = usersRepository.findById(userId);
 
         treatInvalidId(authenticatedUser); 
         treatNullIndex(imageIndex);

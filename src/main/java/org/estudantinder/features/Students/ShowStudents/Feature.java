@@ -10,7 +10,7 @@ import javax.ws.rs.NotFoundException;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Preferences;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 import org.estudantinder.features.commom.Student;
 import org.estudantinder.repositories.DislikesRepository;
 import org.estudantinder.repositories.LikesRepository;
@@ -28,17 +28,17 @@ public class Feature {
     @Inject
     DislikesRepository dislikesRepository;
 
-    void throwExceptionIfUserNotValid(Users authenticatedUser) {
+    void throwExceptionIfUserNotValid(User authenticatedUser) {
         if (authenticatedUser == null) {
             throw new NotFoundException("User id not found");
         }
     }
 
-    Stream<Users> removesAuthenticatedUserFromStream(Users authenticatedUser, Stream<Users> allUsers) {
+    Stream<User> removesAuthenticatedUserFromStream(User authenticatedUser, Stream<User> allUsers) {
         return allUsers.filter(user -> user.getId() != authenticatedUser.getId());
     }
 
-    Stream<Users> filterUsersByPreferences(Preferences preferences, Stream<Users> allUsers) {
+    Stream<User> filterUsersByPreferences(Preferences preferences, Stream<User> allUsers) {
 
         if (preferences != null) {
             if (preferences.getGender() != null) {
@@ -76,26 +76,26 @@ public class Feature {
         return allUsers;
     }
 
-    Stream<Users> filterUsersAlreadyLiked(Users User, Stream<Users> allUsers) {
-        List<Users> usersAlreadyLiked = likesRepository.stream("sender", User).map(like -> like.getReceiver())
+    Stream<User> filterUsersAlreadyLiked(User User, Stream<User> allUsers) {
+        List<User> usersAlreadyLiked = likesRepository.stream("sender", User).map(like -> like.getReceiver())
                 .collect(Collectors.toList());
 
-        Stream<Users> usersNotLiked = allUsers.filter(s -> !usersAlreadyLiked.contains(s));
+        Stream<User> usersNotLiked = allUsers.filter(s -> !usersAlreadyLiked.contains(s));
 
         return usersNotLiked;
     }
 
-    Stream<Users> filterUsersAlreadyDisliked(Users User, Stream<Users> allUsers) {
-        List<Users> usersAlreadyDisliked = dislikesRepository.stream("sender", User)
+    Stream<User> filterUsersAlreadyDisliked(User User, Stream<User> allUsers) {
+        List<User> usersAlreadyDisliked = dislikesRepository.stream("sender", User)
                 .map(dislike -> dislike.getReceiver()).collect(Collectors.toList());
 
-        Stream<Users> usersNotDisliked = allUsers.filter(s -> !usersAlreadyDisliked.contains(s));
+        Stream<User> usersNotDisliked = allUsers.filter(s -> !usersAlreadyDisliked.contains(s));
 
         return usersNotDisliked;
     }
 
-    Stream<Users> filteredUsers(Users user, Stream<Users> allUsers) {
-        Stream<Users> filteredUsers = filterUsersByPreferences(user.getPreferences(), allUsers);
+    Stream<User> filteredUsers(User user, Stream<User> allUsers) {
+        Stream<User> filteredUsers = filterUsersByPreferences(user.getPreferences(), allUsers);
 
         filteredUsers = removesAuthenticatedUserFromStream(user, filteredUsers);
 
@@ -105,8 +105,8 @@ public class Feature {
         return filteredUsers;
     }
 
-    List<Student> listFilteredUsers(Users user, Stream<Users> allUsers) {
-        Stream<Users> filteredUsers = filteredUsers(user, allUsers);
+    List<Student> listFilteredUsers(User user, Stream<User> allUsers) {
+        Stream<User> filteredUsers = filteredUsers(user, allUsers);
 
         Stream<Student> filteredStudents = filteredUsers.map(s -> Student.mapUserToStudent(s));
 
@@ -115,13 +115,13 @@ public class Feature {
 
     public List<Student> execute(JsonWebToken jwt) throws Exception {
         long userId = Long.parseLong(jwt.getClaim("id").toString());
-        Users authenticatedUser = usersRepository.findById(userId);
+        User authenticatedUser = usersRepository.findById(userId);
 
         throwExceptionIfUserNotValid(authenticatedUser);
 
-        List<Users> allUsers = usersRepository.listAll();
+        List<User> allUsers = usersRepository.listAll();
 
-        Stream<Users> allUsersStream = allUsers.stream();
+        Stream<User> allUsersStream = allUsers.stream();
 
         return listFilteredUsers(authenticatedUser, allUsersStream);
     }

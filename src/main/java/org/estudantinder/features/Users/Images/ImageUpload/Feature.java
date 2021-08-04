@@ -14,7 +14,7 @@ import com.cloudinary.utils.ObjectUtils;
 
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 import org.estudantinder.features.Users.Images.ImageUpload.commom.CloudinaryCredentials;
 import org.estudantinder.repositories.UsersRepository;
 
@@ -26,7 +26,7 @@ public class Feature {
     @Inject
     UsersRepository usersRepository;
 
-    private void treatInvalidId(Users authenticatedUser) throws Exception {
+    private void treatInvalidId(User authenticatedUser) throws Exception {
         if (authenticatedUser == null) {
             throw new NotFoundException("jwt id not valid");
         }
@@ -38,7 +38,7 @@ public class Feature {
         return (String) secure_url;
     }
 
-    private String[] uploadArrayOfPhotoUrls(Cloudinary cloudinary, Users authenticatedUser, List<File> photos)
+    private String[] uploadArrayOfPhotoUrls(Cloudinary cloudinary, User authenticatedUser, List<File> photos)
             throws IOException {
         String[] photoUrls;
 
@@ -59,7 +59,7 @@ public class Feature {
 
     public String[] execute(JsonWebToken jwt, DTO data) throws Exception {
         Long userId = Long.parseLong(jwt.getClaim("id").toString());
-        Users authenticatedUser = usersRepository.findById(userId);
+        User authenticatedUser = usersRepository.findById(userId);
 
         treatInvalidId(authenticatedUser);
 

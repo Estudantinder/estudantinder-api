@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
 import org.estudantinder.entities.Report;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 import org.estudantinder.repositories.ReportsRepository;
 import org.estudantinder.repositories.UsersRepository;
 
@@ -18,11 +18,11 @@ public class Feature {
     @Inject
     ReportsRepository reportsRepository;
 
-    public void treatUserDoesntExist(Users user) {
+    public void treatUserDoesntExist(User user) {
         if (user == null) throw new NotFoundException("User id does not exist");
     }
 
-    public void persistReport(CreateReportDTO reportData, Users reportedUser) {
+    public void persistReport(CreateReportDTO reportData, User reportedUser) {
         Report newReport = new Report();
 
         newReport.setTitle(reportData.title);
@@ -33,7 +33,7 @@ public class Feature {
     }
 
     public void execute(CreateReportDTO reportData, Long reportedUserId) throws Exception {
-        Users reportedUser = usersRepository.findById(reportedUserId); 
+        User reportedUser = usersRepository.findById(reportedUserId); 
 
         treatUserDoesntExist(reportedUser);
 

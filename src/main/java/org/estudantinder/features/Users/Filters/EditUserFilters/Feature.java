@@ -15,7 +15,7 @@ import org.estudantinder.entities.Course;
 import org.estudantinder.entities.Preferences;
 import org.estudantinder.entities.School;
 import org.estudantinder.entities.Subject;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 import org.estudantinder.repositories.CoursesRepository;
 import org.estudantinder.repositories.PreferencesRepository;
 import org.estudantinder.repositories.SchoolsRepository;
@@ -60,7 +60,7 @@ public class Feature {
         return school;
     }
     
-    private void treatStudentInvalidID(Users user) {
+    private void treatStudentInvalidID(User user) {
         if(user == null) {
             throw new NotFoundException("Student ID not valid");
         }
@@ -154,7 +154,7 @@ public class Feature {
 
     public Preferences execute(JsonWebToken jwt, DTO data) throws Exception {
         Long userId = Long.parseLong(jwt.getClaim("id").toString());
-        Users authenticatedUser = usersRepository.findById(userId);
+        User authenticatedUser = usersRepository.findById(userId);
 
         treatStudentInvalidID(authenticatedUser);
 

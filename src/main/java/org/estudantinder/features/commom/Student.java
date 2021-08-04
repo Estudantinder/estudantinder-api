@@ -7,7 +7,7 @@ import org.estudantinder.entities.Contacts;
 import org.estudantinder.entities.Course;
 import org.estudantinder.entities.School;
 import org.estudantinder.entities.Subject;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 
 public class Student {
     public Long id;
@@ -24,7 +24,7 @@ public class Student {
     public School school;
     public Contacts contacts;
 
-    public static Student mapUserToStudent(Users user) {
+    public static Student mapUserToStudent(User user) {
         Student Student = new Student();
         Student.id = user.getId();
         Student.name = user.getName();
@@ -41,7 +41,7 @@ public class Student {
         return Student;
     }  
 
-    public static Student mapUserToStudentWithContacts(Users user) {
+    public static Student mapUserToStudentWithContacts(User user) {
         Student Student = new Student();
         Student.id = user.getId();
         Student.name = user.getName();

@@ -4,7 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 import org.estudantinder.repositories.LikesRepository;
 import org.estudantinder.repositories.UsersRepository;
 
@@ -18,20 +18,20 @@ public class Feature {
     @Inject
     UsersRepository usersRepository;
 
-    public void treatUserDoesntExist(Users user) {
+    public void treatUserDoesntExist(User user) {
         if (user == null) throw new NotFoundException("User id does not exist");
     }
 
-    public Long getUserLikesReceived(Users user) {
+    public Long getUserLikesReceived(User user) {
         return likesRepository.findByReceiver(user).stream().count();
     }
 
-    public Long getUserLikesGiven(Users user) {
+    public Long getUserLikesGiven(User user) {
         return likesRepository.findBySender(user).stream().count();
     }
 
     public LikesProportionDTO execute(Long userId) {
-        Users user = usersRepository.findById(userId);
+        User user = usersRepository.findById(userId);
 
         LikesProportionDTO result = new LikesProportionDTO();
 

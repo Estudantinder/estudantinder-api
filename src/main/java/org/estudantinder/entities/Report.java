@@ -17,9 +17,9 @@ public class Report {
     private String description;
     
     @ManyToOne
-    private Users reportedUser;
+    private User reportedUser;
 
-    public Users getReportedUser() {
+    public User getReportedUser() {
         return reportedUser;
     }
 
@@ -39,7 +39,7 @@ public class Report {
         this.title = title;
     }
 
-    public void setReportedUser(Users reportedUser) {
+    public void setReportedUser(User reportedUser) {
         this.reportedUser = reportedUser;
     }
 }
