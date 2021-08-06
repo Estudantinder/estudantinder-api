@@ -7,7 +7,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
-// O nome da entidade é "Likes", pois "Like" é uma palavra reservada
 @Entity(name = "like")
 @Table(name = "\"like\"")
 public class Like {
