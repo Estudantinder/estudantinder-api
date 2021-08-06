@@ -63,3 +63,11 @@ INSERT INTO match (id, like_id, "mutualLike_id") VALUES (nextval('hibernate_sequ
 INSERT INTO preferences_subject (preferences_id, subjects_id) VALUES (18, 10);
 INSERT INTO preferences_subject (preferences_id, subjects_id) VALUES (19, 11);
 INSERT INTO preferences_subject (preferences_id, subjects_id) VALUES (20, 12);
+
+INSERT INTO app_user (id, bio, birth_date, classroom, email, gender, name, password, photos, school_year, shift, contacts_id, course_id, preferences_id, isadmin) VALUES 
+    (nextval('hibernate_sequence'), 'TEST BIOGRAPHY 5', '2002-12-18', 'D', 'test5@email.com', '1', 'TEST USER 5', 
+    '$2a$10$7AwPby5UXVLGnqbVFaTQQeQ9wb5Pl/zAyAR5A4fq78I9IJRAQc05u', 
+    E'\\xACED0005757200135B4C6A6176612E6C616E672E537472696E673BADD256E7E91D7B4702000078700000000674001468747470733A2F2F70686F746F732E636F6D2F3174001468747470733A2F2F70686F746F732E636F6D2F3274001468747470733A2F2F70686F746F732E636F6D2F3374001468747470733A2F2F70686F746F732E636F6D2F3474001468747470733A2F2F70686F746F732E636F6D2F3574001468747470733A2F2F70686F746F732E636F6D2F36', 
+    2, 1, 17, 5, 21, true);
+
+insert into report (id, description, reporteduser_id, title) values (nextval('hibernate_sequence'),'test description 01', 33, 'test report 01');
