@@ -1,5 +1,7 @@
 package org.estudantinder.features.Report.CreateReport;
 
+import java.time.LocalDate;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
@@ -22,12 +24,13 @@ public class Feature {
         if (user == null) throw new NotFoundException("User id does not exist");
     }
 
-    public void persistReport(CreateReportDTO reportData, User reportedUser) {
+    public void persistReport(CreateReportDTO reportData, User reportedUser, LocalDate reportDate) {
         Report newReport = new Report();
 
         newReport.setTitle(reportData.title);
         newReport.setDescription(reportData.description);
         newReport.setReportedUser(reportedUser);
+        newReport.setReportDate(reportDate);
 
         reportsRepository.persist(newReport);
     }
@@ -37,6 +40,6 @@ public class Feature {
 
         treatUserDoesntExist(reportedUser);
 
-        persistReport(reportData, reportedUser);
+        persistReport(reportData, reportedUser, LocalDate.now());
     }
 }
