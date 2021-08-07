@@ -1,39 +1,30 @@
-package org.estudantinder.Features.Schools;
+package org.estudantinder.Features.Reports;
 
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.smallrye.jwt.build.Jwt;
 
-import static io.restassured.RestAssured.given;
-
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Set;
 
+
+import static io.restassured.RestAssured.given;
+
 @QuarkusTest
-public class DeleteSchoolTest {
-    
+public class BanReportedUserTest {
+
     @Test
-    public void testDeleteSchoolEndpoint() {
+    public void testBanReportedUserEndpoint() {
+
         given()
-            .pathParam("id", 3)
+            .pathParam("reportId", 34)
             .auth().oauth2(generateValidUserToken())
-            .when().delete("/schools/{id}")
+            .when().delete("/report/{reportId}")
             .then()
                 .statusCode(200);
     }
-
-    @Test
-    public void testNotFoundDeleteSchoolEndpoint() {
-        given()
-            .pathParam("id", 3)
-            .auth().oauth2(generateValidUserToken())
-            .when().delete("/schools/{id}")
-            .then()
-                .statusCode(404);
-    }
-
 
     static String generateValidUserToken() {
         return Jwt.issuer("https://github.com/AdamAugustinsky").upn("estudantinder@quarkus.io")

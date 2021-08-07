@@ -15,7 +15,7 @@ import javax.ws.rs.BadRequestException;
 
 import org.estudantinder.entities.Contacts;
 import org.estudantinder.entities.Course;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 import org.estudantinder.features.Users.CreateUser.DTO.ContactsDTO;
 import org.estudantinder.features.Users.CreateUser.DTO.UserDTO;
 import org.estudantinder.entities.Subject;
@@ -122,8 +122,8 @@ public class Feature {
         return newUserContacts;
     }
 
-    public Users setNewUser(UserDTO User) {
-        Users newUser = new Users();
+    public User setNewUser(UserDTO User) {
+        User newUser = new User();
 
         newUser.setName(User.name);
         newUser.setEmail(User.email);
@@ -164,7 +164,7 @@ public class Feature {
             throw new BadRequestException("Classroom must be alphabetical");
         }
         
-        Users newUser = setNewUser(data);
+        User newUser = setNewUser(data);
         UsersRepository.persist(newUser);
     }
 }

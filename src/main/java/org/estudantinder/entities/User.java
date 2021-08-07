@@ -11,12 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import io.quarkus.elytron.security.common.BcryptUtil;
 
-@Entity
-// O nome da entidade é "Users", pois "User" é uma palavra reservada
-public class Users {
+@Entity(name="app_user")
+@Table(name="app_user")
+public class User {
 
     @Id
     @GeneratedValue

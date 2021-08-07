@@ -13,28 +13,28 @@ public class Match {
     private Long id;
 
     @OneToOne
-    private Likes like;
+    private Like like;
 
     @OneToOne
-    private Likes mutualLike;
+    private Like mutualLike;
 
     public Long getId() {
         return id;
     }
 
-    public Likes getMutualLike() {
+    public Like getMutualLike() {
         return mutualLike;
     }
 
-    public void setMutualLike(Likes mutualLike) {
+    public void setMutualLike(Like mutualLike) {
         this.mutualLike = mutualLike;
     }
 
-    public Likes getLike() {
+    public Like getLike() {
         return like;
     }
 
-    public void setLike(Likes like) {
+    public void setLike(Like like) {
         this.like = like;
     }
 

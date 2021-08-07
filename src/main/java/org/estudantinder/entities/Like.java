@@ -4,39 +4,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
-// O nome da entidade é "Likes", pois "Like" é uma palavra reservada
-@Entity
-public class Likes {
+@Entity(name = "like")
+@Table(name = "\"like\"")
+public class Like {
 
     @Id
     @GeneratedValue
     private Long id;
 
     @ManyToOne
-    private Users sender;
+    private User sender;
 
     @ManyToOne
-    private Users receiver;
+    private User receiver;
 
     public Long getId() {
         return id;
     }
 
-    public Users getReceiver() {
+    public User getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(Users receiver) {
+    public void setReceiver(User receiver) {
         this.receiver = receiver;
     }
 
-    public Users getSender() {
+    public User getSender() {
         return sender;
     }
 
-    public void setSender(Users sender) {
+    public void setSender(User sender) {
         this.sender = sender;
     }
 

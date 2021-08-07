@@ -15,28 +15,28 @@ public class Dislike  {
     private Long id;
 
     @ManyToOne
-    private Users sender;
+    private User sender;
 
     @ManyToOne
-    private Users receiver;
+    private User receiver;
 
     public Long getId() {
         return id;
     }
 
-    public Users getReceiver() {
+    public User getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(Users receiver) {
+    public void setReceiver(User receiver) {
         this.receiver = receiver;
     }
 
-    public Users getSender() {
+    public User getSender() {
         return sender;
     }
 
-    public void setSender(Users sender) {
+    public void setSender(User sender) {
         this.sender = sender;
     }
 

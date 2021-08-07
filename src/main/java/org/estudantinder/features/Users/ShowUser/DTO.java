@@ -8,7 +8,7 @@ import org.estudantinder.entities.Course;
 import org.estudantinder.entities.Preferences;
 import org.estudantinder.entities.School;
 import org.estudantinder.entities.Subject;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 
 public class DTO {
     public Long id;
@@ -41,7 +41,7 @@ public class DTO {
 
     public Preferences preferences;
 
-    public static DTO mapUserToDTO(Users user) {
+    public static DTO mapUserToDTO(User user) {
         DTO data = new DTO();
 
         data.id = user.getId();

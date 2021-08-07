@@ -7,29 +7,29 @@ import javax.enterprise.context.ApplicationScoped;
 
 
 import org.estudantinder.entities.Subject;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 @ApplicationScoped
-public class UsersRepository implements PanacheRepository<Users> {
+public class UsersRepository implements PanacheRepository<User> {
     
-    public Users findByEmail(String email){
+    public User findByEmail(String email){
         return find("email", email).firstResult();
     }
 
-    public Stream<Users> findBySubject(Subject subject){
+    public Stream<User> findBySubject(Subject subject){
 
         //for some reason streamAll() doesn't work
-        List<Users> listedUsers = listAll();
+        List<User> listedUsers = listAll();
 
-        Stream<Users> streamedUsers = listedUsers.stream();
+        Stream<User> streamedUsers = listedUsers.stream();
 
         return streamedUsers.filter(user -> user.getSubjects().contains(subject));
     }
 
     public boolean isEmailAlreadyInUse(String email){
-        Users studentWithEmailInUse = find("email", email).firstResult();
+        User studentWithEmailInUse = find("email", email).firstResult();
         if (studentWithEmailInUse != null) {
             return true;
         }

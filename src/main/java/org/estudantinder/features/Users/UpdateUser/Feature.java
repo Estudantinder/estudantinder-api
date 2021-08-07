@@ -15,7 +15,7 @@ import javax.ws.rs.BadRequestException;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Contacts;
 import org.estudantinder.entities.Course;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 import org.estudantinder.features.Users.UpdateUser.DTO.ContactsDTO;
 import org.estudantinder.features.Users.UpdateUser.DTO.UserDTO;
 import org.estudantinder.entities.Subject;
@@ -36,7 +36,7 @@ public class Feature {
     @Inject
     SubjectsRepository subjectsRepository;
 
-    private void treatInvalidID(Users authenticatedUser) {
+    private void treatInvalidID(User authenticatedUser) {
                 if(authenticatedUser == null) 
             throw new NotFoundException("Token ID not found");
         
@@ -160,7 +160,7 @@ public class Feature {
         return authenticatedUserContacts;
     }
     
-    public Users updateUser(Users authenticatedUser, UserDTO updatedData) {
+    public User updateUser(User authenticatedUser, UserDTO updatedData) {
         
         if(updatedData.name != null) 
         authenticatedUser.setName(updatedData.name);
@@ -203,14 +203,14 @@ public class Feature {
     
     public void execute(JsonWebToken jwt, UserDTO data) throws Exception {
         Long userId = Long.parseLong(jwt.getClaim("id").toString());
-        Users authenticatedUser = usersRepository.findById(userId);
+        User authenticatedUser = usersRepository.findById(userId);
         
         treatInvalidID(authenticatedUser);
         treatBirthDateIfExists(data.birth_date);
         treatPasswordIfExists(data.password);
         treatClassroomIfExists(data.classroom);
 
-        Users updatedUser = updateUser(authenticatedUser, data);
+        User updatedUser = updateUser(authenticatedUser, data);
         usersRepository.persist(updatedUser);
     }
 }

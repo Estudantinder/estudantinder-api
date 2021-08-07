@@ -10,7 +10,7 @@ import javax.ws.rs.NotFoundException;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Match;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 import org.estudantinder.features.Students.common.MatchReturn;
 import org.estudantinder.repositories.MatchsRepository;
 import org.estudantinder.repositories.UsersRepository;
@@ -24,7 +24,7 @@ public class Feature {
     @Inject
     UsersRepository usersRepository;
 
-    Stream<Match> getUserMatchs(Stream<Match> allMatchs, Users authenticatedUser ) {
+    Stream<Match> getUserMatchs(Stream<Match> allMatchs, User authenticatedUser ) {
         Stream<Match> userMatchs = allMatchs.filter(
             match -> 
                 match.getLike().getSender() == authenticatedUser || 
@@ -33,7 +33,7 @@ public class Feature {
         return userMatchs;
     }
 
-    Stream<MatchReturn> getUserMatchReceivers(Stream<Match> userMatchs, Users authenticatedUser ) {
+    Stream<MatchReturn> getUserMatchReceivers(Stream<Match> userMatchs, User authenticatedUser ) {
         Stream<MatchReturn> userMatchsReceivers = userMatchs.map(match -> {
             if(match.getLike().getSender() == authenticatedUser) {
                 return MatchReturn.mapToMatchReturn(match.getLike().getReceiver(), match.getId());
@@ -45,14 +45,14 @@ public class Feature {
         return userMatchsReceivers;
     }
     
-    List<MatchReturn> listUserMatchReceivers(Stream<Match> allMatchs, Users authenticatedUser) {
+    List<MatchReturn> listUserMatchReceivers(Stream<Match> allMatchs, User authenticatedUser) {
         Stream<Match> studentMatchs = getUserMatchs(allMatchs, authenticatedUser);
         Stream<MatchReturn> userMatchReceivers = getUserMatchReceivers(studentMatchs, authenticatedUser);
 
         return userMatchReceivers.collect(Collectors.toList());
     }
 
-    void throwErrorIfStudentNotValid(Users user) {
+    void throwErrorIfStudentNotValid(User user) {
         if(user == null) {
             throw new NotFoundException("User id not found");
         }
@@ -60,7 +60,7 @@ public class Feature {
 
     public List<MatchReturn> execute(JsonWebToken jwt) throws Exception {
         Long userId = Long.parseLong(jwt.getClaim("id").toString());
-        Users authenticatedUser = usersRepository.findById(userId);
+        User authenticatedUser = usersRepository.findById(userId);
         
         throwErrorIfStudentNotValid(authenticatedUser);
         

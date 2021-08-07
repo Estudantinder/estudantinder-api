@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 import org.estudantinder.repositories.DislikesRepository;
 import org.estudantinder.repositories.UsersRepository;
 
@@ -20,19 +20,19 @@ public class Feature {
     UsersRepository usersRepository;
     
 
-    void treatInvalidUserID(Users authenticatedUser) {
+    void treatInvalidUserID(User authenticatedUser) {
         if(authenticatedUser == null) {
             throw new NotFoundException(" User id not found");
         }
     }
 
-    private void deleteAllLikes(Users authenticatedUser) {
+    private void deleteAllLikes(User authenticatedUser) {
         dislikesRepository.delete("sender", authenticatedUser);
     }
 
     public void execute(JsonWebToken jwt) throws Exception {
         Long senderId = Long.parseLong(jwt.getClaim("id").toString());
-        Users authenticatedUser = usersRepository.findById(senderId);
+        User authenticatedUser = usersRepository.findById(senderId);
  
         treatInvalidUserID(authenticatedUser);
         

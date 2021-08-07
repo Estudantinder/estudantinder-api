@@ -7,9 +7,9 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.estudantinder.entities.Likes;
+import org.estudantinder.entities.Like;
 import org.estudantinder.entities.Match;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 import org.estudantinder.features.Students.common.MatchReturn;
 import org.estudantinder.repositories.LikesRepository;
 import org.estudantinder.repositories.MatchsRepository;
@@ -30,8 +30,8 @@ public class Feature {
     UsersRepository usersRepository;
     
 
-    void throwExceptionIfLikeAlreadyExists(Users senderUser, Users receiverUser) {
-        Likes likeAlreadyExists = likesRepository.find("sender = :sender and receiver = :receiver",
+    void throwExceptionIfLikeAlreadyExists(User senderUser, User receiverUser) {
+        Like likeAlreadyExists = likesRepository.find("sender = :sender and receiver = :receiver",
             Parameters.with("sender", senderUser).and("receiver", receiverUser)).firstResult();
 
         if(likeAlreadyExists != null) {
@@ -39,7 +39,7 @@ public class Feature {
         }
     }
 
-    void throwExceptionIfUsersArentValid(Users senderUser, Users receiverUser) {
+    void throwExceptionIfUsersArentValid(User senderUser, User receiverUser) {
         if(senderUser == null) {
             throw new NotFoundException("Sender User id not found");
         } if(receiverUser == null) {
@@ -53,8 +53,8 @@ public class Feature {
         }
     }
 
-    Likes createLike(Users senderUser, Users receiverUser) {
-        Likes newLike = new Likes();
+    Like createLike(User senderUser, User receiverUser) {
+        Like newLike = new Like();
 
         newLike.setSender(senderUser);
         newLike.setReceiver(receiverUser);
@@ -64,7 +64,7 @@ public class Feature {
         return newLike;
     }
 
-    Match createMatch(Likes like, Likes mutualLike) {
+    Match createMatch(Like like, Like mutualLike) {
         Match newMatch = new Match();
 
         newMatch.setLike(like);
@@ -75,8 +75,8 @@ public class Feature {
         return newMatch;
     }
 
-    Match createMatchIfMutualLikeExists(Likes like) {
-        Likes mutualLike = likesRepository.find("sender = :sender and receiver = :receiver",
+    Match createMatchIfMutualLikeExists(Like like) {
+        Like mutualLike = likesRepository.find("sender = :sender and receiver = :receiver",
             Parameters.with("sender", like.getReceiver()).and("receiver", like.getSender())).firstResult();
 
         if(mutualLike != null) {
@@ -91,13 +91,13 @@ public class Feature {
 
         throwExceptionIfUsersAreEqual(senderId, receiverId);
 
-        Users senderUser = usersRepository.findById(senderId);
-        Users receiverUser = usersRepository.findById(receiverId);
+        User senderUser = usersRepository.findById(senderId);
+        User receiverUser = usersRepository.findById(receiverId);
   
         throwExceptionIfUsersArentValid(senderUser, receiverUser);
         throwExceptionIfLikeAlreadyExists(senderUser, receiverUser);
         
-        Likes createdLike = createLike(senderUser, receiverUser);
+        Like createdLike = createLike(senderUser, receiverUser);
 
         Match createdMatch = createMatchIfMutualLikeExists(createdLike);
 

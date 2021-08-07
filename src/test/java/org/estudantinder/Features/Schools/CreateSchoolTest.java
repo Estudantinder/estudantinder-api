@@ -4,8 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
+import io.smallrye.jwt.build.Jwt;
 
 import static org.hamcrest.Matchers.containsString;
+
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Set;
 
 import javax.json.Json;
 
@@ -30,6 +35,7 @@ public class CreateSchoolTest {
         given()
             .body(testSchool)
             .contentType(ContentType.JSON)
+            .auth().oauth2(generateValidUserToken())
             .when().post("/schools")
             .then()
                 .statusCode(201)
@@ -52,8 +58,16 @@ public class CreateSchoolTest {
         given()
             .body(testSchool)
             .contentType(ContentType.JSON)
+            .auth().oauth2(generateValidUserToken())
             .when().post("/schools")
             .then()
                 .statusCode(409);
+    }
+
+
+    static String generateValidUserToken() {
+        return Jwt.issuer("https://github.com/AdamAugustinsky").upn("estudantinder@quarkus.io")
+                .groups(Set.of("Admin", "User")).claim("id", 22).expiresAt(Instant.now().plus(2, ChronoUnit.MINUTES))
+                .sign();
     }
 }

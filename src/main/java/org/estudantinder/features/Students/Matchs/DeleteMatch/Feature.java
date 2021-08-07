@@ -5,9 +5,9 @@ import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.estudantinder.entities.Likes;
+import org.estudantinder.entities.Like;
 import org.estudantinder.entities.Match;
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 import org.estudantinder.repositories.LikesRepository;
 import org.estudantinder.repositories.MatchsRepository;
 import org.estudantinder.repositories.UsersRepository;
@@ -32,7 +32,7 @@ public class Feature {
         }
     }
 
-    void throwExceptionIfUserUnautorized(Match match, Users user) {
+    void throwExceptionIfUserUnautorized(Match match, User user) {
         if( match.getLike().getSender() != user &&
             match.getMutualLike().getSender() != user) {
             
@@ -40,7 +40,7 @@ public class Feature {
         }
     }
 
-    void throwExceptionIfUserNotValid(Users user) {
+    void throwExceptionIfUserNotValid(User user) {
         if(user == null) {
             throw new NotFoundException("User id Not Found");
         }
@@ -48,7 +48,7 @@ public class Feature {
 
     public void execute(JsonWebToken jwt ,Long matchId) throws Exception {
         Long UserId = Long.parseLong(jwt.getClaim("id").toString());
-        Users authenticatedUser = usersRepository.findById(UserId);
+        User authenticatedUser = usersRepository.findById(UserId);
 
         throwExceptionIfUserNotValid(authenticatedUser);
 
@@ -60,10 +60,10 @@ public class Feature {
         matchsRepository.delete(match);
 
         if(match.getLike().getSender() == authenticatedUser) {
-            Likes like = likesRepository.findById(match.getLike().getId());
+            Like like = likesRepository.findById(match.getLike().getId());
             likesRepository.delete(like);
         } else {
-            Likes like = likesRepository.findById(match.getMutualLike().getId());
+            Like like = likesRepository.findById(match.getMutualLike().getId());
             likesRepository.delete(like);
         }
 

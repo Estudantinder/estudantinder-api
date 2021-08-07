@@ -9,7 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
-import org.estudantinder.entities.Users;
+import org.estudantinder.entities.User;
 import org.estudantinder.features.Users.AuthenticateUser.DTO.JwtDTO;
 import org.estudantinder.features.Users.AuthenticateUser.DTO.LoginDTO;
 import org.estudantinder.repositories.UsersRepository;
@@ -26,12 +26,12 @@ public class Feature {
     @Inject
     UsersRepository usersRepository;
 
-    public void treatEmailNotFound(Users authenticatedUser) {
+    public void treatEmailNotFound(User authenticatedUser) {
         if (authenticatedUser == null)
             throw new NotFoundException("Email Not Found");
     }
 
-    public void treatDifferentPassword(Users authenticatedUser, String password) throws InvalidKeySpecException {
+    public void treatDifferentPassword(User authenticatedUser, String password) throws InvalidKeySpecException {
         if (!isPasswordCorrect(authenticatedUser.getPassword(), password))
             throw new UnauthorizedException("Wrong Password");
     }
@@ -42,11 +42,13 @@ public class Feature {
         return (producedPasswordCredential.verify(correctPasswordEvidence));
     }
 
-    public String generateJwt(Users authenticatedUser, Instant expireDate) {
+    public String generateJwt(User authenticatedUser, Instant expireDate) {
 
-        if (authenticatedUser.getIsAdmin()) {
-            return Jwt.issuer("https://github.com/AdamAugustinsky").upn("estudantinder@quarkus.io").groups(Set.of("Admin", "User"))
-                    .claim("id", authenticatedUser.getId()).expiresAt(expireDate).sign();
+        if (authenticatedUser.getIsAdmin() != null) {
+            if (authenticatedUser.getIsAdmin() == true)
+                return Jwt.issuer("https://github.com/AdamAugustinsky").upn("estudantinder@quarkus.io")
+                        .groups(Set.of("Admin", "User")).claim("id", authenticatedUser.getId()).expiresAt(expireDate)
+                        .sign();
         }
 
         return Jwt.issuer("https://github.com/AdamAugustinsky").upn("estudantinder@quarkus.io").groups("User")
@@ -54,7 +56,7 @@ public class Feature {
     }
 
     public JwtDTO execute(LoginDTO data) throws Exception {
-        Users authenticatedUser =  usersRepository.findByEmail(data.email);
+        User authenticatedUser = usersRepository.findByEmail(data.email);
 
         treatEmailNotFound(authenticatedUser);
         treatDifferentPassword(authenticatedUser, data.password);
@@ -62,7 +64,7 @@ public class Feature {
         Instant expireDate = Instant.now().plus(15, ChronoUnit.DAYS);
 
         String token = generateJwt(authenticatedUser, expireDate);
-        
+
         JwtDTO returnObject = new JwtDTO();
 
         returnObject.jwt = token;
