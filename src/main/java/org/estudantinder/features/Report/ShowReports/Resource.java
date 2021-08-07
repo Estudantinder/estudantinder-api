@@ -27,7 +27,8 @@ public class Resource {
     @GET
     @RolesAllowed("Admin")
     @SecurityRequirement(name = "jwt")
-    @APIResponse(responseCode = "201", description = "Report created")
+    @APIResponse(responseCode = "200", description = "OK")
+    @APIResponse(responseCode = "404", description = "Report not found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
     @Operation(summary = "List all reports")
     public Response showReports() throws Exception {
