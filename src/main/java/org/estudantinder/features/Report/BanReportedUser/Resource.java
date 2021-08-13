@@ -27,11 +27,12 @@ public class Resource {
     Controller banReportedUserController;
 
     @DELETE
-    @Path("{reportId}")
+    @Path("banUser/{reportId}")
     @Transactional
     @RolesAllowed("Admin")
     @SecurityRequirement(name = "jwt")
     @APIResponse(responseCode = "200", description = "User successfully banned")
+    @APIResponse(responseCode = "404", description = "Report not found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
     @Operation(summary = "Ban a user in passed report")
     public Response banReportedUser(@PathParam("reportId") Long reportId) throws Exception {
