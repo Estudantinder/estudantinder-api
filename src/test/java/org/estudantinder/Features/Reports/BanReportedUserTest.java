@@ -21,7 +21,7 @@ public class BanReportedUserTest {
         given()
             .pathParam("reportId", 34)
             .auth().oauth2(generateValidUserToken())
-            .when().delete("/report/{reportId}")
+            .when().delete("/report/banUser/{reportId}")
             .then()
                 .statusCode(200);
     }
