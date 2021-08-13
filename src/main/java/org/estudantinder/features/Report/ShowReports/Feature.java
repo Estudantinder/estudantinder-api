@@ -24,7 +24,7 @@ public class Feature {
             ShowReportDTO reportDTO = new ShowReportDTO();
 
             reportDTO.reportId = report.getId();
-            reportDTO.title = report.getTitle();
+            reportDTO.title = report.getType();
             reportDTO.description = report.getDescription();
             reportDTO.reportedStudent = Student.mapUserToStudent(report.getReportedUser());
             reportDTO.reportDate = report.getReportDate();

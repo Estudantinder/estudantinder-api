@@ -14,7 +14,7 @@ public class Report {
     @GeneratedValue
     private Long id;
 
-    private String title;
+    private String type;
 
     private String description;
 
@@ -47,12 +47,12 @@ public class Report {
         this.description = description;
     }
 
-    public String getTitle() {
-        return title;
+    public String getType() {
+        return type;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setReportedUser(User reportedUser) {
