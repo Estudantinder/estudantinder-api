@@ -73,7 +73,8 @@ public class Feature {
 
         treatNotFoundReport(report);
 
-        reportsRepository.delete(report);
+        reportsRepository.findByUser(report.getReportedUser())
+            .forEach(deletedReport -> reportsRepository.delete(deletedReport));
 
         deleteAllUserMatchs(report.getReportedUser());
         deleteAllUserLikes(report.getReportedUser());
