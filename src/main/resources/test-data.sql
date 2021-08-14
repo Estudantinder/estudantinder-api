@@ -79,3 +79,6 @@ INSERT INTO app_user (id, bio, birth_date, classroom, email, gender, name, passw
     2, 1, 17, 5, 21);
 
 insert into report (id, description, reporteduser_id, type) values (nextval('hibernate_sequence'),'test description 01', 35, 'other');
+
+INSERT INTO app_admin (id, email, name, password) 
+    values (nextval('hibernate_sequence'), 'test1@email.com', 'test admin 1', '$2a$10$CJY0MfEYolW.UV5OACcSUuTlO71SIv8NgmmL7LX9iI2PM72umHow.');
