@@ -8,8 +8,8 @@ import javax.persistence.Table;
 
 import io.quarkus.elytron.security.common.BcryptUtil;
 
-@Entity(name="app_user")
-@Table(name="app_user")
+@Entity(name="app_admin")
+@Table(name="app_admin")
 public class Admin {
 
     @Id
