@@ -38,7 +38,7 @@ public class Resource {
     @APIResponse(responseCode = "404", description = "User Not Found")
     @APIResponse(responseCode = "500", description = "Couldn't validate jwt")
     @Operation(summary = "Check if jwt passed through auth bearer is valid")
-    public Response createUser() throws Exception {
+    public Response validateUserJwt() throws Exception {
         return validateEmailController.handle(jwt);
     }
 }
