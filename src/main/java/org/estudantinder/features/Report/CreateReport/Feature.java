@@ -27,7 +27,7 @@ public class Feature {
     public void persistReport(CreateReportDTO reportData, User reportedUser, LocalDate reportDate) {
         Report newReport = new Report();
 
-        newReport.setType(reportData.title);
+        newReport.setType(reportData.type);
         newReport.setDescription(reportData.description);
         newReport.setReportedUser(reportedUser);
         newReport.setReportDate(reportDate);
