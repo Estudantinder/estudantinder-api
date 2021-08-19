@@ -1,4 +1,4 @@
-package org.estudantinder.features.Report.CreateReport;
+package org.estudantinder.features.Reports.CreateReport;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

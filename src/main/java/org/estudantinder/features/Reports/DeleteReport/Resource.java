@@ -1,4 +1,4 @@
-package org.estudantinder.features.Report.BanReportedUser;
+package org.estudantinder.features.Reports.DeleteReport;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -27,14 +27,14 @@ public class Resource {
     Controller banReportedUserController;
 
     @DELETE
-    @Path("banUser/{reportId}")
+    @Path("{reportId}")
     @Transactional
     @RolesAllowed("Admin")
     @SecurityRequirement(name = "jwt")
-    @APIResponse(responseCode = "200", description = "User successfully banned")
-    @APIResponse(responseCode = "404", description = "Report not found")
+    @APIResponse(responseCode = "200", description = "Report suceessfully deleted")
+    @APIResponse(responseCode = "404", description = "Report id not found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
-    @Operation(summary = "Ban a user in passed report")
+    @Operation(summary = "Delete a report")
     public Response banReportedUser(@PathParam("reportId") Long reportId) throws Exception {
         return banReportedUserController.handle(reportId);
     }

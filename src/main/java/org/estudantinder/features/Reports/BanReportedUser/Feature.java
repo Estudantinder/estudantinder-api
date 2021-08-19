@@ -1,4 +1,4 @@
-package org.estudantinder.features.Report.BanReportedUser;
+package org.estudantinder.features.Reports.BanReportedUser;
 
 
 import java.util.List;

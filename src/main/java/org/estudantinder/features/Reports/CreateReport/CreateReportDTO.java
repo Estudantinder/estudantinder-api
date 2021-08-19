@@ -1,4 +1,4 @@
-package org.estudantinder.features.Report.CreateReport;
+package org.estudantinder.features.Reports.CreateReport;
 
 public class CreateReportDTO {
     public String type;

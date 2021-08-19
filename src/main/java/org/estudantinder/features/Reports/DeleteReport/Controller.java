@@ -1,4 +1,4 @@
-package org.estudantinder.features.Report.DeleteReport;
+package org.estudantinder.features.Reports.DeleteReport;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

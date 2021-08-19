@@ -1,4 +1,4 @@
-package org.estudantinder.features.Report.ShowReports;
+package org.estudantinder.features.Reports.ShowReports;
 
 import java.util.ArrayList;
 import java.util.List;
