@@ -1,4 +1,4 @@
-package org.estudantinder.features.Admin.CreateAdmin;
+package org.estudantinder.features.Admins.CreateAdmin;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -8,7 +8,7 @@ import javax.ws.rs.NotFoundException;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.Admin;
-import org.estudantinder.features.Admin.CreateAdmin.DTO.AdminDTO;
+import org.estudantinder.features.Admins.CreateAdmin.DTO.AdminDTO;
 import org.estudantinder.repositories.AdminsRepository;
 
 @ApplicationScoped

@@ -1,4 +1,4 @@
-package org.estudantinder.features.Admin.AdminJwtValidation;
+package org.estudantinder.features.Admins.AdminJwtValidation;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

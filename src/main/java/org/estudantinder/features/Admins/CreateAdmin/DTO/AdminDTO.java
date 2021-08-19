@@ -1,4 +1,4 @@
-package org.estudantinder.features.Admin.CreateAdmin.DTO;
+package org.estudantinder.features.Admins.CreateAdmin.DTO;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package org.estudantinder.features.Admin.AuthenticateAdmin;
+package org.estudantinder.features.Admins.AuthenticateAdmin;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.estudantinder.features.Admin.AuthenticateAdmin.DTO.LoginDTO;
+import org.estudantinder.features.Admins.AuthenticateAdmin.DTO.LoginDTO;
 
 @Path("admins")
 @Tag(name = "Admins")

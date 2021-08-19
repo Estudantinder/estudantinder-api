@@ -1,4 +1,4 @@
-package org.estudantinder.features.Admin.AdminJwtValidation;
+package org.estudantinder.features.Admins.AdminJwtValidation;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;

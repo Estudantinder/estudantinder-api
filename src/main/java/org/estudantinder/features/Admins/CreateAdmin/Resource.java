@@ -1,4 +1,4 @@
-package org.estudantinder.features.Admin.CreateAdmin;
+package org.estudantinder.features.Admins.CreateAdmin;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -18,7 +18,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.estudantinder.features.Admin.CreateAdmin.DTO.AdminDTO;
+import org.estudantinder.features.Admins.CreateAdmin.DTO.AdminDTO;
 
 @Path("admins")
 @Tag(name = "Admins")

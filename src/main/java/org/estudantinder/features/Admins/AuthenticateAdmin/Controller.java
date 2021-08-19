@@ -1,12 +1,12 @@
-package org.estudantinder.features.Admin.AuthenticateAdmin;
+package org.estudantinder.features.Admins.AuthenticateAdmin;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
-import org.estudantinder.features.Admin.AuthenticateAdmin.DTO.JwtDTO;
-import org.estudantinder.features.Admin.AuthenticateAdmin.DTO.LoginDTO;
+import org.estudantinder.features.Admins.AuthenticateAdmin.DTO.JwtDTO;
+import org.estudantinder.features.Admins.AuthenticateAdmin.DTO.LoginDTO;
 import org.estudantinder.features.commom.ErrorResponse;
 
 import io.quarkus.security.UnauthorizedException;

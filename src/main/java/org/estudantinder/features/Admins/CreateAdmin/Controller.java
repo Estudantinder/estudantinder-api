@@ -1,4 +1,4 @@
-package org.estudantinder.features.Admin.CreateAdmin;
+package org.estudantinder.features.Admins.CreateAdmin;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -7,7 +7,7 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.estudantinder.features.Admin.CreateAdmin.DTO.AdminDTO;
+import org.estudantinder.features.Admins.CreateAdmin.DTO.AdminDTO;
 import org.estudantinder.features.commom.ErrorResponse;
 
 @ApplicationScoped

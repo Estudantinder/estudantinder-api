@@ -1,4 +1,4 @@
-package org.estudantinder.features.Admin.AuthenticateAdmin;
+package org.estudantinder.features.Admins.AuthenticateAdmin;
 
 import java.security.spec.InvalidKeySpecException;
 import java.time.Instant;
@@ -9,8 +9,8 @@ import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
 import org.estudantinder.entities.Admin;
-import org.estudantinder.features.Admin.AuthenticateAdmin.DTO.JwtDTO;
-import org.estudantinder.features.Admin.AuthenticateAdmin.DTO.LoginDTO;
+import org.estudantinder.features.Admins.AuthenticateAdmin.DTO.JwtDTO;
+import org.estudantinder.features.Admins.AuthenticateAdmin.DTO.LoginDTO;
 import org.estudantinder.repositories.AdminsRepository;
 import org.wildfly.security.credential.PasswordCredential;
 import org.wildfly.security.evidence.PasswordGuessEvidence;
