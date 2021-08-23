@@ -23,16 +23,16 @@ public class Controller {
             return Response.status(Response.Status.CREATED).build();
 
         } catch (EntityExistsException error) {
-            return ErrorResponse.handle(409, "Couldn't create Admin", error);
+            return ErrorResponse.handle(409, "Não foi possivel criar o admin", error);
 
         } catch (BadRequestException error) {
-            return ErrorResponse.handle(400, "Couldn't create Admin", error);
+            return ErrorResponse.handle(400, "Não foi possivel criar o admin", error);
 
         } catch (NullPointerException error) {
-            return ErrorResponse.handle(400, "Couldn't create Admin", error);
+            return ErrorResponse.handle(400, "Não foi possivel criar o admin", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't create Admin", error);
+            return ErrorResponse.handle(500, "Não foi possivel criar o admin", error);
 
         }
     }

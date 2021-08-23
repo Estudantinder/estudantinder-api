@@ -23,13 +23,13 @@ public class Controller {
             return Response.status(Response.Status.OK).build();
 
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't delete Match", error);
+            return ErrorResponse.handle(404, "Não foi possivel deletar o match", error);
 
         } catch (UnauthorizedException error) {
-            return ErrorResponse.handle(401, "Couldn't delete Match", error);
+            return ErrorResponse.handle(401, "Não foi possivel deletar o match", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't delete Match", error);
+            return ErrorResponse.handle(500, "Não foi possivel deletar o match", error);
 
         }
     }

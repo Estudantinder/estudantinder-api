@@ -36,7 +36,7 @@ public class Resource {
     @APIResponse(responseCode = "400", description = "No Data Sent")
     @APIResponse(responseCode = "401", description = "JWT invalido")
     @APIResponse(responseCode = "404", description = "Admin Not Found")
-    @APIResponse(responseCode = "500", description = "Couldn't validate jwt")
+    @APIResponse(responseCode = "500", description = "Não foi possivel validar o jwt")
     @Operation(summary = "Check if jwt passed through auth bearer is a valid admin")
     public Response validateAdminJwt() throws Exception {
         return validateEmailController.handle(jwt);

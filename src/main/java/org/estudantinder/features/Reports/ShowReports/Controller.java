@@ -20,7 +20,7 @@ public class Controller {
 
             return Response.status(Response.Status.OK).entity(reportsList).build();
         }catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't show Reports", error);
+            return ErrorResponse.handle(500, "Não foi possivel mostrar os reports", error);
         }
     }
 }

@@ -24,10 +24,10 @@ public class Controller {
             return Response.status(Response.Status.OK).entity(StudentMatchs).build();
 
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't show Matchs", error);
+            return ErrorResponse.handle(404, "Não foi possivel mostrar os matchs", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't show Matchs", error);
+            return ErrorResponse.handle(500, "Não foi possivel mostrar os matchs", error);
 
         }
     }

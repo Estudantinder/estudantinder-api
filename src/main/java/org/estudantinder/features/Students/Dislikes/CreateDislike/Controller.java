@@ -23,16 +23,16 @@ public class Controller {
             return Response.status(Response.Status.CREATED).build();
 
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't update School", error);
+            return ErrorResponse.handle(404, "Não foi possivel atualizar a escola", error);
 
         } catch (EntityExistsException error) {
-            return ErrorResponse.handle(409, "Couldn't update School", error);
+            return ErrorResponse.handle(409, "Não foi possivel atualizar a escola", error);
 
         } catch (BadRequestException error) {
-            return ErrorResponse.handle(400, "Couldn't update School", error);
+            return ErrorResponse.handle(400, "Não foi possivel atualizar a escola", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't update School", error);
+            return ErrorResponse.handle(500, "Não foi possivel atualizar a escola", error);
         }
     }
 }

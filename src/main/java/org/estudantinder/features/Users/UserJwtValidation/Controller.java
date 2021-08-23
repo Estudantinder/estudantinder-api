@@ -20,13 +20,13 @@ public class Controller {
 
             return Response.status(Response.Status.NO_CONTENT).build();
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't validate jwt", error);
+            return ErrorResponse.handle(404, "Não foi possivel validar o jwt", error);
 
         } catch (NullPointerException error) {
-            return ErrorResponse.handle(400, "Couldn't validate jwt", error);
+            return ErrorResponse.handle(400, "Não foi possivel validar o jwt", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't validate jwt", error);
+            return ErrorResponse.handle(500, "Não foi possivel validar o jwt", error);
 
         }
     }

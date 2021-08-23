@@ -19,9 +19,9 @@ public class Controller {
 
             return Response.status(Response.Status.CREATED).build();
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't create Report", error);
+            return ErrorResponse.handle(404, "Não foi possivel criar o report", error);
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't create Report", error);
+            return ErrorResponse.handle(500, "Não foi possivel criar o report", error);
         }
     }
 }

@@ -20,13 +20,13 @@ public class Controller {
             return Response.status(Response.Status.CREATED).entity(data).build();
 
         } catch (EntityExistsException error) {
-            return ErrorResponse.handle(409, "Couldn't create Subject", error);
+            return ErrorResponse.handle(409, "Não foi possivel criar a materia", error);
 
         } catch (NullPointerException error) {
-            return ErrorResponse.handle(400, "Couldn't create Subject", error);
+            return ErrorResponse.handle(400, "Não foi possivel criar a materia", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't create Subject", error);
+            return ErrorResponse.handle(500, "Não foi possivel criar a materia", error);
 
         }
     }

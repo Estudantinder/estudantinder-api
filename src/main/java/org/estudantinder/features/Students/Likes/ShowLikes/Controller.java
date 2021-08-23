@@ -24,10 +24,10 @@ public class Controller {
             return Response.status(Response.Status.OK).entity(filteredStudent).build();
 
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't show Likes", error);
+            return ErrorResponse.handle(404, "Não foi possivel mostrar os likes", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't show Likes", error);
+            return ErrorResponse.handle(500, "Não foi possivel mostrar os likes", error);
 
         }
     }

@@ -15,25 +15,25 @@ import io.quarkus.security.UnauthorizedException;
 public class Controller {
 
     @Inject
-    Feature authenticateUser;
+    Feature authenticateAdmin;
 
     public Response handle(LoginDTO data) throws Exception {
         try {
-            JwtDTO returnObject = authenticateUser.execute(data);
+            JwtDTO returnObject = authenticateAdmin.execute(data);
 
             return Response.status(Response.Status.OK).entity(returnObject).build();
 
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't authenticate User", error);
+            return ErrorResponse.handle(404, "Não foi possivel autenticar o admin", error);
 
         } catch (UnauthorizedException error) {
-            return ErrorResponse.handle(401, "Couldn't authenticate User", error);
+            return ErrorResponse.handle(401, "Não foi possivel autenticar o admin", error);
 
         } catch (NullPointerException error) {
-            return ErrorResponse.handle(400, "Couldn't authenticate User", error);
+            return ErrorResponse.handle(400, "Não foi possivel autenticar o admin", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't authenticate User", error);
+            return ErrorResponse.handle(500, "Não foi possivel autenticar o admin", error);
         }
     }
 }

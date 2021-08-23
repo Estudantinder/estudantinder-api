@@ -24,11 +24,11 @@ public class Controller {
             return Response.status(Response.Status.OK).entity(filteredStudents).build();
 
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't show Students", error);
+            return ErrorResponse.handle(404, "Não foi possivel mostrar os estudantes", error);
 
         } catch (Exception error) {
             System.out.println(error.getMessage());
-            return ErrorResponse.handle(500, "Couldn't show Students", error);
+            return ErrorResponse.handle(500, "Não foi possivel mostrar os estudantes", error);
 
         }
     }

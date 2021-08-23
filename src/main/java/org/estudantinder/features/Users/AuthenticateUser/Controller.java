@@ -24,16 +24,16 @@ public class Controller {
             return Response.status(Response.Status.OK).entity(returnObject).build();
 
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't authenticate User", error);
+            return ErrorResponse.handle(404, "Não foi possivel autenticar o usuário", error);
 
         } catch (UnauthorizedException error) {
-            return ErrorResponse.handle(401, "Couldn't authenticate User", error);
+            return ErrorResponse.handle(401, "Não foi possivel autenticar o usuário", error);
 
         } catch (NullPointerException error) {
-            return ErrorResponse.handle(400, "Couldn't authenticate User", error);
+            return ErrorResponse.handle(400, "Não foi possivel autenticar o usuário", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't authenticate User", error);
+            return ErrorResponse.handle(500, "Não foi possivel autenticar o usuário", error);
         }
     }
 }
