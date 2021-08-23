@@ -28,7 +28,7 @@ public class Feature {
 
     private void treatInvalidId(User authenticatedUser) throws Exception {
         if (authenticatedUser == null) {
-            throw new NotFoundException("jwt id not valid");
+            throw new NotFoundException("Usuário não encontrado");
         }
     }
 

@@ -24,7 +24,7 @@ public class Feature {
         School updatedSchool = schoolsRepository.findById(id);
 
         if(updatedSchool == null) {
-            throw new NotFoundException("Couldn't find School");
+            throw new NotFoundException("Não foi possivel achar a escola");
         }
 
 

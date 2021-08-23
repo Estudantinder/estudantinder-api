@@ -35,21 +35,21 @@ public class Feature {
             Parameters.with("sender", senderUser).and("receiver", receiverUser)).firstResult();
 
         if(likeAlreadyExists != null) {
-            throw new EntityExistsException("Like Already Exists");
+            throw new EntityExistsException("Like já existe");
         }
     }
 
     void throwExceptionIfUsersArentValid(User senderUser, User receiverUser) {
         if(senderUser == null) {
-            throw new NotFoundException("Sender User id not found");
+            throw new NotFoundException("Remetente não encontrado");
         } if(receiverUser == null) {
-            throw new NotFoundException("Receiver User id not found");
+            throw new NotFoundException("Destinatario não encontrado");
         }
     }
     
     void throwExceptionIfUsersAreEqual(Long senderId, Long receiverId) {
         if(senderId.equals(receiverId)) {
-            throw new BadRequestException("User can't like himself");
+            throw new BadRequestException("Usuário não pode dar like em si mesmo");
         }
     }
 

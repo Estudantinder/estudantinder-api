@@ -68,7 +68,7 @@ public class Feature {
         Course course = coursesRepository.findById(courseId);
 
         if(course == null) {
-            throw new NotFoundException("Course Not Found");
+            throw new NotFoundException("Curso Não encontrado");
         }
 
         return course;
@@ -90,7 +90,7 @@ public class Feature {
         Subject subject = subjectsRepository.findById(subject_id);
 
         if(subject == null) {
-            throw new NotFoundException("Subject id "+subject_id+" Not Found");
+            throw new NotFoundException("Materia com o id "+subject_id+" não encontrada");
         }
 
         return subject;
@@ -100,7 +100,7 @@ public class Feature {
         List<Subject> subjects = new ArrayList<Subject>();
         
         if(isListFieldDuplicate(subjects_id)) {
-            throw new BadRequestException("Subject ID's can't be duplicated");
+            throw new BadRequestException("Id da materia não pode ser duplicado");
         }
 
         subjects_id.forEach(subject_id -> {
@@ -145,23 +145,23 @@ public class Feature {
         boolean isEmailAlreadyInUse = UsersRepository.isEmailAlreadyInUse(data.email);
 
         if(isEmailAlreadyInUse) {
-            throw new EntityExistsException("Email Already In Use");
+            throw new EntityExistsException("Email já esta em uso");
         }
    
         if(data.contacts == null) {
-            throw new NotFoundException("At Least 1 Contact is Required");
+            throw new NotFoundException("Ao menos 1 contato é necessario");
         }
 
         if(checkIfPasswordDoesntContainsNumber(data.password)) {
-            throw new BadRequestException("Password must contain at least 1 number");
+            throw new BadRequestException("A senha deve conter ao menos 1 numero");
         }
 
         if(checkIfAgeIsntCorrect(data.birth_date)) {
-            throw new BadRequestException("User age must be between 14-21");
+            throw new BadRequestException("A idade minima é 14 e maxima é 21");
         }
 
         if(checkIfClassroomIsAlphabetical(data.classroom)) {
-            throw new BadRequestException("Classroom must be alphabetical");
+            throw new BadRequestException("Classe tem que ser uma letra do alfabeto");
         }
         
         User newUser = setNewUser(data);

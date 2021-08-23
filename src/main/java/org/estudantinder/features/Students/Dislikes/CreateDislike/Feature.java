@@ -29,21 +29,21 @@ public class Feature {
             Parameters.with("sender", senderUser).and("receiver", receiverUser)).firstResult();
 
         if(dislikeAlreadyExists != null) {
-            throw new EntityExistsException("Dislike Already Exists");
+            throw new EntityExistsException("Dislike já existe");
         }
     }
 
     void treatfUsersArentValid(User senderUser, User receiverUser) {
         if(senderUser == null) {
-            throw new NotFoundException("Sender User id not found");
+            throw new NotFoundException("Remetente não encontrado");
         } if(receiverUser == null) {
-            throw new NotFoundException("Receiver User id not found");
+            throw new NotFoundException("Detinatario não encontrado");
         }
     }
     
     void treatUsersAreEqual(Long senderId, Long receiverId) {
         if(senderId.equals(receiverId)) {
-            throw new BadRequestException("User can't dislike himself");
+            throw new BadRequestException("Usuário não pode dar dislike em si mesmo");
         }
     }
 

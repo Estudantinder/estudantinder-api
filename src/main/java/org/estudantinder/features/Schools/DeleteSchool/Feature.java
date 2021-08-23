@@ -17,7 +17,7 @@ public class Feature {
         School school = schoolsRepository.findById(id);
         
         if(school == null) {
-            throw new NotFoundException("School not found");
+            throw new NotFoundException("Escola não encontrada");
         }
 
         schoolsRepository.delete(school);

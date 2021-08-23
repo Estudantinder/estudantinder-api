@@ -36,7 +36,7 @@ public class Feature {
     MatchsRepository matchsRepository;
 
     public void treatNotFoundReport(Report report) {
-        if(report == null) throw new NotFoundException("Report Not Found");
+        if(report == null) throw new NotFoundException("Denuncia Não encontrada");
     }
 
     public void deleteAllUserMatchs(User user) {

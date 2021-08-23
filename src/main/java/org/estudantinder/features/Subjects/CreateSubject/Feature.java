@@ -15,7 +15,7 @@ public class Feature {
 
     void throwExceptionIfSubjectAlreadyExists(Subject subject) {
         if (subject != null) {
-            throw new EntityExistsException("Subject already exists");
+            throw new EntityExistsException("Materia já existe");
         }
     }
 

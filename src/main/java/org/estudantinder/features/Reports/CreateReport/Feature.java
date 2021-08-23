@@ -21,7 +21,7 @@ public class Feature {
     ReportsRepository reportsRepository;
 
     public void treatUserDoesntExist(User user) {
-        if (user == null) throw new NotFoundException("User id does not exist");
+        if (user == null) throw new NotFoundException("Usuário não encontrada");
     }
 
     public void persistReport(CreateReportDTO reportData, User reportedUser, LocalDate reportDate) {

@@ -27,12 +27,12 @@ public class Feature {
 
     public void treatEmailNotFound(Admin authenticatedAdmin) {
         if (authenticatedAdmin == null)
-            throw new NotFoundException("Email Not Found");
+            throw new NotFoundException("Email não encontardo");
     }
 
     public void treatDifferentPassword(Admin authenticatedAdmin, String password) throws InvalidKeySpecException {
         if (!isPasswordCorrect(authenticatedAdmin.getPassword(), password))
-            throw new UnauthorizedException("Wrong Password");
+            throw new UnauthorizedException("Senha incorreta");
     }
 
     public boolean isPasswordCorrect(String hashDBPassword, String loginPassword) throws InvalidKeySpecException {

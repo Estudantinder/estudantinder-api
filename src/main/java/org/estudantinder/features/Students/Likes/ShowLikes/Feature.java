@@ -26,7 +26,7 @@ public class Feature {
 
     void throwExceptionIfUserNotValid(User user) {
         if (user == null) {
-            throw new NotFoundException("User id not found");
+            throw new NotFoundException("Usuário não encontrado");
         }
     }
 

@@ -18,7 +18,7 @@ public class Feature {
     UsersRepository usersRepository;
 
     public void treatNotFoundReport(Report report) {
-        if(report == null) throw new NotFoundException("Report Not Found");
+        if(report == null) throw new NotFoundException("Denuncia não encontrada");
     }
 
     public void execute(Long reportId) throws Exception {

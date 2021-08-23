@@ -17,7 +17,7 @@ public class Feature {
     
     private void treatInvalidID(User user) {
         if(user == null) {
-            throw new NotFoundException("Token ID not valid");
+            throw new NotFoundException("Usuário não encontrado");
         }
     } 
 

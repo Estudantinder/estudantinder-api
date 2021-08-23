@@ -19,17 +19,17 @@ public class Feature {
 
     public void treatEmailAlreadyInUse(Admin isEmailAlreadyInUse) {
         if(isEmailAlreadyInUse != null) 
-            throw new EntityExistsException("Email Already In Use");
+            throw new EntityExistsException("Email já esta em uso");
     }
 
     public void treatPasswordDoesntContainsNumber(String password) {
         if(checkIfPasswordDoesntContainsNumber(password))
-            throw new BadRequestException("Password must contain at least 1 number");
+            throw new BadRequestException("A senha deve conter ao menos 1 numero");
     }
 
     public void treatAdminInJwtNotFound(Admin adminInJwt) {
         if(adminInJwt == null) 
-            throw new NotFoundException("Admin ID in jwt was not found");
+            throw new NotFoundException("Admin não encontrado");
     }
     
     public boolean checkIfPasswordDoesntContainsNumber(String password) {

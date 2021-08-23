@@ -44,7 +44,7 @@ public class Feature {
         Course course = coursesRepository.findById(courseId);
 
         if(course == null) {
-            throw new NotFoundException("Course Not Found");
+            throw new NotFoundException("Curso não encontrado");
         }
 
         return course;
@@ -54,7 +54,7 @@ public class Feature {
         School school = schoolsRepository.findById(schoolId);
 
         if(school == null) {
-            throw new NotFoundException("Course Not Found");
+            throw new NotFoundException("Curso não encontrado");
         }
 
         return school;
@@ -62,13 +62,13 @@ public class Feature {
     
     private void treatStudentInvalidID(User user) {
         if(user == null) {
-            throw new NotFoundException("Student ID not valid");
+            throw new NotFoundException("Estudante não encontrado");
         }
     } 
 
     private void treatSubjectsDuplicatedID(List<Long> subjects_ids) {
         if(isListFieldDuplicate(subjects_ids)) {
-            throw new BadRequestException("Subject ID's can't be duplicated");
+            throw new BadRequestException("Id da materia não pode ser duplicado");
         }
     }
     public boolean isListFieldDuplicate(List<Long> subjects_id) {
@@ -87,7 +87,7 @@ public class Feature {
         Subject subject = subjectsRepository.findById(subject_id);
 
         if(subject == null) {
-            throw new NotFoundException("Subject id "+subject_id+" Not Found");
+            throw new NotFoundException("Materia com o id "+subject_id+" Não encontrado");
         }
 
         return subject;
