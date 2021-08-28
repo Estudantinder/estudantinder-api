@@ -27,7 +27,7 @@ public class Feature {
 
     public void treatEmailNotFound(Admin authenticatedAdmin) {
         if (authenticatedAdmin == null)
-            throw new NotFoundException("Email não encontardo");
+            throw new NotFoundException("Email não encontrado");
     }
 
     public void treatDifferentPassword(Admin authenticatedAdmin, String password) throws InvalidKeySpecException {
