@@ -20,7 +20,6 @@ public class ShowAdminTest {
             .auth().oauth2(generateValidUserToken())
             .when().get("/admins")
             .then()
-                .log().all()
                 .statusCode(200);
     }
 
