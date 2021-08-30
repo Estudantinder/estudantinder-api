@@ -6,6 +6,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
+import org.estudantinder.features.Reports.ShowReports.DTO.UserReportsDTO;
 import org.estudantinder.features.commom.ErrorResponse;
 
 @ApplicationScoped
@@ -16,7 +17,7 @@ public class Controller {
 
     public Response handle() throws Exception {
         try {
-            List<ShowReportDTO> reportsList = showReports.execute();
+            List<UserReportsDTO> reportsList = showReports.execute();
 
             return Response.status(Response.Status.OK).entity(reportsList).build();
         }catch (Exception error) {
