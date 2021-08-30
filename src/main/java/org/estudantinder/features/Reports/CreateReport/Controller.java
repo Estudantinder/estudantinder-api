@@ -2,6 +2,7 @@ package org.estudantinder.features.Reports.CreateReport;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
@@ -18,6 +19,8 @@ public class Controller {
             createReport.execute(reportData, reportedUserId);
 
             return Response.status(Response.Status.CREATED).build();
+        } catch (BadRequestException error) {
+            return ErrorResponse.handle(400, "Não foi possivel criar o report", error);
         } catch (NotFoundException error) {
             return ErrorResponse.handle(404, "Não foi possivel criar o report", error);
         } catch (Exception error) {

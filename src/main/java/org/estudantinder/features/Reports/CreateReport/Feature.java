@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 
 import org.estudantinder.entities.Report;
@@ -21,7 +22,14 @@ public class Feature {
     ReportsRepository reportsRepository;
 
     public void treatUserDoesntExist(User user) {
-        if (user == null) throw new NotFoundException("Usuário não encontrada");
+        if (user == null)
+            throw new NotFoundException("Usuário não encontrada");
+    }
+
+    public void treatTypeNotAccepted(User user) {
+        if (user == null)
+            throw new BadRequestException("Tipo de report não aceito, tipos aceitos são:"
+                    + "( 'fakeProfile', 'inappropriateContent', 'spanContent', 'hackedAccount', 'selfHarm', 'custom')");
     }
 
     public void persistReport(CreateReportDTO reportData, User reportedUser, LocalDate reportDate) {
@@ -36,9 +44,10 @@ public class Feature {
     }
 
     public void execute(CreateReportDTO reportData, Long reportedUserId) throws Exception {
-        User reportedUser = usersRepository.findById(reportedUserId); 
+        User reportedUser = usersRepository.findById(reportedUserId);
 
         treatUserDoesntExist(reportedUser);
+        treatTypeNotAccepted(reportedUser);
 
         persistReport(reportData, reportedUser, LocalDate.now());
     }
