@@ -1,6 +1,7 @@
 package org.estudantinder.features.Reports.CreateReport;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -26,10 +27,14 @@ public class Feature {
             throw new NotFoundException("Usuário não encontrada");
     }
 
-    public void treatTypeNotAccepted(User user) {
-        if (user == null)
+    public void treatTypeNotAccepted(String type) {
+        List<String> acceptedTypes = List.of("fakeProfile", "inappropriateContent", "spanContent", "hackedAccount",
+                "selfHarm", "custom");
+
+        if(!acceptedTypes.contains(type)){
             throw new BadRequestException("Tipo de report não aceito, tipos aceitos são:"
-                    + "( 'fakeProfile', 'inappropriateContent', 'spanContent', 'hackedAccount', 'selfHarm', 'custom')");
+                +"('fakeProfile', 'inappropriateContent', 'spanContent', 'hackedAccount', 'selfHarm', 'custom')");
+        }
     }
 
     public void persistReport(CreateReportDTO reportData, User reportedUser, LocalDate reportDate) {
@@ -47,7 +52,7 @@ public class Feature {
         User reportedUser = usersRepository.findById(reportedUserId);
 
         treatUserDoesntExist(reportedUser);
-        treatTypeNotAccepted(reportedUser);
+        treatTypeNotAccepted(reportData.type);
 
         persistReport(reportData, reportedUser, LocalDate.now());
     }
