@@ -20,7 +20,7 @@ public class CreateReportTest {
     @Test
     public void testCreateReportEndpoint() {
 
-        String testReport = Json.createObjectBuilder().add("title", "TEST TITLE").add("description", "TEST DESCRIPTION")
+        String testReport = Json.createObjectBuilder().add("type", "fakeProfile")
                 .build().toString();
 
         given()
@@ -36,7 +36,7 @@ public class CreateReportTest {
     @Test
     public void testStudentNotFound() {
 
-        String testReport = Json.createObjectBuilder().add("title", "TEST TITLE").add("description", "TEST DESCRIPTION")
+        String testReport = Json.createObjectBuilder().add("type", "fakeProfile")
                 .build().toString();
 
         given()
