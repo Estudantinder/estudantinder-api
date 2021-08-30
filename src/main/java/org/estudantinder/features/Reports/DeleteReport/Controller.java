@@ -11,11 +11,11 @@ import org.estudantinder.features.commom.ErrorResponse;
 public class Controller {
 
     @Inject
-    Feature banReportedUser;
+    Feature deleteUserReports;
 
-    public Response handle(Long reportId) throws Exception {
+    public Response handle(Long userId) throws Exception {
         try {
-            banReportedUser.execute(reportId);
+            deleteUserReports.execute(userId);
 
             return Response.status(Response.Status.OK).build();
         } catch (NotFoundException error) {

@@ -4,7 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
-import org.estudantinder.entities.Report;
+import org.estudantinder.entities.User;
 import org.estudantinder.repositories.ReportsRepository;
 import org.estudantinder.repositories.UsersRepository;
 
@@ -17,15 +17,16 @@ public class Feature {
     @Inject
     UsersRepository usersRepository;
 
-    public void treatNotFoundReport(Report report) {
-        if(report == null) throw new NotFoundException("Denuncia não encontrada");
+    public void treatUserNotFound(User user) {
+        if(user == null) throw new NotFoundException("Usuário não encontrada");
     }
 
-    public void execute(Long reportId) throws Exception {
-        Report report = reportsRepository.findById(reportId);
+    public void execute(Long userId) throws Exception {
+        User user = usersRepository.findById(userId);
 
-        treatNotFoundReport(report);
+        treatUserNotFound(user);
 
-        reportsRepository.delete(report);
+        reportsRepository.findByUser(user)
+            .forEach(deletedReport -> reportsRepository.delete(deletedReport));
     }
 }
