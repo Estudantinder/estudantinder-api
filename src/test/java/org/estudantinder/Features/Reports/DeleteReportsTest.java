@@ -13,15 +13,15 @@ import java.util.Set;
 import static io.restassured.RestAssured.given;
 
 @QuarkusTest
-public class DeleteReportTest {
+public class DeleteReportsTest {
 
     @Test
     public void testBanReportedUserEndpoint() {
 
         given()
-            .pathParam("reportId", 36)
+            .pathParam("userId", 35)
             .auth().oauth2(generateValidUserToken())
-            .when().delete("/report/{reportId}")
+            .when().delete("/report/{userId}")
             .then()
                 .statusCode(200);
     }
