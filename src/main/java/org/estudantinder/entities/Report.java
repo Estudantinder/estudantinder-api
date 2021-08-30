@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Report {
 
@@ -21,6 +23,7 @@ public class Report {
     private LocalDate reportDate;
     
     @ManyToOne
+    @JsonIgnore
     private User reportedUser;
 
     public Long getId() {
