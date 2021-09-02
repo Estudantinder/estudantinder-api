@@ -6,4 +6,5 @@ import java.util.List;
 public class ReportDTO {
     public String type;
     public List<LocalDate> dates;
+    public List<String> descriptions;
 }

@@ -28,9 +28,12 @@ public class Feature {
         ReportDTO reportDTO = new ReportDTO();
         reportDTO.type = type;
         reportDTO.dates = new ArrayList<LocalDate>();
+        reportDTO.descriptions = new ArrayList<String>();
 
         reportsRepository.findByUserAndType(user, type).stream().forEach(report -> {
             reportDTO.dates.add(report.getReportDate());
+            if(type == "custom")
+                reportDTO.descriptions.add(report.getDescription());
         });
 
         return reportDTO;
