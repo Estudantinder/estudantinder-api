@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 
 import org.estudantinder.entities.Match;
-import org.estudantinder.entities.Report;
 import org.estudantinder.entities.User;
 import org.estudantinder.repositories.DislikesRepository;
 import org.estudantinder.repositories.LikesRepository;
@@ -35,8 +34,8 @@ public class Feature {
     @Inject
     MatchsRepository matchsRepository;
 
-    public void treatNotFoundReport(Report report) {
-        if(report == null) throw new NotFoundException("Denuncia Não encontrada");
+    public void treatUserNotFound(User user) {
+        if(user == null) throw new NotFoundException("Usuário não encontrado");
     }
 
     public void deleteAllUserMatchs(User user) {
@@ -68,18 +67,18 @@ public class Feature {
             .forEach(dislike -> dislikesRepository.delete(dislike));
     }
 
-    public void execute(Long reportId) throws Exception {
-        Report report = reportsRepository.findById(reportId);
+    public void execute(Long userId) throws Exception {
+        User user = usersRepository.findById(userId);
 
-        treatNotFoundReport(report);
+        treatUserNotFound(user);
 
-        reportsRepository.findByUser(report.getReportedUser())
+        reportsRepository.findByUser(user)
             .forEach(deletedReport -> reportsRepository.delete(deletedReport));
 
-        deleteAllUserMatchs(report.getReportedUser());
-        deleteAllUserLikes(report.getReportedUser());
-        deleteAllUserDislikes(report.getReportedUser());
+        deleteAllUserMatchs(user);
+        deleteAllUserLikes(user);
+        deleteAllUserDislikes(user);
 
-        usersRepository.delete(report.getReportedUser());
+        usersRepository.delete(user);
     }
 }
