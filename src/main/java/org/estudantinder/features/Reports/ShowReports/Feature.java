@@ -9,9 +9,9 @@ import javax.inject.Inject;
 
 import org.estudantinder.entities.Report;
 import org.estudantinder.entities.User;
+import org.estudantinder.features.Reports.ShowReports.DTO.FullUserDTO;
 import org.estudantinder.features.Reports.ShowReports.DTO.ReportDTO;
 import org.estudantinder.features.Reports.ShowReports.DTO.UserReportsDTO;
-import org.estudantinder.features.commom.Student;
 import org.estudantinder.repositories.ReportsRepository;
 import org.estudantinder.repositories.UsersRepository;
 
@@ -44,7 +44,7 @@ public class Feature {
                 "selfHarm", "custom");
 
         UserReportsDTO userReportDTO = new UserReportsDTO();
-        userReportDTO.user = Student.mapUserToStudentWithContacts(user);
+        userReportDTO.user = FullUserDTO.mapToFullUserDTO(user);
         userReportDTO.reports = new ArrayList<ReportDTO>();
 
         acceptedTypes.forEach(type -> userReportDTO.reports.add(mapToReportDTO(user, type)));
