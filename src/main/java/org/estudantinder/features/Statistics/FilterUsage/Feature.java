@@ -44,7 +44,7 @@ public class Feature {
 
     //get subjects usage
     public Long getSubjectsUsage(List<Preferences> allPreferences) {
-        return allPreferences.stream().filter(preferences -> preferences.getSubjects() != null).count();
+        return allPreferences.stream().filter(preferences -> !preferences.getSubjects().isEmpty()).count();
     }
 
 
@@ -54,10 +54,10 @@ public class Feature {
 
         FilterUsageDTO filterUsageDTO = new FilterUsageDTO();
         
-        filterUsageDTO.quantity_of_school_year = getSchoolUsage(preferencesList);
+        filterUsageDTO.quantity_of_school_year = getSchoolYearUsage(preferencesList);
         filterUsageDTO.quantity_of_shift = getShiftUsage(preferencesList);
         filterUsageDTO.quantity_of_gender = getGenderUsage(preferencesList);
-        filterUsageDTO.quantity_of_course = getGenderUsage(preferencesList);
+        filterUsageDTO.quantity_of_course = getCourseUsage(preferencesList);
         filterUsageDTO.quantity_of_school = getSchoolUsage(preferencesList);
         filterUsageDTO.quantity_of_subjects = getSubjectsUsage(preferencesList);
 
