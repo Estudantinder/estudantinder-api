@@ -20,11 +20,11 @@ public class Feature {
         }
     } 
 
-    public User execute(Long userId) throws Exception {
+    public FullUserDTO execute(Long userId) throws Exception {
         User user = usersRepository.findById(userId);
         
         treatUserNotFound(user);
 
-        return user;
+        return FullUserDTO.mapToFullUserDTO(user);
     }
 }

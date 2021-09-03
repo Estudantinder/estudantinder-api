@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
-import org.estudantinder.entities.User;
 import org.estudantinder.features.commom.ErrorResponse;
 
 @ApplicationScoped
@@ -16,9 +15,9 @@ public class Controller {
 
     public Response handle(Long userId) throws Exception {
         try {
-            User user = showUser.execute(userId);
+            FullUserDTO fullUser = showUser.execute(userId);
 
-            return Response.status(Response.Status.OK).entity(user).build();
+            return Response.status(Response.Status.OK).entity(fullUser).build();
 
         } catch (NotFoundException error) {
             return ErrorResponse.handle(404, "Não foi possivel mostrar o usuário", error);
