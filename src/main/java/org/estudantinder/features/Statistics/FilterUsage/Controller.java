@@ -1,6 +1,8 @@
 package org.estudantinder.features.Statistics.FilterUsage;
 
 
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
@@ -15,9 +17,9 @@ public class Controller {
 
     public Response handle() throws Exception {
         try {
-            FilterUsageDTO filterUsage = showFilterUsage.execute();
+            List<FilterUsageDTO> filterUsageDTOs = showFilterUsage.execute();
 
-            return Response.status(Response.Status.OK).entity(filterUsage).build();
+            return Response.status(Response.Status.OK).entity(filterUsageDTOs).build();
         } catch (Exception error) {
             return ErrorResponse.handle(500, "Não foi possivel mostrar o numero de usuarios registrados", error);
         }

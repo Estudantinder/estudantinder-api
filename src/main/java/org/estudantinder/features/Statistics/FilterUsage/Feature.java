@@ -1,5 +1,6 @@
 package org.estudantinder.features.Statistics.FilterUsage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -18,49 +19,72 @@ public class Feature {
     @Inject
     UsersRepository usersRepository;
 
-    public Long getSchoolYearUsage(List<Preferences> allPreferences) {
-        return allPreferences.stream().filter(preferences -> preferences.getSchool_year() != 0).count();
+    public FilterUsageDTO createFilterUsageDTO(String name, List<Preferences> allPreferences, Long filterQuantity,
+            Long appUsers) {
+        FilterUsageDTO newFilterUsage = new FilterUsageDTO();
+        newFilterUsage.name = name;
+        newFilterUsage.total = filterQuantity;
+        newFilterUsage.percent = (double) (filterQuantity / (double) appUsers);
+
+        return newFilterUsage;
     }
 
-    //get shift usage
-    public Long getShiftUsage(List<Preferences> allPreferences) {
-        return allPreferences.stream().filter(preferences -> preferences.getShift() != 0).count();
+    public void addSchoolYearStatistics(List<Preferences> allPreferences, List<FilterUsageDTO> filterUsageDTOs,
+            Long appUsers) {
+        Long filterQuantity = allPreferences.stream().filter(preferences -> preferences.getSchool_year() != 0).count();
+
+        filterUsageDTOs.add(createFilterUsageDTO("School Year", allPreferences, filterQuantity, appUsers));
     }
 
-    //get gender usage
-    public Long getGenderUsage(List<Preferences> allPreferences) {
-        return allPreferences.stream().filter(preferences -> preferences.getGender() != null).count();
+    public void addShiftStatistics(List<Preferences> allPreferences, List<FilterUsageDTO> filterUsageDTOs,
+            Long appUsers) {
+        Long filterQuantity = allPreferences.stream().filter(preferences -> preferences.getShift() != 0).count();
+
+        filterUsageDTOs.add(createFilterUsageDTO("Shift", allPreferences, filterQuantity, appUsers));
     }
 
-    //get course usage
-    public Long getCourseUsage(List<Preferences> allPreferences) {
-        return allPreferences.stream().filter(preferences -> preferences.getCourse() != null).count();
+    public void addGenderStatistics(List<Preferences> allPreferences, List<FilterUsageDTO> filterUsageDTOs,
+            Long appUsers) {
+        Long filterQuantity = allPreferences.stream().filter(preferences -> preferences.getGender() != null).count();
+
+        filterUsageDTOs.add(createFilterUsageDTO("Gender", allPreferences, filterQuantity, appUsers));
     }
 
-    //get school usage
-    public Long getSchoolUsage(List<Preferences> allPreferences) {
-        return allPreferences.stream().filter(preferences -> preferences.getSchool() != null).count();
+    public void addCourseStatistics(List<Preferences> allPreferences, List<FilterUsageDTO> filterUsageDTOs,
+            Long appUsers) {
+        Long filterQuantity = allPreferences.stream().filter(preferences -> preferences.getCourse() != null).count();
+
+        filterUsageDTOs.add(createFilterUsageDTO("Course", allPreferences, filterQuantity, appUsers));
     }
 
-    //get subjects usage
-    public Long getSubjectsUsage(List<Preferences> allPreferences) {
-        return allPreferences.stream().filter(preferences -> !preferences.getSubjects().isEmpty()).count();
+    public void addSchoolStatistics(List<Preferences> allPreferences, List<FilterUsageDTO> filterUsageDTOs,
+            Long appUsers) {
+        Long filterQuantity = allPreferences.stream().filter(preferences -> preferences.getSchool() != null).count();
+
+        filterUsageDTOs.add(createFilterUsageDTO("School", allPreferences, filterQuantity, appUsers));
     }
 
+    public void addSubjectsStatistics(List<Preferences> allPreferences, List<FilterUsageDTO> filterUsageDTOs,
+            Long appUsers) {
+        Long filterQuantity = allPreferences.stream().filter(preferences -> preferences.getSubjects() != null).count();
 
-    public FilterUsageDTO execute() {
+        filterUsageDTOs.add(createFilterUsageDTO("Subject", allPreferences, filterQuantity, appUsers));
+    }
+
+    public List<FilterUsageDTO> execute() {
 
         List<Preferences> preferencesList = preferencesRepository.listAll();
 
-        FilterUsageDTO filterUsageDTO = new FilterUsageDTO();
-        
-        filterUsageDTO.quantity_of_school_year = getSchoolYearUsage(preferencesList);
-        filterUsageDTO.quantity_of_shift = getShiftUsage(preferencesList);
-        filterUsageDTO.quantity_of_gender = getGenderUsage(preferencesList);
-        filterUsageDTO.quantity_of_course = getCourseUsage(preferencesList);
-        filterUsageDTO.quantity_of_school = getSchoolUsage(preferencesList);
-        filterUsageDTO.quantity_of_subjects = getSubjectsUsage(preferencesList);
+        List<FilterUsageDTO> filterUsageDTOs = new ArrayList<FilterUsageDTO>();
+        Long appUsers = usersRepository.count();
 
-        return  filterUsageDTO;
+        addSchoolStatistics(preferencesList, filterUsageDTOs, appUsers);
+        addCourseStatistics(preferencesList, filterUsageDTOs, appUsers);
+        addSchoolYearStatistics(preferencesList, filterUsageDTOs, appUsers);
+        addShiftStatistics(preferencesList, filterUsageDTOs, appUsers);
+        addGenderStatistics(preferencesList, filterUsageDTOs, appUsers);
+        addSubjectsStatistics(preferencesList, filterUsageDTOs, appUsers);
+
+        return filterUsageDTOs;
     }
 }
