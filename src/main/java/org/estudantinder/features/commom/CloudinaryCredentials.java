@@ -1,4 +1,4 @@
-package org.estudantinder.features.Users.Images.ImageUpload.commom;
+package org.estudantinder.features.commom;
 
 import io.smallrye.config.ConfigMapping;
 

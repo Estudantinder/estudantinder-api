@@ -15,7 +15,7 @@ import com.cloudinary.utils.ObjectUtils;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.User;
-import org.estudantinder.features.Users.Images.ImageUpload.commom.CloudinaryCredentials;
+import org.estudantinder.features.commom.CloudinaryCredentials;
 import org.estudantinder.repositories.UsersRepository;
 
 import io.smallrye.config.SmallRyeConfig;
