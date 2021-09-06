@@ -33,42 +33,42 @@ public class Feature {
             Long appUsers) {
         Long filterQuantity = allPreferences.stream().filter(preferences -> preferences.getSchool_year() != 0).count();
 
-        filterUsageDTOs.add(createFilterUsageDTO("School Year", allPreferences, filterQuantity, appUsers));
+        filterUsageDTOs.add(createFilterUsageDTO("Serie", allPreferences, filterQuantity, appUsers));
     }
 
     public void addShiftStatistics(List<Preferences> allPreferences, List<FilterUsageDTO> filterUsageDTOs,
             Long appUsers) {
         Long filterQuantity = allPreferences.stream().filter(preferences -> preferences.getShift() != 0).count();
 
-        filterUsageDTOs.add(createFilterUsageDTO("Shift", allPreferences, filterQuantity, appUsers));
+        filterUsageDTOs.add(createFilterUsageDTO("Turno", allPreferences, filterQuantity, appUsers));
     }
 
     public void addGenderStatistics(List<Preferences> allPreferences, List<FilterUsageDTO> filterUsageDTOs,
             Long appUsers) {
         Long filterQuantity = allPreferences.stream().filter(preferences -> preferences.getGender() != null).count();
 
-        filterUsageDTOs.add(createFilterUsageDTO("Gender", allPreferences, filterQuantity, appUsers));
+        filterUsageDTOs.add(createFilterUsageDTO("Genero", allPreferences, filterQuantity, appUsers));
     }
 
     public void addCourseStatistics(List<Preferences> allPreferences, List<FilterUsageDTO> filterUsageDTOs,
             Long appUsers) {
         Long filterQuantity = allPreferences.stream().filter(preferences -> preferences.getCourse() != null).count();
 
-        filterUsageDTOs.add(createFilterUsageDTO("Course", allPreferences, filterQuantity, appUsers));
+        filterUsageDTOs.add(createFilterUsageDTO("Curso", allPreferences, filterQuantity, appUsers));
     }
 
     public void addSchoolStatistics(List<Preferences> allPreferences, List<FilterUsageDTO> filterUsageDTOs,
             Long appUsers) {
         Long filterQuantity = allPreferences.stream().filter(preferences -> preferences.getSchool() != null).count();
 
-        filterUsageDTOs.add(createFilterUsageDTO("School", allPreferences, filterQuantity, appUsers));
+        filterUsageDTOs.add(createFilterUsageDTO("Escola", allPreferences, filterQuantity, appUsers));
     }
 
     public void addSubjectsStatistics(List<Preferences> allPreferences, List<FilterUsageDTO> filterUsageDTOs,
             Long appUsers) {
         Long filterQuantity = allPreferences.stream().filter(preferences -> preferences.getSubjects() != null).count();
 
-        filterUsageDTOs.add(createFilterUsageDTO("Subject", allPreferences, filterQuantity, appUsers));
+        filterUsageDTOs.add(createFilterUsageDTO("Materia", allPreferences, filterQuantity, appUsers));
     }
 
     public List<FilterUsageDTO> execute() {
