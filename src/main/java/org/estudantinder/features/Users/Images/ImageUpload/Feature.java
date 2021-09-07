@@ -12,13 +12,10 @@ import javax.ws.rs.NotFoundException;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
-import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.estudantinder.entities.User;
-import org.estudantinder.features.commom.CloudinaryCredentials;
+import org.estudantinder.features.commom.CloudinaryUtils;
 import org.estudantinder.repositories.UsersRepository;
-
-import io.smallrye.config.SmallRyeConfig;
 
 @ApplicationScoped
 public class Feature {
@@ -63,13 +60,7 @@ public class Feature {
 
         treatInvalidId(authenticatedUser);
 
-        SmallRyeConfig config = ConfigProvider.getConfig().unwrap(SmallRyeConfig.class);
-        CloudinaryCredentials cloudinaryCredentials = config.getConfigMapping(CloudinaryCredentials.class);
-
-        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", cloudinaryCredentials.cloudName(),
-                "api_key", cloudinaryCredentials.apiKey(), "api_secret", cloudinaryCredentials.apiSecret()));
-
-        String[] photoUrls = uploadArrayOfPhotoUrls(cloudinary, authenticatedUser,
+        String[] photoUrls = uploadArrayOfPhotoUrls(CloudinaryUtils.getCloudinary(), authenticatedUser,
                 Arrays.asList(data.photo0, data.photo1, data.photo2, data.photo3, data.photo4, data.photo5));
 
         authenticatedUser.setPhotos(photoUrls);
