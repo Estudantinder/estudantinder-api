@@ -47,8 +47,6 @@ public class Feature {
     public Subject execute(Long id, DTO data) throws Exception {
         Subject subject = subjectsRepository.findById(id);
 
-        System.out.println(subject.getPhoto());
-
         throwExceptionIfSubjectNotFound(subject);
 
         Optional<String> optionalName = Optional.ofNullable(data.name);
