@@ -3,6 +3,7 @@ package org.estudantinder.features.Subjects.CreateSubject;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -16,10 +17,11 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
 @Path("subjects")
 @Tag(name = "Subjects")
-@Consumes(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.MULTIPART_FORM_DATA)
 @Produces(MediaType.APPLICATION_JSON)
 @SecurityScheme(securitySchemeName = "jwt", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "jwt")
 public class Resource {
@@ -36,7 +38,7 @@ public class Resource {
     @APIResponse(responseCode = "409", description = "Subject Already Exists")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
     @Operation(summary = "Create a new Subject")
-    public Response createSubject(DTO data) throws Exception {
+    public Response createSubject(@MultipartForm @Valid DTO data) throws Exception {
         return createSubjectController.handle(data);
     }
 }
