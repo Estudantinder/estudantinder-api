@@ -40,7 +40,9 @@ public class Feature {
         UsersPerCourseDTO usersPerCourseDTO = new UsersPerCourseDTO();
         usersPerCourseDTO.courseName = course.getName();
 
+        Long totalUsers = users.stream().count();
         usersPerCourseDTO.numberOfUsers = users.stream().filter(user -> user.getCourse() == course).count();
+        usersPerCourseDTO.percent = (double) (usersPerCourseDTO.numberOfUsers / (double) totalUsers);
 
         return usersPerCourseDTO;
     }
@@ -49,7 +51,10 @@ public class Feature {
         UsersPerSchoolDTO usersPerSchoolDTO = new UsersPerSchoolDTO();
         usersPerSchoolDTO.schoolName = school.getName();
 
+        Long totalUsers = users.stream().count();
+
         usersPerSchoolDTO.numberOfUsers = users.stream().filter(user -> user.getCourse().getSchool() == school).count();
+        usersPerSchoolDTO.percent = (double) (usersPerSchoolDTO.numberOfUsers / (double) totalUsers);
 
         return usersPerSchoolDTO;
     }
@@ -58,8 +63,10 @@ public class Feature {
         UsersPerSchoolYearDTO usersPerSchoolYearDTO = new UsersPerSchoolYearDTO();
         usersPerSchoolYearDTO.schoolYear = schoolYear;
 
+        Long totalUsers = users.stream().count();
         usersPerSchoolYearDTO.numberOfUsers = users.stream().filter(user -> user.getSchool_year() == schoolYear)
                 .count();
+        usersPerSchoolYearDTO.percent = (double) (usersPerSchoolYearDTO.numberOfUsers / (double) totalUsers);
 
         return usersPerSchoolYearDTO;
     }
