@@ -22,16 +22,16 @@ public class Controller {
             return Response.status(Response.Status.OK).build();
 
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't delete Image", error);
+            return ErrorResponse.handle(404, "Não foi possivel deletar a imagem", error);
 
         } catch (BadRequestException error) {
-            return ErrorResponse.handle(400, "Couldn't delete Image", error);
+            return ErrorResponse.handle(400, "Não foi possivel deletar a imagem", error);
 
         } catch (NullPointerException error) {
-            return ErrorResponse.handle(400, "Couldn't delete Image", error);
+            return ErrorResponse.handle(400, "Não foi possivel deletar a imagem", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't delete Image", error);
+            return ErrorResponse.handle(500, "Não foi possivel deletar a imagem", error);
 
         }
     }

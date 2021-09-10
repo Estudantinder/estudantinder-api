@@ -38,25 +38,25 @@ public class Feature {
 
     private void treatInvalidID(User authenticatedUser) {
                 if(authenticatedUser == null) 
-            throw new NotFoundException("Token ID not found");
+            throw new NotFoundException("Usuário não encontrado");
         
     }
     private void treatPasswordIfExists(String password) {
         if(password != null) {
             if(checkIfPasswordDoesntContainsNumber(password)) 
-            throw new BadRequestException("Password must contain at least 1 number");
+            throw new BadRequestException("A senha deve conter ao menos 1 numero");
         }
     }
     private void treatBirthDateIfExists(LocalDate birth_date) {
         if(birth_date != null) {
             if(checkIfAgeIsntCorrect(birth_date)) 
-            throw new BadRequestException("User age must be between 14-21");
+            throw new BadRequestException("Usário deve ter a idade minima de 14 anos e maxima de 21");
         }
     }
     private void treatClassroomIfExists(char classroom) {
         if(Character.isLetterOrDigit(classroom)) {
             if(checkIfClassroomIsAlphabetical(classroom))
-            throw new BadRequestException("Classroom must be alphabetical");
+            throw new BadRequestException("Classe tem que ser uma letra alfabetica");
         }
     }
     public boolean checkIfAgeIsntCorrect(LocalDate birth_date) {
@@ -99,7 +99,7 @@ public class Feature {
         Course course = coursesRepository.findById(courseId);
         
         if(course == null) {
-            throw new NotFoundException("Course Not Found");
+            throw new NotFoundException("Curso não encontrado");
         }
         
         return course;
@@ -121,7 +121,7 @@ public class Feature {
         Subject subject = subjectsRepository.findById(subject_id);
         
         if(subject == null) {
-            throw new NotFoundException("Subject id "+subject_id+" Not Found");
+            throw new NotFoundException("Materia com o id "+subject_id+" não encontrado");
         }
         
         return subject;
@@ -131,7 +131,7 @@ public class Feature {
         List<Subject> subjects = new ArrayList<Subject>();
         
         if(isListFieldDuplicate(subjects_id)) {
-            throw new BadRequestException("Subject ID's can't be duplicated");
+            throw new BadRequestException("Id da materia não pode ser duplicado");
         }
         
         subjects_id.forEach(subject_id -> {

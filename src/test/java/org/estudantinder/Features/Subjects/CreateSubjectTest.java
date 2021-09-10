@@ -3,16 +3,12 @@ package org.estudantinder.Features.Subjects;
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
-import io.restassured.http.ContentType;
 import io.smallrye.jwt.build.Jwt;
 
-import static org.hamcrest.Matchers.containsString;
-
+import java.io.File;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Set;
-
-import javax.json.Json;
 
 import static io.restassured.RestAssured.given;
 
@@ -22,46 +18,26 @@ public class CreateSubjectTest {
     @Test
     public void testCreateSubjectEndpoint() {
 
-        String testSubject = Json.createObjectBuilder()
-            .add("name", "TEST SUBJECT")
-            .build().toString();
-
         given()
-            .body(testSubject)
-            .contentType(ContentType.JSON)
+            .multiPart("name", "TEST SUBJECT")
+            .multiPart("photo", new File("/home/adamaugustinsky/Documents/estudantinder-api/src/test/resources/subject.png"))
             .auth().oauth2(generateValidUserToken())
             .when().post("/subjects")
             .then()
-                .statusCode(201)
-                .body("name", containsString("TEST SUBJECT"));
+                .statusCode(201);
     }
 
     @Test
     public void testConflictCreateSubjectEndpoint() {
 
-        String testSubject = Json.createObjectBuilder()
-            .add("name", "TEST SUBJECT")
-            .build().toString();
-
         given()
-            .body(testSubject)
-            .contentType(ContentType.JSON)
+            .multiPart("name", "TEST SUBJECT")
+            .multiPart("photo", new File("/home/adamaugustinsky/Documents/estudantinder-api/src/test/resources/subject.png"))
             .auth().oauth2(generateValidUserToken())
             .when().post("/subjects")
             .then()
                 .statusCode(409);
     }
-
-    @Test
-    public void testNotFoundCreateSubjectEndpoint() {
-        given()
-            .contentType(ContentType.JSON)
-            .auth().oauth2(generateValidUserToken())
-            .when().post("/subjects")
-            .then()
-                .statusCode(400);
-    }
-
 
     static String generateValidUserToken() {
         return Jwt.issuer("https://github.com/AdamAugustinsky").upn("estudantinder@quarkus.io")

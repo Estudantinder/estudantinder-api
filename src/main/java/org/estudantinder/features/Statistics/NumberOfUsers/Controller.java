@@ -19,7 +19,7 @@ public class Controller {
             return Response.status(Response.Status.OK).entity(StudentMatchs).build();
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't show number of users registered", error);
+            return ErrorResponse.handle(500, "Não foi possivel mostrar o numero de usuarios", error);
         }
     }
 }

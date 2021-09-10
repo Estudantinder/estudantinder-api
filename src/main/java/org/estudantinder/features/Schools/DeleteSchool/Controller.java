@@ -20,10 +20,10 @@ public class Controller {
             return Response.status(Response.Status.OK).build();
 
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't delete School", error);
+            return ErrorResponse.handle(404, "Não foi possivel deletar a escola", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't delete School", error);
+            return ErrorResponse.handle(500, "Não foi possivel deletar a escola", error);
         }
     }
 }

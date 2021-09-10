@@ -21,10 +21,10 @@ public class Controller {
             return Response.status(Response.Status.OK).entity(dto).build();
 
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't show User", error);
+            return ErrorResponse.handle(404, "Não foi possivel mostrar o usuário", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't show User", error);
+            return ErrorResponse.handle(500, "Não foi possivel mostrar o usuário", error);
 
         }
     }

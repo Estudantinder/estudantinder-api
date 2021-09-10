@@ -21,10 +21,10 @@ public class Controller {
             return Response.status(Response.Status.OK).entity(modifiedUser).build();
 
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't image upload", error);
+            return ErrorResponse.handle(404, "Não foi possivel fazer o upload da imagem", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't image upload", error);
+            return ErrorResponse.handle(500, "Não foi possivel fazer o upload da imagem", error);
 
         }
     }

@@ -22,7 +22,7 @@ public class Feature {
 
     void treatInvalidUserID(User authenticatedUser) {
         if(authenticatedUser == null) {
-            throw new NotFoundException(" User id not found");
+            throw new NotFoundException("Usuário não encontrado");
         }
     }
 

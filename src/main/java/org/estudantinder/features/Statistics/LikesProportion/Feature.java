@@ -19,7 +19,7 @@ public class Feature {
     UsersRepository usersRepository;
 
     public void treatUserDoesntExist(User user) {
-        if (user == null) throw new NotFoundException("User id does not exist");
+        if (user == null) throw new NotFoundException("Usuário não encontrado");
     }
 
     public Long getUserLikesReceived(User user) {

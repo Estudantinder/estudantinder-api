@@ -15,7 +15,7 @@ public class Feature {
     
     void throwExceptionIfSubjectNotFound(Subject subject) {
         if(subject == null) {
-            throw new NotFoundException("Subject id not found");
+            throw new NotFoundException("Materia não encontrada");
         }
     }
     

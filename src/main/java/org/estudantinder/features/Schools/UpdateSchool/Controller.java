@@ -21,10 +21,10 @@ public class Controller {
             return Response.status(Response.Status.OK).entity(data).build();
 
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't update School", error);
+            return ErrorResponse.handle(404, "Não foi possivel atualizar a escola", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't update School", error);
+            return ErrorResponse.handle(500, "Não foi possivel atualizar a escola", error);
 
         }
     }

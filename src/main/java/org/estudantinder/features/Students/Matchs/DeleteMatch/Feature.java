@@ -28,7 +28,7 @@ public class Feature {
 
     void throwExceptionIfMatchNotValid(Match match) {
         if(match == null) {
-            throw new NotFoundException("Match id not found");
+            throw new NotFoundException("Match não encontrado");
         }
     }
 
@@ -36,13 +36,13 @@ public class Feature {
         if( match.getLike().getSender() != user &&
             match.getMutualLike().getSender() != user) {
             
-            throw new UnauthorizedException("Unauthorized, Match Ins't Yours");
+            throw new UnauthorizedException("Não permitido, Match não é seu");
         }
     }
 
     void throwExceptionIfUserNotValid(User user) {
         if(user == null) {
-            throw new NotFoundException("User id Not Found");
+            throw new NotFoundException("Usuário não encontrado");
         }
     }
 

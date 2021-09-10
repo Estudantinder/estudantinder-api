@@ -31,7 +31,7 @@ public class Resource {
     @APIResponse(responseCode = "404", description = "User Not Found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
     @Operation(summary = "Authenticate a User (Login)")
-    public Response createUser(@Valid LoginDTO data) throws Exception {
+    public Response authenticateUser(@Valid LoginDTO data) throws Exception {
         return authenticateUserController.handle(data);
     }
 

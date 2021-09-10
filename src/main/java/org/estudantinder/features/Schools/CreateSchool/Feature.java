@@ -31,7 +31,7 @@ public class Feature {
         School userAlreadyExists = schoolsRepository.findByName(data.name);
 
         if (userAlreadyExists != null) {
-            throw new EntityExistsException("School already exists");
+            throw new EntityExistsException("Escola já existe");
         }
         
         School newSchool = new School();

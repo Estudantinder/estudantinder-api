@@ -14,7 +14,7 @@ public class Feature {
 
     void treatEmailAlreadyInUse(boolean isEmailAlreadyInUse) {
         if (isEmailAlreadyInUse) {
-            throw new EntityExistsException("Email Already In Use");
+            throw new EntityExistsException("Email já esta em uso");
         }
     }
 

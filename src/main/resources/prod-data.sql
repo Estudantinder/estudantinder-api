@@ -47,17 +47,17 @@ INSERT INTO course (id, name, school_id) VALUES (nextval('hibernate_sequence'), 
 
 
 
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Artes');
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Biologia');
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Educação Fisica');
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Espanhol');
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Filosofia');
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Física');
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Geografia');
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'História');
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Inglês');
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Literatura');
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Matemática');
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Português');
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Quimica');
-INSERT INTO subject (id, name) VALUES (nextval('hibernate_sequence'), 'Sociologia');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Matemática', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024537/hpfkqgkamyf9lk87gnjj.png');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Biologia', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024566/x73inilgkomrkgnwsiqx.png');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Quimica', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024580/xwqqhatd2n6m2hpecsgq.png');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Português', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024596/pojr2ajs7hj765edcfuo.png');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Historia', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024605/ot8i4tvsiv8eauox7geq.png');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Fisica', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024617/hzvknz6os1mqxlnattc1.png');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Geografia', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024626/dxebbesw01x3rvjr8k0o.png');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Inglês', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024638/yafqedtlmtlgon8ibvt4.png');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Artes', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024645/u2rijt8r1mvd829amz0m.png');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Educação Fisica', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024655/uv7udvcjnlaimoznbc7j.png');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Filosofia', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024682/oumy0mdytsuyojbgjhro.png');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Literatura', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024690/eugsb4xcscgpxbvobfb8.png');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Sociologia', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024699/cmas6gxdd3toodngx2m7.png');
+insert into "subject" ("id", "name", "photo") values (nextval('hibernate_sequence'), 'Espanhol', 'https://res.cloudinary.com/adamaugustinsky/image/upload/v1631024709/hhghdknn5pbpafsdfs8q.png');

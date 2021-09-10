@@ -24,13 +24,13 @@ public class Controller {
 
             return Response.status(Response.Status.CREATED).entity(matchedStudent).build();
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't create Like", error);
+            return ErrorResponse.handle(404, "Não foi possivel criar o like", error);
 
         } catch (BadRequestException error) {
-            return ErrorResponse.handle(400, "Couldn't create Like", error);
+            return ErrorResponse.handle(400, "Não foi possivel criar o like", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't create Like", error);
+            return ErrorResponse.handle(500, "Não foi possivel criar o like", error);
 
         }
     }

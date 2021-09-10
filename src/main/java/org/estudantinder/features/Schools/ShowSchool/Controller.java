@@ -20,10 +20,10 @@ public class Controller {
 
             return Response.status(Response.Status.OK).entity(school).build();
         } catch (NotFoundException error) {
-            return ErrorResponse.handle(404, "Couldn't show School", error);
+            return ErrorResponse.handle(404, "Não foi possivel mostrar a escola", error);
 
         } catch (Exception error) {
-            return ErrorResponse.handle(500, "Couldn't show School", error);
+            return ErrorResponse.handle(500, "Não foi possivel mostrar a escola", error);
 
         }
     }

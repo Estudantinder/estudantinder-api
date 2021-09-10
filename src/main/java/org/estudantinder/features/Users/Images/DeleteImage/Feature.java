@@ -20,28 +20,28 @@ public class Feature {
     UsersRepository usersRepository;
     private void treatInvalidId(User authenticatedUser ) throws Exception {
         if(authenticatedUser == null) {
-            throw new NotFoundException("jwt id not valid");
+            throw new NotFoundException("id não encontrado");
         } 
     }
 
     private void treatNullIndex(Integer imageIndex ) throws BadRequestException {
         if(imageIndex == null) {
             System.out.println("teste");
-            throw new BadRequestException("Image Index can't be null");
+            throw new BadRequestException("indice da imagem não pode ser nulo");
         }
     }
 
     private void treatIndexToBig(int userPhotosLength, Integer imageIndex) throws NotFoundException {
         if(userPhotosLength < imageIndex) {
-            throw new NotFoundException("ImageIndex bigger than photos array");
+            throw new NotFoundException("indice da imagem maior do que a lista");
         }
     }
 
     private void treatNoPhotosToDelete(String[] userPhotos) throws NotFoundException {
         if(userPhotos == null) {
-            throw new NotFoundException("User has no photos to delete");
+            throw new NotFoundException("Usuário não tem fotos para deletar");
         } else if (userPhotos.length == 0) {
-            throw new NotFoundException("User has no photos to delete");
+            throw new NotFoundException("Usuário não tem fotos para deletar");
         }
     }
 

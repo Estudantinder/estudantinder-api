@@ -24,26 +24,26 @@ INSERT INTO preferences (id, gender, shift, school_year , course_id) VALUES (nex
 INSERT INTO preferences (id, gender, shift, school_year , course_id) VALUES (nextval('hibernate_sequence'), '1', 2, 3, null);
 INSERT INTO preferences (id, gender, shift, school_year , course_id) VALUES (nextval('hibernate_sequence'), '1', 1, 3, 8);
 
-INSERT INTO app_user (id, bio, birth_date, classroom, email, gender, name, password, photos, school_year, shift, contacts_id, course_id, preferences_id, isadmin) VALUES 
+INSERT INTO app_user (id, bio, birth_date, classroom, email, gender, name, password, photos, school_year, shift, contacts_id, course_id, preferences_id) VALUES 
     (nextval('hibernate_sequence'), 'TEST BIOGRAPHY 1', '2002-12-18', 'A', 'test1@email.com', '1', 'TEST USER 1', 
     '$2a$10$UESqt09s1GHdJ8js1ga1JOvPmOdE2tKS6KLD57mgbFHgla3QyP6Ku', 
     E'\\xACED0005757200135B4C6A6176612E6C616E672E537472696E673BADD256E7E91D7B4702000078700000000674001468747470733E2F2F70686F746F732E636F6D2F3174001468747470733E2F2F70686F746F732E636F6D2F3274001468747470733E2F2F70686F746F732E636F6D2F3374001468747470733E2F2F70686F746F732E636F6D2F3474001468747470733E2F2F70686F746F732E636F6D2F3574001468747470733E2F2F70686F746F732E636F6D2F36', 
-    2, 1, 14, 5, 18, true);
-INSERT INTO app_user (id, bio, birth_date, classroom, email, gender, name, password, photos, school_year, shift, contacts_id, course_id, preferences_id, isadmin) VALUES 
+    2, 1, 14, 5, 18);
+INSERT INTO app_user (id, bio, birth_date, classroom, email, gender, name, password, photos, school_year, shift, contacts_id, course_id, preferences_id) VALUES 
     (nextval('hibernate_sequence'), 'TEST BIOGRAPHY 2', '2002-12-18', 'B', 'test2@email.com', '1', 'TEST USER 2', 
     '$2a$10$y9L4HgglvWy0fnpyQBNDxu59MfQIRBXxbIHnfSmcT9Q2CsVY56To.', 
     E'\\xACED0005757200135B4C6A6176612E6C616E672E537472696E673BADD256E7E91D7B4702000078700000000674001468747470733A2F2F70686F746F732E636F6D2F3174001468747470733A2F2F70686F746F732E636F6D2F3274001468747470733A2F2F70686F746F732E636F6D2F3374001468747470733A2F2F70686F746F732E636F6D2F3474001468747470733A2F2F70686F746F732E636F6D2F3574001468747470733A2F2F70686F746F732E636F6D2F36', 
-    2, 1, 15, 5, 19, true);
-INSERT INTO app_user (id, bio, birth_date, classroom, email, gender, name, password, photos, school_year, shift, contacts_id, course_id, preferences_id, isadmin) VALUES 
+    2, 1, 15, 5, 19);
+INSERT INTO app_user (id, bio, birth_date, classroom, email, gender, name, password, photos, school_year, shift, contacts_id, course_id, preferences_id) VALUES 
     (nextval('hibernate_sequence'), 'TEST BIOGRAPHY 3', '2002-12-18', 'C', 'test3@email.com', '1', 'TEST USER 3', 
     '$2a$10$6fH/lEhilZWbnNVu1.NTQew6gKQI1AX4I5YMf7PbZW77Lm.bgZzcG', 
     E'\\xACED0005757200135B4C6A6176612E6C616E672E537472696E673BADD256E7E91D7B4702000078700000000674001468747470733A2F2F70686F746F732E636F6D2F3174001468747470733A2F2F70686F746F732E636F6D2F3274001468747470733A2F2F70686F746F732E636F6D2F3374001468747470733A2F2F70686F746F732E636F6D2F3474001468747470733A2F2F70686F746F732E636F6D2F3574001468747470733A2F2F70686F746F732E636F6D2F36', 
-    2, 1, 16, 5, 20, true);
-INSERT INTO app_user (id, bio, birth_date, classroom, email, gender, name, password, photos, school_year, shift, contacts_id, course_id, preferences_id, isadmin) VALUES 
+    2, 1, 16, 5, 20);
+INSERT INTO app_user (id, bio, birth_date, classroom, email, gender, name, password, photos, school_year, shift, contacts_id, course_id, preferences_id) VALUES 
     (nextval('hibernate_sequence'), 'TEST BIOGRAPHY 4', '2002-12-18', 'D', 'test4@email.com', '1', 'TEST USER 4', 
     '$2a$10$7AwPby5UXVLGnqbVFaTQQeQ9wb5Pl/zAyAR5A4fq78I9IJRAQc05u', 
     E'\\xACED0005757200135B4C6A6176612E6C616E672E537472696E673BADD256E7E91D7B4702000078700000000674001468747470733A2F2F70686F746F732E636F6D2F3174001468747470733A2F2F70686F746F732E636F6D2F3274001468747470733A2F2F70686F746F732E636F6D2F3374001468747470733A2F2F70686F746F732E636F6D2F3474001468747470733A2F2F70686F746F732E636F6D2F3574001468747470733A2F2F70686F746F732E636F6D2F36', 
-    2, 1, 17, 5, 21, true);
+    2, 1, 17, 5, 21);
 
 INSERT INTO app_user_subject (app_user_id, subjects_id) VALUES (22, 10);
 INSERT INTO app_user_subject (app_user_id, subjects_id) VALUES (23, 11);
@@ -64,10 +64,22 @@ INSERT INTO preferences_subject (preferences_id, subjects_id) VALUES (18, 10);
 INSERT INTO preferences_subject (preferences_id, subjects_id) VALUES (19, 11);
 INSERT INTO preferences_subject (preferences_id, subjects_id) VALUES (20, 12);
 
-INSERT INTO app_user (id, bio, birth_date, classroom, email, gender, name, password, photos, school_year, shift, contacts_id, course_id, preferences_id, isadmin) VALUES 
+INSERT INTO app_user (id, bio, birth_date, classroom, email, gender, name, password, photos, school_year, shift, contacts_id, course_id, preferences_id) VALUES 
     (nextval('hibernate_sequence'), 'TEST BIOGRAPHY 5', '2002-12-18', 'D', 'test5@email.com', '1', 'TEST USER 5', 
     '$2a$10$7AwPby5UXVLGnqbVFaTQQeQ9wb5Pl/zAyAR5A4fq78I9IJRAQc05u', 
     E'\\xACED0005757200135B4C6A6176612E6C616E672E537472696E673BADD256E7E91D7B4702000078700000000674001468747470733A2F2F70686F746F732E636F6D2F3174001468747470733A2F2F70686F746F732E636F6D2F3274001468747470733A2F2F70686F746F732E636F6D2F3374001468747470733A2F2F70686F746F732E636F6D2F3474001468747470733A2F2F70686F746F732E636F6D2F3574001468747470733A2F2F70686F746F732E636F6D2F36', 
-    2, 1, 17, 5, 21, true);
+    2, 1, 17, 5, 21);
 
-insert into report (id, description, reporteduser_id, title) values (nextval('hibernate_sequence'),'test description 01', 33, 'test report 01');
+insert into report (id, reporteduser_id, type, reportdate) values (nextval('hibernate_sequence'), 33, 'spanContent', '2021-02-01');
+
+INSERT INTO app_user (id, bio, birth_date, classroom, email, gender, name, password, photos, school_year, shift, contacts_id, course_id, preferences_id) VALUES 
+    (nextval('hibernate_sequence'), 'TEST BIOGRAPHY 5', '2002-12-18', 'D', 'test5@email.com', '1', 'TEST USER 5', 
+    '$2a$10$7AwPby5UXVLGnqbVFaTQQeQ9wb5Pl/zAyAR5A4fq78I9IJRAQc05u', 
+    E'\\xACED0005757200135B4C6A6176612E6C616E672E537472696E673BADD256E7E91D7B4702000078700000000674001468747470733A2F2F70686F746F732E636F6D2F3174001468747470733A2F2F70686F746F732E636F6D2F3274001468747470733A2F2F70686F746F732E636F6D2F3374001468747470733A2F2F70686F746F732E636F6D2F3474001468747470733A2F2F70686F746F732E636F6D2F3574001468747470733A2F2F70686F746F732E636F6D2F36', 
+    2, 1, 17, 5, 21);
+
+insert into report (id, description, reporteduser_id, type, reportdate) 
+    values (nextval('hibernate_sequence'),'test description 01', 35, 'custom', '2021-02-02');
+
+INSERT INTO app_admin (id, email, name, password) 
+    values (nextval('hibernate_sequence'), 'test1@email.com', 'test admin 1', '$2a$10$CJY0MfEYolW.UV5OACcSUuTlO71SIv8NgmmL7LX9iI2PM72umHow.');

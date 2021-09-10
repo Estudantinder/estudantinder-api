@@ -15,8 +15,18 @@ public class Subject {
     @Column(nullable = false)
     private String name;
 
+    private String photo;
+
     public String getName() {
         return name;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public Long getId() {

@@ -30,7 +30,7 @@ public class Feature {
 
     void throwExceptionIfUserNotValid(User authenticatedUser) {
         if (authenticatedUser == null) {
-            throw new NotFoundException("User id not found");
+            throw new NotFoundException("Usuário ão encontrado");
         }
     }
 

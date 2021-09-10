@@ -3,7 +3,6 @@ package org.estudantinder.features.Users.AuthenticateUser;
 import java.security.spec.InvalidKeySpecException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.Set;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -28,12 +27,12 @@ public class Feature {
 
     public void treatEmailNotFound(User authenticatedUser) {
         if (authenticatedUser == null)
-            throw new NotFoundException("Email Not Found");
+            throw new NotFoundException("Email Não encontrado");
     }
 
     public void treatDifferentPassword(User authenticatedUser, String password) throws InvalidKeySpecException {
         if (!isPasswordCorrect(authenticatedUser.getPassword(), password))
-            throw new UnauthorizedException("Wrong Password");
+            throw new UnauthorizedException("Senha incorreta");
     }
 
     public boolean isPasswordCorrect(String hashDBPassword, String loginPassword) throws InvalidKeySpecException {
@@ -43,14 +42,6 @@ public class Feature {
     }
 
     public String generateJwt(User authenticatedUser, Instant expireDate) {
-
-        if (authenticatedUser.getIsAdmin() != null) {
-            if (authenticatedUser.getIsAdmin() == true)
-                return Jwt.issuer("https://github.com/AdamAugustinsky").upn("estudantinder@quarkus.io")
-                        .groups(Set.of("Admin", "User")).claim("id", authenticatedUser.getId()).expiresAt(expireDate)
-                        .sign();
-        }
-
         return Jwt.issuer("https://github.com/AdamAugustinsky").upn("estudantinder@quarkus.io").groups("User")
                 .claim("id", authenticatedUser.getId()).expiresAt(expireDate).sign();
     }
