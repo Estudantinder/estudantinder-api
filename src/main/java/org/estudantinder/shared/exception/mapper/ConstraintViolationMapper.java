@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.estudantinder.shared.exception.ErrorResponse;
 
-
 @Provider
 public class ConstraintViolationMapper implements ExceptionMapper<ConstraintViolationException> {
 
@@ -24,8 +23,10 @@ public class ConstraintViolationMapper implements ExceptionMapper<ConstraintViol
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.code = code;
 
-        if (exception.getMessage() != null)
-            errorResponse.message = exception.getMessage();
+        String[] errorInfo = exception.getMessage().split(":");
+
+        errorResponse.id = errorInfo[0];
+        errorResponse.message = errorInfo[1].replaceFirst(" ", ""); //remove space at start of sentence
 
         return Response.status(code).entity(errorResponse).build();
     }
