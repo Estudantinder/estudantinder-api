@@ -6,10 +6,8 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import org.estudantinder.shared.exception.AppException;
-
 
 @Provider
 public class AppExceptionMapper implements ExceptionMapper<AppException> {
@@ -19,18 +17,18 @@ public class AppExceptionMapper implements ExceptionMapper<AppException> {
 
     @Override
     public Response toResponse(AppException exception) {
-            int code = exception.getResponse().getStatus();
+        int code = exception.getResponse().getStatus();
 
-            ObjectNode exceptionJson = objectMapper.createObjectNode();
+        System.out.println(code);
 
-            if (exception.getMessage() != null)
-                exceptionJson.put("error_message", exception.getMessage());
-            if (exception.getMessage_ptBR() != null)
-                exceptionJson.put("error_message_ptBR", exception.getMessage());
-            
-            return Response.status(code)
-                    .entity(exceptionJson)
-                    .build();
+        ErrorResponse errorResponse = new ErrorResponse();
+
+        if (exception.getMessage() != null)
+            errorResponse.message = exception.getMessage();
+        if (exception.getMessage_ptBR() != null)
+            errorResponse.message_ptBR = exception.getMessage_ptBR();
+
+        return Response.status(code).entity(errorResponse).build();
     }
-    
+
 }
