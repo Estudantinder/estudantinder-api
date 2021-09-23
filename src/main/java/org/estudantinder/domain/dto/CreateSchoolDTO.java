@@ -2,13 +2,14 @@ package org.estudantinder.domain.dto;
 
 import java.util.List;
 
-import io.smallrye.common.constraint.NotNull;
+import javax.validation.constraints.NotEmpty;
+
 
 public class CreateSchoolDTO {
-  @NotNull
+  @NotEmpty(message = "Nome não pode ser vazio")
   public String name;
-  @NotNull
+  @NotEmpty(message = "Endereço não pode ser vazio")
   public String address;
-  @NotNull
+  @NotEmpty(message = "Campo Cursos não pode ser vazio")
   public List<CreateCourseDTO> courses;
 }
