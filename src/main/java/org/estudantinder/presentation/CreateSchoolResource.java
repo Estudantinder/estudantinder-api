@@ -2,6 +2,7 @@ package org.estudantinder.presentation;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -18,7 +19,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.estudantinder.domain.dto.CreateSchoolDTO;
 import org.estudantinder.domain.models.School;
 import org.estudantinder.main.CreateSchoolService;
-import org.estudantinder.shared.exception.mapper.ErrorResponse;
+import org.estudantinder.shared.exception.ErrorResponse;
 
 @Path("/schools")
 @Tag(name = "Schools")
@@ -46,7 +47,7 @@ public class CreateSchoolResource {
             mediaType = "application/json", 
             schema = @Schema(implementation = ErrorResponse.class)
         ))
-    public Response handle(@RequestBody CreateSchoolDTO createSchoolDTO) {
+    public Response handle(@Valid @RequestBody CreateSchoolDTO createSchoolDTO) {
         return Response
             .status(201)
             .entity(createSchoolService.handle(createSchoolDTO))
