@@ -22,6 +22,7 @@ public class AppExceptionMapper implements ExceptionMapper<AppException> {
         System.out.println(code);
 
         ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.code = code;
 
         if (exception.getMessage() != null)
             errorResponse.message = exception.getMessage();
