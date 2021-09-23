@@ -1,10 +1,11 @@
 package org.estudantinder.data.useCases;
 
+import javax.ws.rs.WebApplicationException;
+
 import org.estudantinder.data.interfaces.SchoolRepository;
 import org.estudantinder.domain.dto.CreateSchoolDTO;
 import org.estudantinder.domain.models.School;
 import org.estudantinder.domain.useCases.CreateSchool;
-import org.estudantinder.shared.exception.AppException;
 
 public class CreateSchoolImpl implements CreateSchool {
 
@@ -18,7 +19,7 @@ public class CreateSchoolImpl implements CreateSchool {
     public School create(CreateSchoolDTO schoolDTO) {
         School school = this.schoolRepository.findByName(schoolDTO.name);
         if(school != null) 
-            throw new AppException("School already exists", "Escola já existe", 409);
+            throw new WebApplicationException("Escola já existe", 409);
 
         return this.schoolRepository.create(schoolDTO);
     }

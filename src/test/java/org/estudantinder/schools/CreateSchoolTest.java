@@ -70,7 +70,6 @@ public class CreateSchoolTest {
             .then()
                 .statusCode(409)
                 .body("code", is(409))
-                .body("message", is("School already exists"))
-                .body("message_ptBR", is("Escola já existe"));
+                .body("message", is("Escola já existe"));
     }
 }
