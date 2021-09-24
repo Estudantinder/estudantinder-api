@@ -1,7 +1,6 @@
 package org.estudantinder.presentation;
 
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -18,7 +17,6 @@ import org.estudantinder.main.ListSchoolsService;
 
 @Path("schools")
 @Tag(name = "School")
-@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ListSchoolsResource {
     
