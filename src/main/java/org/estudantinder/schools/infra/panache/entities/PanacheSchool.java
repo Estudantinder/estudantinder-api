@@ -1,4 +1,4 @@
-package org.estudantinder.infra.panache.entities;
+package org.estudantinder.schools.infra.panache.entities;
 
 import java.util.List;
 import java.util.UUID;
@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.estudantinder.domain.models.School;
+import org.estudantinder.schools.domain.models.School;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 

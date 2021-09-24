@@ -1,4 +1,4 @@
-package org.estudantinder.domain.models;
+package org.estudantinder.schools.domain.models;
 
 import java.util.List;
 import java.util.UUID;

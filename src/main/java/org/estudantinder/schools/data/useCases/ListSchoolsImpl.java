@@ -1,10 +1,10 @@
-package org.estudantinder.data.useCases;
+package org.estudantinder.schools.data.useCases;
 
 import java.util.List;
 
-import org.estudantinder.data.interfaces.SchoolRepository;
-import org.estudantinder.domain.models.School;
-import org.estudantinder.domain.useCases.ListSchools;
+import org.estudantinder.schools.data.interfaces.SchoolRepository;
+import org.estudantinder.schools.domain.models.School;
+import org.estudantinder.schools.domain.useCases.ListSchools;
 
 public class ListSchoolsImpl implements ListSchools {
 

@@ -1,4 +1,4 @@
-package org.estudantinder.presentation;
+package org.estudantinder.schools.presentation;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -13,8 +13,8 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.estudantinder.domain.models.School;
-import org.estudantinder.main.ListSchoolService;
+import org.estudantinder.schools.domain.models.School;
+import org.estudantinder.schools.main.ListSchoolService;
 import org.estudantinder.shared.exception.ErrorResponse;
 import org.estudantinder.shared.utils.UUIDUtils;
 

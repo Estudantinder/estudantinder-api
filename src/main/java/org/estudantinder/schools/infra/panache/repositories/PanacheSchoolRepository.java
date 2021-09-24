@@ -1,12 +1,12 @@
-package org.estudantinder.infra.panache.repositories;
+package org.estudantinder.schools.infra.panache.repositories;
 
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.estudantinder.data.interfaces.SchoolRepository;
-import org.estudantinder.domain.models.School;
-import org.estudantinder.infra.panache.entities.PanacheSchool;
+import org.estudantinder.schools.data.interfaces.SchoolRepository;
+import org.estudantinder.schools.domain.models.School;
+import org.estudantinder.schools.infra.panache.entities.PanacheSchool;
 
 public class PanacheSchoolRepository implements SchoolRepository {
 

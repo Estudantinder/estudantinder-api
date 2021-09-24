@@ -1,4 +1,4 @@
-package org.estudantinder.domain.dto;
+package org.estudantinder.schools.domain.dto;
 
 import java.util.List;
 

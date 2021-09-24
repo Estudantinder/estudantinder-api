@@ -1,12 +1,12 @@
-package org.estudantinder.data.useCases;
+package org.estudantinder.schools.data.useCases;
 
 import java.util.UUID;
 
 import javax.ws.rs.WebApplicationException;
 
-import org.estudantinder.data.interfaces.SchoolRepository;
-import org.estudantinder.domain.models.School;
-import org.estudantinder.domain.useCases.ListSchool;
+import org.estudantinder.schools.data.interfaces.SchoolRepository;
+import org.estudantinder.schools.domain.models.School;
+import org.estudantinder.schools.domain.useCases.ListSchool;
 
 public class ListSchoolImpl implements ListSchool {
 

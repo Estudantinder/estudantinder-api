@@ -1,13 +1,13 @@
-package org.estudantinder.main;
+package org.estudantinder.schools.main;
 
 import java.util.UUID;
 
 import javax.inject.Singleton;
 
-import org.estudantinder.data.useCases.ListSchoolImpl;
-import org.estudantinder.domain.models.School;
-import org.estudantinder.domain.useCases.ListSchool;
-import org.estudantinder.infra.panache.repositories.PanacheSchoolRepository;
+import org.estudantinder.schools.data.useCases.ListSchoolImpl;
+import org.estudantinder.schools.domain.models.School;
+import org.estudantinder.schools.domain.useCases.ListSchool;
+import org.estudantinder.schools.infra.panache.repositories.PanacheSchoolRepository;
 
 @Singleton
 public class ListSchoolService {
