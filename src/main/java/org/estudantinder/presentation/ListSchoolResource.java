@@ -1,7 +1,5 @@
 package org.estudantinder.presentation;
 
-import java.util.UUID;
-
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -18,6 +16,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.estudantinder.domain.models.School;
 import org.estudantinder.main.ListSchoolService;
 import org.estudantinder.shared.exception.ErrorResponse;
+import org.estudantinder.shared.utils.UUIDUtils;
 
 @Path("schools")
 @Tag(name = "School")
@@ -52,10 +51,11 @@ public class ListSchoolResource {
         )
     )
     public Response handle(@PathParam("schoolId") String schoolIdString) {
-        UUID schoolId = UUID.fromString(schoolIdString);
         return Response
             .status(200)
-            .entity(listSchoolService.handle(schoolId))
+            .entity(listSchoolService.handle(
+                UUIDUtils.convertFromString(schoolIdString)
+            ))
             .build();
     }
 }
