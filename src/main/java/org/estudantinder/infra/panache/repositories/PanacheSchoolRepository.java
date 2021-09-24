@@ -35,6 +35,14 @@ public class PanacheSchoolRepository implements SchoolRepository {
         return panacheCourses;
     }
 
+
+    @Override
+    public School findById(UUID schoolId) {
+        PanacheSchool school = PanacheSchool.findById(schoolId);
+
+        return school.toSchool();
+    }
+
     @Override
     public School findByName(String name) {
         PanacheSchool panacheSchool = PanacheSchool.find("name", name).firstResult();
