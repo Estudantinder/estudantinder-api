@@ -3,6 +3,7 @@ package org.estudantinder.infra.panache.repositories;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.estudantinder.data.interfaces.SchoolRepository;
 import org.estudantinder.domain.dto.CreateCourseDTO;
@@ -56,4 +57,11 @@ public class PanacheSchoolRepository implements SchoolRepository {
         return panacheSchool.toSchool();
     }
 
+    @Override
+    public List<School> listAll() {
+        List<PanacheSchool> allSchools = PanacheSchool.listAll();
+
+        return allSchools.stream().map(PanacheSchool::toSchool)
+            .collect(Collectors.toList());
+    }
 }
