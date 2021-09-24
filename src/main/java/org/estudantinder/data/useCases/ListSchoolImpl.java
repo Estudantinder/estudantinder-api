@@ -21,7 +21,7 @@ public class ListSchoolImpl implements ListSchool {
         School school = this.schoolRepository.findById(schoolId);
 
         if(school == null)
-            throw new WebApplicationException("Escola não encontrada");
+            throw new WebApplicationException("Escola não encontrada", 404);
 
         return school;
     }
