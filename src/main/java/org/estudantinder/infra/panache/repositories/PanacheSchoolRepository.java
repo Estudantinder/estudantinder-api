@@ -10,6 +10,11 @@ import org.estudantinder.infra.panache.entities.PanacheSchool;
 
 public class PanacheSchoolRepository implements SchoolRepository {
 
+    List<School> mapPanacheSchoolsToSchool(List<PanacheSchool> allSchools) {
+        return allSchools.stream().map(PanacheSchool::toSchool)
+            .collect(Collectors.toList());
+    }
+
     @Override
     public School findById(UUID schoolId) {
         PanacheSchool school = PanacheSchool.findById(schoolId);
@@ -23,7 +28,6 @@ public class PanacheSchoolRepository implements SchoolRepository {
     public List<School> listAll() {
         List<PanacheSchool> allSchools = PanacheSchool.listAll();
 
-        return allSchools.stream().map(PanacheSchool::toSchool)
-            .collect(Collectors.toList());
+        return mapPanacheSchoolsToSchool(allSchools);
     }
 }
