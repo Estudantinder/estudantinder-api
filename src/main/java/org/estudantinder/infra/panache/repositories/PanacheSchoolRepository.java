@@ -40,6 +40,8 @@ public class PanacheSchoolRepository implements SchoolRepository {
     public School findById(UUID schoolId) {
         PanacheSchool school = PanacheSchool.findById(schoolId);
 
+        if(school == null) return null;
+
         return school.toSchool();
     }
 
