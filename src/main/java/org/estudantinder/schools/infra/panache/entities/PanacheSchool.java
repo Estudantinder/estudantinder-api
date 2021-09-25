@@ -21,13 +21,13 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 public class PanacheSchool extends PanacheEntityBase {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(nullable = false)
     public UUID id;
 
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false)
     public String name;
 
-    @Column(name = "address", nullable = false)
+    @Column(nullable = false)
     public String address;
 
     @OneToMany(mappedBy = "school", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

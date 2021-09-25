@@ -17,10 +17,9 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 public class PanacheCourse extends PanacheEntityBase {
 
     @Id
-    @Column(name = "id")
     public UUID id;
 
-    @Column(name = "name")
+    @Column(nullable = false) 
     public String name;
 
     @ManyToOne
