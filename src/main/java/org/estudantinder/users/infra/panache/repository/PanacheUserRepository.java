@@ -59,8 +59,9 @@ public class PanacheUserRepository implements UserRepository {
         panacheUser.shift = createUserDTO.shift;
         panacheUser.classroom = createUserDTO.classroom.charAt(0);
         panacheUser.course = PanacheCourse.findById(createUserDTO.course_id);
-        panacheUser.preferences = createPanachePreferences(createUserDTO.preferences);
         panacheUser.contacts = createPanacheContacts(createUserDTO.contacts);
+        if(createUserDTO.preferences != null)
+            panacheUser.preferences = createPanachePreferences(createUserDTO.preferences);
 
         panacheUser.persist();
 
