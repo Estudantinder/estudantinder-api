@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import io.quarkus.test.junit.QuarkusTest;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.isA;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItem;
 
 import java.util.HashMap;
@@ -26,9 +26,9 @@ public class ListSchoolTest {
             .when().get("/schools/{schoolId}")
             .then()
                 .statusCode(200)
-                .body("id", isA(String.class))
-                .body("name", is("School 1"))
-                .body("address", is("School 1 Adress"))
+                .body("id", instanceOf(String.class))
+                .body("name", equalTo("School 1"))
+                .body("address", equalTo("School 1 Adress"))
                 .body("courses", hasItem(testCourse));
     }
 
@@ -39,7 +39,7 @@ public class ListSchoolTest {
             .when().get("/schools/{schoolId}")
             .then()
                 .statusCode(404)
-                .body("code", is(404))
-                .body("message", is("Escola não encontrada"));
+                .body("code", equalTo(404))
+                .body("message", equalTo("Escola não encontrada"));
     }
 }
