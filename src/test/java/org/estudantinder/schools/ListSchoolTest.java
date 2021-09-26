@@ -1,9 +1,5 @@
 package org.estudantinder.schools;
 
-import javax.inject.Inject;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
@@ -19,10 +15,6 @@ import java.util.Map;
 @QuarkusTest
 public class ListSchoolTest {
 
-    @Inject
-    ObjectMapper objectMapper;
-
-    
     @Test
     public void testListSchoolCreated() {
         Map<String, String> testCourse = new HashMap<>();
