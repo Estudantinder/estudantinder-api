@@ -2,14 +2,14 @@ package org.estudantinder.schools.main;
 
 import java.util.List;
 
-import javax.inject.Singleton;
+import javax.enterprise.context.ApplicationScoped;
 
 import org.estudantinder.schools.data.useCases.ListSchoolsImpl;
 import org.estudantinder.schools.domain.models.School;
 import org.estudantinder.schools.domain.useCases.ListSchools;
 import org.estudantinder.schools.infra.panache.repositories.PanacheSchoolRepository;
 
-@Singleton
+@ApplicationScoped
 public class ListSchoolsService {
 
     ListSchools listSchools;
