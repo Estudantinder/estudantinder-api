@@ -7,11 +7,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import io.smallrye.common.constraint.NotNull;
 
 public class CreateUserDTO {
 
@@ -27,7 +27,7 @@ public class CreateUserDTO {
     @Email(message = "Email deve ser um email valido")
     public String email;
 
-    @NotNull
+    @NotNull(message = "Data de nascimento não pode ser nula")
     @Past(message = "Data de nascimento deve ser no passado")
     public Date birth_date;
 
@@ -42,15 +42,15 @@ public class CreateUserDTO {
 
     public int shift;
 
-    @NotNull
+    @NotNull(message = "Classe não pode ser nula")
     @Size(max = 1, message = "Classe só pode conter uma letra")
     @Pattern(regexp = "^[a-zA-Z]+$", message = "Classe deve deve ser uma letra")
     public String classroom;
 
-    @NotNull
+    @NotNull(message = "Curso do usuário não pode ser nulo")
     public UUID course_id;
     
-    @NotNull
+    @NotNull(message = "Deve haver ao menos um metodo de contato")
     public CreateContactsDTO contacts;
 
     public CreatePreferencesDTO preferences;
