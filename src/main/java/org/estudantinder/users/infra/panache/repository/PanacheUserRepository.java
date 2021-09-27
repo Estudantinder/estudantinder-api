@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.estudantinder.schools.infra.panache.entities.PanacheCourse;
 import org.estudantinder.schools.infra.panache.entities.PanacheSchool;
+import org.estudantinder.shared.utils.EncryptUtils;
 import org.estudantinder.users.data.interfaces.UserRepository;
 import org.estudantinder.users.domain.dtos.CreateContactsDTO;
 import org.estudantinder.users.domain.dtos.CreatePreferencesDTO;
@@ -51,7 +52,7 @@ public class PanacheUserRepository implements UserRepository {
         panacheUser.id = UUID.randomUUID();
         panacheUser.name = createUserDTO.name;
         panacheUser.email = createUserDTO.email;
-        panacheUser.password = createUserDTO.password;
+        panacheUser.password = EncryptUtils.encrypt(createUserDTO.password);
         panacheUser.birth_date = createUserDTO.birth_date;
         panacheUser.bio = createUserDTO.bio;
         panacheUser.gender = createUserDTO.gender;
