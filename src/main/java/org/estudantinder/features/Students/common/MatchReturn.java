@@ -4,14 +4,14 @@ import org.estudantinder.entities.User;
 import org.estudantinder.features.commom.Student;
 
 public class MatchReturn {
-    public Student matchedStudent;
-    public Long matchId;
+    public Student matched_student;
+    public Long match_id;
 
     public static MatchReturn mapToMatchReturn(User matchedUser, Long matchId) {
         MatchReturn matchReturn = new MatchReturn();
 
-        matchReturn.matchedStudent = Student.mapUserToStudentWithContacts(matchedUser);
-        matchReturn.matchId = matchId;
+        matchReturn.matched_student = Student.mapUserToStudentWithContacts(matchedUser);
+        matchReturn.match_id = matchId;
 
         return matchReturn;
     }

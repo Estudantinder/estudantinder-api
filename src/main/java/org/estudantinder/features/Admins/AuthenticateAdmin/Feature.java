@@ -59,7 +59,7 @@ public class Feature {
         JwtDTO returnObject = new JwtDTO();
 
         returnObject.jwt = token;
-        returnObject.expireDate = expireDate;
+        returnObject.expire_date = expireDate;
 
         return returnObject;
     }

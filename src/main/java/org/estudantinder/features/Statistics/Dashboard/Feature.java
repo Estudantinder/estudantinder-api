@@ -38,35 +38,35 @@ public class Feature {
 
     private UsersPerCourseDTO createUsersPerCourseDTO(List<User> users, Course course) {
         UsersPerCourseDTO usersPerCourseDTO = new UsersPerCourseDTO();
-        usersPerCourseDTO.courseName = course.getName();
+        usersPerCourseDTO.course_name = course.getName();
 
         Long totalUsers = users.stream().count();
-        usersPerCourseDTO.numberOfUsers = users.stream().filter(user -> user.getCourse() == course).count();
-        usersPerCourseDTO.percent = (double) (usersPerCourseDTO.numberOfUsers / (double) totalUsers);
+        usersPerCourseDTO.number_of_users = users.stream().filter(user -> user.getCourse() == course).count();
+        usersPerCourseDTO.percent = (double) (usersPerCourseDTO.number_of_users / (double) totalUsers);
 
         return usersPerCourseDTO;
     }
 
     private UsersPerSchoolDTO createUsersPerSchoolDTO(List<User> users, School school) {
         UsersPerSchoolDTO usersPerSchoolDTO = new UsersPerSchoolDTO();
-        usersPerSchoolDTO.schoolName = school.getName();
+        usersPerSchoolDTO.school_name = school.getName();
 
         Long totalUsers = users.stream().count();
 
-        usersPerSchoolDTO.numberOfUsers = users.stream().filter(user -> user.getCourse().getSchool() == school).count();
-        usersPerSchoolDTO.percent = (double) (usersPerSchoolDTO.numberOfUsers / (double) totalUsers);
+        usersPerSchoolDTO.number_of_users = users.stream().filter(user -> user.getCourse().getSchool() == school).count();
+        usersPerSchoolDTO.percent = (double) (usersPerSchoolDTO.number_of_users / (double) totalUsers);
 
         return usersPerSchoolDTO;
     }
 
     private UsersPerSchoolYearDTO createUsersPerSchoolYearDTO(List<User> users, int schoolYear) {
         UsersPerSchoolYearDTO usersPerSchoolYearDTO = new UsersPerSchoolYearDTO();
-        usersPerSchoolYearDTO.schoolYear = schoolYear;
+        usersPerSchoolYearDTO.school_year = schoolYear;
 
         Long totalUsers = users.stream().count();
-        usersPerSchoolYearDTO.numberOfUsers = users.stream().filter(user -> user.getSchool_year() == schoolYear)
+        usersPerSchoolYearDTO.number_of_users = users.stream().filter(user -> user.getSchool_year() == schoolYear)
                 .count();
-        usersPerSchoolYearDTO.percent = (double) (usersPerSchoolYearDTO.numberOfUsers / (double) totalUsers);
+        usersPerSchoolYearDTO.percent = (double) (usersPerSchoolYearDTO.number_of_users / (double) totalUsers);
 
         return usersPerSchoolYearDTO;
     }
@@ -119,11 +119,11 @@ public class Feature {
     public DashboardDTO execute() {
         DashboardDTO dashboardDTO = new DashboardDTO();
 
-        dashboardDTO.usersPerSchoolYear = getUsersPerSchoolYear(usersRepository.listAll());
-        dashboardDTO.usersPerSchool = getUsersPerSchool(usersRepository.listAll());
-        dashboardDTO.usersPerCourse = getUsersPerCourse(usersRepository.listAll());
+        dashboardDTO.users_per_school_year = getUsersPerSchoolYear(usersRepository.listAll());
+        dashboardDTO.users_per_school = getUsersPerSchool(usersRepository.listAll());
+        dashboardDTO.users_per_course = getUsersPerCourse(usersRepository.listAll());
         
-        dashboardDTO.userMatchPercent = getMatchPercent(usersRepository.streamAll().count());
+        dashboardDTO.user_match_percent = getMatchPercent(usersRepository.streamAll().count());
 
         return dashboardDTO;
     }
