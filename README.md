@@ -30,7 +30,7 @@ Creation of an user
 },
 "course_id": 5,
 "email": "teste@email.com",
-"gender": "Helicoptero de Ataque Boeing AH-64 Apache",
+"gender": "0",
 "name": "Nome Teste",
 "password": "Testando1",
 "school_year": 3,
@@ -55,7 +55,7 @@ Creation of an user
     8
   ],
   "bio": "Biografia Teste",
-  "gender": "Helicoptero de Ataque Boeing AH-64 Apache",
+  "gender": "0",
   "shift": 1,
   "classroom": "F",
   "subjects_ids": [
