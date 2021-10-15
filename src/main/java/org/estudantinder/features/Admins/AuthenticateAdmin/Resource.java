@@ -24,7 +24,7 @@ public class Resource {
     Controller authenticateAdminController;
 
     @POST
-    @Path("login")
+    @Path("session")
     @APIResponse(responseCode = "200", description = "OK")
     @APIResponse(responseCode = "400", description = "No Data Sent")
     @APIResponse(responseCode = "401", description = "Wrong Password")

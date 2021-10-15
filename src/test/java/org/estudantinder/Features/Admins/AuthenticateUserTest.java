@@ -26,7 +26,7 @@ public class AuthenticateUserTest {
         given()
             .body(testAdmin)
             .contentType(ContentType.JSON)
-            .when().post("/admins/login")
+            .when().post("/admins/session")
             .then()
                 .statusCode(200)
                 .body(containsString("eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9"));
