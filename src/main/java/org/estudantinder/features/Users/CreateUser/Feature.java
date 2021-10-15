@@ -145,7 +145,7 @@ public class Feature {
         boolean isEmailAlreadyInUse = UsersRepository.isEmailAlreadyInUse(data.email);
 
         if(isEmailAlreadyInUse) {
-            throw new EntityExistsException("Email já esta em uso");
+            throw new EntityExistsException("Email já está em uso");
         }
    
         if(data.contacts == null) {
