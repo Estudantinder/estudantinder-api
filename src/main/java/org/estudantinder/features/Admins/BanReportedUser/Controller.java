@@ -1,4 +1,4 @@
-package org.estudantinder.features.Reports.BanReportedUser;
+package org.estudantinder.features.Admins.BanReportedUser;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

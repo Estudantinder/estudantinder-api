@@ -1,4 +1,4 @@
-package org.estudantinder.Features.Reports;
+package org.estudantinder.Features.Admins;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ public class BanReportedUserTest {
         given()
             .pathParam("userId", 33)
             .auth().oauth2(generateValidUserToken())
-            .when().delete("/report/banUser/{userId}")
+            .when().delete("/admins/users/{userId}")
             .then()
                 .statusCode(200);
     }
