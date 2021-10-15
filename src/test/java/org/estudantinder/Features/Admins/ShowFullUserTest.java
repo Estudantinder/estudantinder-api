@@ -19,7 +19,7 @@ public class ShowFullUserTest {
         given()
             .pathParam("userId", 35)
             .auth().oauth2(generateValidUserToken())
-            .when().get("/admins/showFullUser/{userId}")
+            .when().get("/admins/users/{userId}")
             .then()
                 .statusCode(200);
     }
@@ -29,7 +29,7 @@ public class ShowFullUserTest {
         given()
             .pathParam("userId", -35)
             .auth().oauth2(generateValidUserToken())
-            .when().get("/admins/showFullUser/{userId}")
+            .when().get("/admins/users/{userId}")
             .then()
                 .statusCode(404);
     }
