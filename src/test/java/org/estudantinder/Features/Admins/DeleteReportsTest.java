@@ -1,4 +1,4 @@
-package org.estudantinder.Features.Reports;
+package org.estudantinder.Features.Admins;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ public class DeleteReportsTest {
         given()
             .pathParam("userId", 35)
             .auth().oauth2(generateValidUserToken())
-            .when().delete("/report/{userId}")
+            .when().delete("/admins/users/{userId}/reports")
             .then()
                 .statusCode(200);
     }

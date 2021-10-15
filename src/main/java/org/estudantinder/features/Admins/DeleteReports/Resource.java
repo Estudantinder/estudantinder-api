@@ -1,4 +1,4 @@
-package org.estudantinder.features.Reports.DeleteReport;
+package org.estudantinder.features.Admins.DeleteReports;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -17,8 +17,8 @@ import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-@Path("report")
-@Tag(name = "Report")
+@Path("admins")
+@Tag(name = "Admins")
 @Produces(MediaType.APPLICATION_JSON)
 @SecurityScheme(securitySchemeName = "jwt", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "jwt")
 public class Resource {
@@ -27,7 +27,7 @@ public class Resource {
     Controller banReportedUserController;
 
     @DELETE
-    @Path("{userId}")
+    @Path("users/{userId}/reports")
     @Transactional
     @RolesAllowed("Admin")
     @SecurityRequirement(name = "jwt")
