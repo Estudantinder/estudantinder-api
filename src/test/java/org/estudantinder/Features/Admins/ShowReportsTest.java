@@ -1,4 +1,4 @@
-package org.estudantinder.Features.Reports;
+package org.estudantinder.Features.Admins;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ public class ShowReportsTest {
         given()
             .auth().oauth2(generateValidUserToken())
             .contentType(ContentType.JSON)
-            .when().get("/report")
+            .when().get("/admins/reports")
             .then()
                 .statusCode(200);
     }

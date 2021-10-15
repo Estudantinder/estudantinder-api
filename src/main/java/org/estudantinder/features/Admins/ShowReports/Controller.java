@@ -1,4 +1,4 @@
-package org.estudantinder.features.Reports.ShowReports;
+package org.estudantinder.features.Admins.ShowReports;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
-import org.estudantinder.features.Reports.ShowReports.DTO.UserReportsDTO;
+import org.estudantinder.features.Admins.ShowReports.DTO.UserReportsDTO;
 import org.estudantinder.features.commom.ErrorResponse;
 
 @ApplicationScoped

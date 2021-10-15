@@ -1,4 +1,4 @@
-package org.estudantinder.features.Reports.ShowReports.DTO;
+package org.estudantinder.features.Admins.ShowReports.DTO;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.estudantinder.features.Reports.ShowReports;
+package org.estudantinder.features.Admins.ShowReports;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,9 +9,9 @@ import javax.inject.Inject;
 
 import org.estudantinder.entities.Report;
 import org.estudantinder.entities.User;
-import org.estudantinder.features.Reports.ShowReports.DTO.FullUserDTO;
-import org.estudantinder.features.Reports.ShowReports.DTO.ReportDTO;
-import org.estudantinder.features.Reports.ShowReports.DTO.UserReportsDTO;
+import org.estudantinder.features.Admins.ShowReports.DTO.FullUserDTO;
+import org.estudantinder.features.Admins.ShowReports.DTO.ReportDTO;
+import org.estudantinder.features.Admins.ShowReports.DTO.UserReportsDTO;
 import org.estudantinder.repositories.ReportsRepository;
 import org.estudantinder.repositories.UsersRepository;
 
