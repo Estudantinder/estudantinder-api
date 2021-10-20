@@ -34,6 +34,7 @@ public class Resource {
     Controller createUserController;
 
     @PUT
+    @Path("me")
     @Transactional
     @RolesAllowed("User")
     @SecurityRequirement(name = "jwt")

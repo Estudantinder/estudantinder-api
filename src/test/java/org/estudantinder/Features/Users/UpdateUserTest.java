@@ -35,7 +35,7 @@ public class UpdateUserTest {
             .auth().oauth2(generateValidUserToken())
             .body(testUserUpdated)
             .contentType(ContentType.JSON)
-            .when().put("/users")
+            .when().put("/users/me")
             .then()
                 .statusCode(200);
     }
@@ -58,7 +58,7 @@ public class UpdateUserTest {
             .auth().oauth2(generateNonExistentUserToken())
             .body(testUserUpdated)
             .contentType(ContentType.JSON)
-            .when().put("/users")
+            .when().put("/users/me")
             .then()
                 .statusCode(404);
     }
