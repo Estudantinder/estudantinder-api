@@ -1,10 +1,9 @@
-package org.estudantinder.Features.Reports;
+package org.estudantinder.Features.Users;
 
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
-import io.restassured.http.ContentType;
-import io.smallrye.jwt.build.Jwt;
+import io.restassured.http.ContentType; import io.smallrye.jwt.build.Jwt;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -25,10 +24,10 @@ public class CreateReportTest {
 
         given()
             .body(testReport)
-            .pathParam("reportedUserId", 22)
+            .pathParam("userId", 22)
             .auth().oauth2(generateValidUserToken())
             .contentType(ContentType.JSON)
-            .when().post("/report/{reportedUserId}")
+            .when().post("/users/{userId}/report")
             .then()
                 .statusCode(201);
     }
@@ -41,10 +40,10 @@ public class CreateReportTest {
 
         given()
             .body(testReport)
-            .pathParam("reportedUserId", -22)
+            .pathParam("userId", -22)
             .auth().oauth2(generateValidUserToken())
             .contentType(ContentType.JSON)
-            .when().post("/report/{reportedUserId}")
+            .when().post("/users/{userId}/report")
             .then()
                 .statusCode(404);
     }

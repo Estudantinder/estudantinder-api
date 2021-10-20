@@ -1,4 +1,4 @@
-package org.estudantinder.features.Reports.CreateReport;
+package org.estudantinder.features.Users.CreateReport;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -18,8 +18,8 @@ import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-@Path("report")
-@Tag(name = "Report")
+@Path("users")
+@Tag(name = "Users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @SecurityScheme(securitySchemeName = "jwt", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "jwt")
@@ -29,7 +29,7 @@ public class Resource {
     Controller createReportController;
 
     @POST
-    @Path("{reportedUserId}")
+    @Path("{userId}/report")
     @Transactional
     @RolesAllowed("User")
     @SecurityRequirement(name = "jwt")
@@ -38,7 +38,7 @@ public class Resource {
     @APIResponse(responseCode = "404", description = "Student not found")
     @APIResponse(responseCode = "500", description = "Unexpected Error")
     @Operation(summary = "Report a student")
-    public Response createSchool(@PathParam("reportedUserId") Long reportedUserId, CreateReportDTO reportData) throws Exception {
+    public Response createSchool(@PathParam("userId") Long reportedUserId, CreateReportDTO reportData) throws Exception {
         return createReportController.handle(reportData, reportedUserId);
     }
 }
