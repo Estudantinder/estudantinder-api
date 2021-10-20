@@ -23,7 +23,7 @@ public class Resource {
     @Inject
     Controller validateEmailController;
 
-    @Path("emailValidation")
+    @Path("emails/available")
     @POST
     @Transactional
     @APIResponse(responseCode = "204", description = "Valid Email")
