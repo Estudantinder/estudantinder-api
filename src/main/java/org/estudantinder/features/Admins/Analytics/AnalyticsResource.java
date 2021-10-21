@@ -1,4 +1,4 @@
-package org.estudantinder.features.Statistics.NumberOfUsers;
+package org.estudantinder.features.Admins.Analytics;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -15,22 +15,24 @@ import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-@Path("/statistics")
+@Path("admins")
+@Tag(name = "Admins")
 @Produces(MediaType.APPLICATION_JSON)
 @SecurityScheme(securitySchemeName = "jwt", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "jwt")
-@Tag(name = "Statistics", description = "App statistics")
-public class Resource {
+public class AnalyticsResource {
 
     @Inject
-    Controller showNumberOfUsersController;
+    AnalyticsController analyticsController;
 
     @GET
+    @Path("analytics")
     @RolesAllowed("Admin")
     @SecurityRequirement(name = "jwt")
-    @Path("/numberOfUsers")
-    @APIResponse(responseCode = "200")
-    @Operation(summary = "Return number of users registered")
-    public Response getNumberOfUsers() throws Exception {
-        return showNumberOfUsersController.handle();
+    @APIResponse(responseCode = "200", description = "OK")
+    @APIResponse(responseCode = "500", description = "Unexpected Error")
+    @Operation(summary = "Return app analytics")
+    public Response getAnalytics() throws Exception {
+        return analyticsController.handle();
     }
+
 }

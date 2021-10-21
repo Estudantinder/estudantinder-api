@@ -1,4 +1,4 @@
-package org.estudantinder.features.Statistics.SubjectsStatistics;
+package org.estudantinder.features.Admins.Analytics.SubjectsStatistics;
 
 public class SubjectStatisticsDTO {
 

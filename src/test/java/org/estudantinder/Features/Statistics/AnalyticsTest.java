@@ -12,13 +12,13 @@ import java.time.temporal.ChronoUnit;
 import java.util.Set;
 
 @QuarkusTest
-public class FilterUsageTest {
+public class AnalyticsTest {
 
     @Test
-    public void testFilterUsageEndpoint() {
+    public void testSubjectStatisticsEndpoint() {
         given()
         .auth().oauth2(generateValidAdminToken())
-        .when().get("/statistics/filterUsage")
+        .when().get("/admins/analytics")
         .then()
             .statusCode(200);
     }

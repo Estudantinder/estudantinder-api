@@ -1,4 +1,4 @@
-package org.estudantinder.features.Statistics.SubjectsStatistics;
+package org.estudantinder.features.Admins.Analytics.SubjectsStatistics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import org.estudantinder.repositories.UsersRepository;
 
 
 @ApplicationScoped
-public class Feature {
+public class SubjectsStatisticsFeature {
 
     @Inject
     UsersRepository usersRepository;

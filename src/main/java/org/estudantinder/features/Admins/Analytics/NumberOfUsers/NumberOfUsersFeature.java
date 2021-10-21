@@ -1,4 +1,4 @@
-package org.estudantinder.features.Statistics.NumberOfUsers;
+package org.estudantinder.features.Admins.Analytics.NumberOfUsers;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -6,7 +6,7 @@ import javax.inject.Inject;
 import org.estudantinder.repositories.UsersRepository;
 
 @ApplicationScoped
-public class Feature {
+public class NumberOfUsersFeature {
 
     @Inject
     UsersRepository usersRepository;

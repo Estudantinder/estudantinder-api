@@ -1,4 +1,4 @@
-package org.estudantinder.features.Statistics.FilterUsage;
+package org.estudantinder.features.Admins.Analytics.FilterUsage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.estudantinder.repositories.PreferencesRepository;
 import org.estudantinder.repositories.UsersRepository;
 
 @ApplicationScoped
-public class Feature {
+public class FilterUsageFeature {
 
     @Inject
     PreferencesRepository preferencesRepository;

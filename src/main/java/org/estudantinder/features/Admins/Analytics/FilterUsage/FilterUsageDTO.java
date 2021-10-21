@@ -1,4 +1,4 @@
-package org.estudantinder.features.Statistics.FilterUsage;
+package org.estudantinder.features.Admins.Analytics.FilterUsage;
 
 public class FilterUsageDTO {
     public String name;
