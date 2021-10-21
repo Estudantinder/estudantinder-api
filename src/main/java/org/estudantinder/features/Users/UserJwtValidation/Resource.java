@@ -28,7 +28,7 @@ public class Resource {
     @Inject
     JsonWebToken jwt;
 
-    @Path("jwtValidation")
+    @Path("me/session")
     @POST
     @RolesAllowed("User")
     @SecurityRequirement(name = "jwt")
