@@ -16,9 +16,9 @@ public class CreateLikeTest {
     @Test
     public void testCreateLikeEndpoint() {
         given()
-        .pathParam("id", 24)
+        .pathParam("userId", 24)
         .auth().oauth2(generateValidStudentToken())
-        .when().post("/students/likes/{id}")
+        .when().post("/students/{userId}/like")
         .then()
             .statusCode(201);
     }
@@ -26,9 +26,9 @@ public class CreateLikeTest {
     @Test
     public void testNotFoundCreateLikeEndpoint() {
         given()
-        .pathParam("id", -24)
+        .pathParam("userId", -24)
         .auth().oauth2(generateValidStudentToken())
-        .when().post("/students/likes/{id}")
+        .when().post("/students/{userId}/like")
         .then()
             .statusCode(404);
     }
@@ -37,9 +37,9 @@ public class CreateLikeTest {
     public void testBadRequestCreateLikeEndpoint() {
         //user can't like himself
         given()
-        .pathParam("id", 22)
+        .pathParam("userId", 22)
         .auth().oauth2(generateValidStudentToken())
-        .when().post("/students/likes/{id}")
+        .when().post("/students/{userId}/like")
         .then()
             .statusCode(400);
     }
