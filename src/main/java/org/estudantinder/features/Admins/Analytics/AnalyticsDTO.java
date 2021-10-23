@@ -7,7 +7,7 @@ import org.estudantinder.features.Admins.Analytics.NumberOfUsers.NumberOfUsersDT
 import org.estudantinder.features.Admins.Analytics.SubjectsStatistics.SubjectStatisticsDTO;
 
 public class AnalyticsDTO {
-    public List<SubjectStatisticsDTO> subjectStatistics;
-    public NumberOfUsersDTO numberOfUsers;
-    public List<FilterUsageDTO> filterUsage;
+    public List<SubjectStatisticsDTO> subject_statistics;
+    public NumberOfUsersDTO number_of_users;
+    public List<FilterUsageDTO> filter_usage;
 }

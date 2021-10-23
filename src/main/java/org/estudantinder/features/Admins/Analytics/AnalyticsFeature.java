@@ -22,9 +22,9 @@ public class AnalyticsFeature {
     public AnalyticsDTO execute() {
         AnalyticsDTO analyticsDTO = new AnalyticsDTO();
 
-        analyticsDTO.subjectStatistics = subjectsStatisticsFeature.execute();
-        analyticsDTO.numberOfUsers = numberOfUsersFeature.execute();
-        analyticsDTO.filterUsage = filterUsageFeature.execute();
+        analyticsDTO.subject_statistics = subjectsStatisticsFeature.execute();
+        analyticsDTO.number_of_users = numberOfUsersFeature.execute();
+        analyticsDTO.filter_usage = filterUsageFeature.execute();
 
         return analyticsDTO;
     }
