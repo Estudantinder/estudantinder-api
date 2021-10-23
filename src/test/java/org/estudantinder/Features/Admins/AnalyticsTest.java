@@ -1,4 +1,4 @@
-package org.estudantinder.Features.Statistics;
+package org.estudantinder.Features.Admins;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.smallrye.jwt.build.Jwt;
