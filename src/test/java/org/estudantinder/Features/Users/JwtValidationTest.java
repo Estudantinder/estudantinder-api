@@ -17,7 +17,7 @@ public class JwtValidationTest {
     public void testJwtValidationEndpoint() {
         given()
         .auth().oauth2(generateValidUserToken())
-        .when().post("/users/me/session")
+        .when().get("/users/me/session")
         .then()
             .statusCode(204);
     }
@@ -26,7 +26,7 @@ public class JwtValidationTest {
     public void testNotFoundJwtValidationEndpoint() {
         given()
         .auth().oauth2(generateNonExistentUserToken())
-        .when().post("/users/me/session")
+        .when().get("/users/me/session")
         .then()
             .statusCode(404);
     }
