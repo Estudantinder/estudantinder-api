@@ -32,7 +32,7 @@ public class Resource {
 
     @GET
     @RolesAllowed("User")
-    @Path("filters")
+    @Path("me/filters")
     @SecurityRequirement(name = "jwt")
     @APIResponse(responseCode = "200", description = "OK")
     @APIResponse(responseCode = "400", description = "No Data Sent")

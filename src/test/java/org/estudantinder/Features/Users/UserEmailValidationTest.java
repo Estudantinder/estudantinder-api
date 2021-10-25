@@ -22,7 +22,7 @@ public class UserEmailValidationTest {
         given()
         .body(testEmail)
         .contentType(ContentType.JSON)
-        .when().post("/users/emailValidation")
+        .when().post("/users/emails/available")
         .then()
             .statusCode(204);
     }
@@ -37,7 +37,7 @@ public class UserEmailValidationTest {
         given()
         .body(testEmail)
         .contentType(ContentType.JSON)
-        .when().post("/users/emailValidation")
+        .when().post("/users/emails/available")
         .then()
             .statusCode(409);
     }

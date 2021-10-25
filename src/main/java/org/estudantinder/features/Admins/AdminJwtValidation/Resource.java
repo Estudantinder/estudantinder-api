@@ -28,8 +28,8 @@ public class Resource {
     @Inject
     JsonWebToken jwt;
 
-    @Path("jwtValidation")
     @POST
+    @Path("me/session")
     @RolesAllowed("Admin")
     @SecurityRequirement(name = "jwt")
     @APIResponse(responseCode = "204", description = "JWT valido")

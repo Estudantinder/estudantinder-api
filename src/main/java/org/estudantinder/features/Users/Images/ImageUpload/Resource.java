@@ -43,7 +43,7 @@ public class Resource {
     @POST
     @RolesAllowed("User")
     @SecurityRequirement(name = "jwt")
-    @Path("imageUpload")
+    @Path("me/images")
     @Transactional
     @APIResponse(responseCode = "200", description = "User's photos sucessfully uploaded")
     @APIResponse(responseCode = "400", description = "No Data Sent")

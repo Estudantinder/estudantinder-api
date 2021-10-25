@@ -18,7 +18,7 @@ import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-@Path("students/matchs")
+@Path("students")
 @Tag(name = "Students")
 @Produces(MediaType.APPLICATION_JSON)
 @SecurityScheme(securitySchemeName = "jwt", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "jwt")
@@ -31,6 +31,7 @@ public class Resource {
     Controller showStudentMatchsController;
 
     @GET
+    @Path("matches")
     @RolesAllowed("User")
     @SecurityRequirement(name = "jwt")
     @APIResponse(responseCode = "200", description = "OK")

@@ -18,7 +18,7 @@ public class DeleteMatchTest {
         given()
         .auth().oauth2(generateValidStudentToken())
         .pathParam("id", 32)
-        .when().delete("/students/matchs/{id}")
+        .when().delete("/students/matches/{id}")
         .then()
             .statusCode(200);
     }
@@ -28,7 +28,7 @@ public class DeleteMatchTest {
         given()
         .auth().oauth2(generateValidStudentToken())
         .pathParam("id", -32)
-        .when().delete("/students/matchs/{id}")
+        .when().delete("/students/matches/{id}")
         .then()
             .statusCode(404);
     }
@@ -39,7 +39,7 @@ public class DeleteMatchTest {
         given()
         .auth().oauth2(generateValidStudentToken())
         .pathParam("id", 31)
-        .when().delete("/students/matchs/{id}")
+        .when().delete("/students/matches/{id}")
         .then()
             .statusCode(401);
     }

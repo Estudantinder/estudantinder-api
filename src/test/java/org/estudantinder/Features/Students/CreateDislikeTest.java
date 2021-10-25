@@ -16,9 +16,9 @@ public class CreateDislikeTest {
     @Test
     public void testCreateDislikeEndpoint() {
         given()
-        .pathParam("id", 24)
+        .pathParam("userId", 24)
         .auth().oauth2(generateValidStudentToken())
-        .when().post("/students/dislikes/{id}")
+        .when().post("/students/{userId}/dislike")
         .then()
             .statusCode(201);
     }
@@ -26,9 +26,9 @@ public class CreateDislikeTest {
     @Test
     public void testConflictCreateDislikeEndpoint() {
         given()
-        .pathParam("id", 24)
+        .pathParam("userId", 24)
         .auth().oauth2(generateValidStudentToken())
-        .when().post("/students/dislikes/{id}")
+        .when().post("/students/{userId}/dislike")
         .then()
             .statusCode(409);
     }
@@ -36,9 +36,9 @@ public class CreateDislikeTest {
     @Test
     public void testNotFoundCreateDislikeEndpoint() {
         given()
-        .pathParam("id", -24)
+        .pathParam("userId", -24)
         .auth().oauth2(generateValidStudentToken())
-        .when().post("/students/dislikes/{id}")
+        .when().post("/students/{userId}/dislike")
         .then()
             .statusCode(404);
     }
@@ -46,9 +46,9 @@ public class CreateDislikeTest {
     @Test
     public void testBadRequestCreateDislikeEndpoint() {
         given()
-        .pathParam("id", 22)
+        .pathParam("userId", 22)
         .auth().oauth2(generateValidStudentToken())
-        .when().post("/students/dislikes/{id}")
+        .when().post("/students/{userId}/dislike")
         .then()
             .statusCode(400);
     }
