@@ -26,7 +26,7 @@ public class SubjectsStatisticsFeature {
 
     public List<SubjectStatisticsDTO> addToSubjectStatistics(List<SubjectStatisticsDTO> listOfSubjectsStatistics, Subject subject) {
         SubjectStatisticsDTO subjectStatistics = new SubjectStatisticsDTO(); 
-        subjectStatistics.subject_name = subject.getName();
+        subjectStatistics.subject = subject;
         subjectStatistics.users_preffered= usersRepository.findBySubject(subject).count();
         subjectStatistics.users_searching= preferencesRepository.findBySubject(subject).count();
 
@@ -35,12 +35,11 @@ public class SubjectsStatisticsFeature {
         return listOfSubjectsStatistics;
     }
 
-
     public List<SubjectStatisticsDTO> execute() {
 
         List<SubjectStatisticsDTO> result = new ArrayList<SubjectStatisticsDTO>();
 
-        subjectsRepository.listAll().forEach(subject -> addToSubjectStatistics(result, subject));
+        subjectsRepository.listAll().stream().forEach(subject -> addToSubjectStatistics(result, subject));
 
         return result;
     }
