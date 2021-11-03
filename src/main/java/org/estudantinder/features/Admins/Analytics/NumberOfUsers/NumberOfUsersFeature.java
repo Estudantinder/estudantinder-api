@@ -11,11 +11,7 @@ public class NumberOfUsersFeature {
     @Inject
     UsersRepository usersRepository;
 
-    public NumberOfUsersDTO execute() {
-        NumberOfUsersDTO result = new NumberOfUsersDTO();
-
-        result.number_of_users = usersRepository.count();
-
-        return  result;
+    public Long execute() {
+        return usersRepository.count();
     }
 }
