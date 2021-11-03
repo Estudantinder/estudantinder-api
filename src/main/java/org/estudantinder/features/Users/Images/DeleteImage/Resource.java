@@ -36,7 +36,7 @@ public class Resource {
     @DELETE
     @RolesAllowed("User")
     @SecurityRequirement(name = "jwt")
-    @Path("deleteImage/{imageIndex}")
+    @Path("me/images/{imageIndex}")
     @Transactional
     @APIResponse(responseCode = "200", description = "User photo sucessfully deleted")
     @APIResponse(responseCode = "400", description = "No Data Sent")

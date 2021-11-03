@@ -31,6 +31,7 @@ public class Resource {
     Controller showUserController;
 
     @GET
+    @Path("me")
     @RolesAllowed("User")
     @SecurityRequirement(name = "jwt")
     @APIResponse(responseCode = "200", description = "OK")

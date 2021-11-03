@@ -32,7 +32,7 @@ public class Resource {
     Controller showUserController;
 
     @GET
-    @Path("showFullUser/{userId}")
+    @Path("users/{userId}")
     @RolesAllowed("Admin")
     @SecurityRequirement(name = "jwt")
     @APIResponse(responseCode = "200", description = "OK")

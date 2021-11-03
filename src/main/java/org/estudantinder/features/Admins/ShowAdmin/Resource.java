@@ -31,6 +31,7 @@ public class Resource {
     Controller showAdminController;
 
     @GET
+    @Path("me")
     @RolesAllowed("Admin")
     @SecurityRequirement(name = "jwt")
     @APIResponse(responseCode = "200", description = "OK")

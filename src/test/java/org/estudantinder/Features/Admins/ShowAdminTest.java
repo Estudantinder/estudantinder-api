@@ -18,7 +18,7 @@ public class ShowAdminTest {
     public void testShowAdminEndpoint() {
         given()
             .auth().oauth2(generateValidUserToken())
-            .when().get("/admins")
+            .when().get("/admins/me")
             .then()
                 .statusCode(200);
     }
@@ -27,7 +27,7 @@ public class ShowAdminTest {
     public void testNotFoundShowUserEndpoint() {
         given()
             .auth().oauth2(generateNonExistentUserToken())
-            .when().get("/admins")
+            .when().get("/admins/me")
             .then()
                 .statusCode(404);
     }

@@ -24,14 +24,14 @@ public class Report {
     
     @ManyToOne
     @JsonIgnore
-    private User reportedUser;
+    private User reported_user;
 
     public Long getId() {
         return id;
     }
 
     public User getReportedUser() {
-        return reportedUser;
+        return reported_user;
     }
 
     public String getDescription() {
@@ -58,7 +58,7 @@ public class Report {
         this.type = type;
     }
 
-    public void setReportedUser(User reportedUser) {
-        this.reportedUser = reportedUser;
+    public void setReportedUser(User reported_user) {
+        this.reported_user = reported_user;
     }
 }

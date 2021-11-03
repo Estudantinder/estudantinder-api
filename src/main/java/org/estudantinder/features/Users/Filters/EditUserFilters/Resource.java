@@ -34,7 +34,7 @@ public class Resource {
 
     @PUT
     @Transactional
-    @Path("filters")
+    @Path("me/filters")
     @RolesAllowed("User")
     @SecurityRequirement(name = "jwt")
     @APIResponse(responseCode = "200", description = "Filters Succefuly Updated")

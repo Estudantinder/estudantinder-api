@@ -15,7 +15,7 @@ public class ReportsRepository implements PanacheRepository<Report> {
     
     // find report by user
     public List<Report> findByUser(User user) {
-        return find("reportedUser", user).list();
+        return find("reported_user", user).list();
     }   
 
     // find report by type
@@ -25,8 +25,8 @@ public class ReportsRepository implements PanacheRepository<Report> {
 
     // find report by user and type
     public List<Report> findByUserAndType(User user, String type) {
-        return find("reportedUser = :reportedUser and type = :type", 
-            Parameters.with("reportedUser", user)
+        return find("reported_user = :reported_user and type = :type", 
+            Parameters.with("reported_user", user)
             .and("type", type)).list();
     }
 

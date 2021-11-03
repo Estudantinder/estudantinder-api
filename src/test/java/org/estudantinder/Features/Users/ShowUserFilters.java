@@ -19,7 +19,7 @@ public class ShowUserFilters {
         given()
         .auth().oauth2(generateValidUserToken())
         .contentType(ContentType.JSON)
-        .when().get("/users/filters")
+        .when().get("/users/me/filters")
         .then()
             .statusCode(200);
     }
@@ -29,7 +29,7 @@ public class ShowUserFilters {
         given()
         .auth().oauth2(generateNonExistentUserToken())
         .contentType(ContentType.JSON)
-        .when().get("/users/filters")
+        .when().get("/users/me/filters")
         .then()
             .statusCode(404);
     }

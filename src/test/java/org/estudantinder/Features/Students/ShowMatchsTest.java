@@ -17,7 +17,7 @@ public class ShowMatchsTest {
     public void testShowMatchsEndpoint() {
         given()
         .auth().oauth2(generateValidStudentToken())
-        .when().get("/students/matchs")
+        .when().get("/students/matches")
         .then()
             .statusCode(200);
     }
@@ -25,7 +25,7 @@ public class ShowMatchsTest {
     public void testNotFoundShowMatchsEndpoint() {
         given()
         .auth().oauth2(generateNonExistentStudentToken())
-        .when().get("/students/matchs")
+        .when().get("/students/matches")
         .then()
             .statusCode(404);
     }

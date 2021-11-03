@@ -18,7 +18,7 @@ public class ShowUserTest {
     public void testShowUserEndpoint() {
         given()
             .auth().oauth2(generateValidUserToken())
-            .when().get("/users")
+            .when().get("/users/me")
             .then()
                 .statusCode(200);
     }
@@ -27,7 +27,7 @@ public class ShowUserTest {
     public void testNotFoundShowUserEndpoint() {
         given()
             .auth().oauth2(generateNonExistentUserToken())
-            .when().get("/users")
+            .when().get("/users/me")
             .then()
                 .statusCode(404);
     }

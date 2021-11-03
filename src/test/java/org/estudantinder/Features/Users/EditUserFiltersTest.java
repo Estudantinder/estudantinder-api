@@ -33,7 +33,7 @@ public class EditUserFiltersTest {
         .auth().oauth2(generateValidUserToken())
         .body(testFilters)
         .contentType(ContentType.JSON)
-        .when().put("/users/filters")
+        .when().put("/users/me/filters")
         .then()
             .statusCode(200);
     }
@@ -55,7 +55,7 @@ public class EditUserFiltersTest {
         .auth().oauth2(generateNonExistentUserToken())
         .body(testFilters)
         .contentType(ContentType.JSON)
-        .when().put("/users/filters")
+        .when().put("/users/me/filters")
         .then()
             .statusCode(404);
     }

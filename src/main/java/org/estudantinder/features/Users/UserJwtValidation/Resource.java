@@ -2,7 +2,7 @@ package org.estudantinder.features.Users.UserJwtValidation;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
-import javax.ws.rs.POST;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -28,8 +28,8 @@ public class Resource {
     @Inject
     JsonWebToken jwt;
 
-    @Path("jwtValidation")
-    @POST
+    @Path("me/session")
+    @GET
     @RolesAllowed("User")
     @SecurityRequirement(name = "jwt")
     @APIResponse(responseCode = "204", description = "JWT valido")

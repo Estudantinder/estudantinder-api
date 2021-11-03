@@ -18,7 +18,7 @@ import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-@Path("students/dislikes")
+@Path("students")
 @Tag(name = "Students")
 @Produces(MediaType.APPLICATION_JSON)
 @SecurityScheme(securitySchemeName = "jwt", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "jwt")
@@ -32,7 +32,7 @@ public class Resource {
 
     @POST
     @Transactional
-    @Path("{id}")
+    @Path("{id}/dislike")
     @RolesAllowed("User")
     @SecurityRequirement(name = "jwt")
     @APIResponse(responseCode = "201", description = "Dislike Successfully Created")
